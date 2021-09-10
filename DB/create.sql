@@ -29,7 +29,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `looper`.`exercices` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` LONGTEXT ,
+  `title` LONGTEXT NULL,
   `states_id` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_exercices_states1_idx` (`states_id` ASC) VISIBLE,
@@ -56,7 +56,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `looper`.`fields` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `label` LONGTEXT ,
+  `label` LONGTEXT NULL,
   `lines_id` INT NOT NULL DEFAULT 1,
   `exercices_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -81,20 +81,13 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `looper`.`answers` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `take` DATETIME NOT NULL DEFAULT now(),
-  `answer` LONGTEXT ,
+  `answer` LONGTEXT NULL,
   `fields_id` INT NOT NULL,
-  `exercices_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_answer_fields1_idx` (`fields_id` ASC) VISIBLE,
-  INDEX `fk_answer_exercices1_idx` (`exercices_id` ASC) VISIBLE,
   CONSTRAINT `fk_answer_fields1`
     FOREIGN KEY (`fields_id`)
     REFERENCES `looper`.`fields` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_answer_exercices1`
-    FOREIGN KEY (`exercices_id`)
-    REFERENCES `looper`.`exercices` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
