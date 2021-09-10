@@ -1,79 +1,38 @@
 $colorPurple: #9a4dcb;
 $colorYellow: #e0a559;
 $colorGreen: #419d78;
-
+$height: 50px;
 body {
   margin: 0px;
   font-family: Helvetica, Arial sans-serif;
 }
 
 .header {
-  display: grid;
-  background: $colorPurple;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.logo {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.title {
-  text-align: center;
-  letter-spacing: 5px;
-}
-
-h1 {
-  color: white;
-  font-size: 50px;
-}
-
-.buttons {
   display: flex;
-  justify-content: center;
-  padding: 0.85em 0.75em;
-  margin: 30px;
-  height: 50px;
+  flex-direction: row;
+  padding-left: 25%;
 
-  button {
-    background-color: rgba(0, 0, 0, 0);
-    margin-left: 25px;
-    margin-right: 25px;
-    width: 20%;
-    border: 3px solid;
-    border-radius: 25px;
-
-    &:hover {
-      color: white;
-    }
+  img {
+    height: $height;
   }
 
-  .take {
-    color: $colorPurple;
-    border-color: $colorPurple;
-
-    &:hover {
-      background-color: $colorPurple;
-    }
+  .text {
+    padding-left: 30px;
+    color: white;
+    height: $height;
+    line-height: $height;
+    text-align: center;
   }
 
-  .create {
-    color: $colorYellow;
-    border-color: $colorYellow;
-
-    &:hover {
-      background-color: $colorYellow;
-    }
+  &.purple {
+    background-color: $colorPurple;
   }
 
-  .manage {
-    color: $colorGreen;
-    border-color: $colorGreen;
-
-    &:hover {
-      background-color: $colorGreen;
-    }
+  &.yellow {
+    background-color: $colorYellow;
   }
 
+  &.green {
+    background-color: $colorGreen;
+  }
 }

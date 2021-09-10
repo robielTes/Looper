@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Looper</title>
-    <script src="/js/traffic.js"></script>
-    <link rel="stylesheet" href="views/css/template.css">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="views/css/main.css">
 </head>
 <body>
 <div class="header">

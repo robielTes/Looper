@@ -4,64 +4,27 @@ body {
 }
 
 .header {
-  display: grid;
-  background: #9a4dcb;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.logo {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.title {
-  text-align: center;
-  letter-spacing: 5px;
-}
-
-h1 {
-  color: white;
-  font-size: 50px;
-}
-
-.buttons {
   display: flex;
-  justify-content: center;
-  padding: 0.85em 0.75em;
-  margin: 30px;
+  flex-direction: row;
+  padding-left: 25%;
+}
+.header img {
   height: 50px;
 }
-.buttons button {
-  background-color: rgba(0, 0, 0, 0);
-  margin-left: 25px;
-  margin-right: 25px;
-  width: 20%;
-  border: 3px solid;
-  border-radius: 25px;
-}
-.buttons button:hover {
+.header .text {
+  padding-left: 30px;
   color: white;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
 }
-.buttons .take {
-  color: #9a4dcb;
-  border-color: #9a4dcb;
-}
-.buttons .take:hover {
+.header.purple {
   background-color: #9a4dcb;
 }
-.buttons .create {
-  color: #e0a559;
-  border-color: #e0a559;
-}
-.buttons .create:hover {
+.header.yellow {
   background-color: #e0a559;
 }
-.buttons .manage {
-  color: #419d78;
-  border-color: #419d78;
-}
-.buttons .manage:hover {
+.header.green {
   background-color: #419d78;
 }
 
