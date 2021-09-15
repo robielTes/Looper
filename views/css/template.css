@@ -28,4 +28,9 @@ body {
   background-color: #419d78;
 }
 
+.content {
+  display: flex;
+  justify-content: center;
+}
+
 /*# sourceMappingURL=template.css.map */

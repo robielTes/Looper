@@ -8,7 +8,7 @@ body {
 }
 
 .header {
-  display: grid;
+  display: flex;
   background: $colorPurple;
   justify-content: center;
   flex-direction: column;

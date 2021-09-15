@@ -4,7 +4,7 @@ body {
 }
 
 .header {
-  display: grid;
+  display: flex;
   background: #9a4dcb;
   justify-content: center;
   flex-direction: column;

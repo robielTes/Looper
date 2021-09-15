@@ -8,4 +8,4 @@ $color = 'green';
     <p>Manage an exercise here</p>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('templates/template.php'); ?>
+<?php require('views/templates/template.php'); ?>
