@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="views/css/tailwind.css">
 </head>
 <body>
-<div class="header <?= $color ?>">
-    <div class="logo"><img src="views/assets/logo.png"/></div>
-    <div class="text"><?= $title ?></div>
+<div class="px-12 sm:px-24 md:px-40 header <?= $color ?>">
+    <img src="views/assets/logo.png"/>
+    <p class="title"><?= $title ?></p>
 </div>
-<div class="content"><?= $content ?></div>
+<?= $content ?>
 </body>
 </html>

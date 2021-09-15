@@ -1,36 +1,27 @@
-body {
-  margin: 0px;
-  font-family: Helvetica, Arial sans-serif;
-}
-
 .header {
   display: flex;
-  flex-direction: row;
-  padding-left: 25%;
-}
-.header img {
-  height: 50px;
-}
-.header .text {
-  padding-left: 30px;
-  color: white;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-}
-.header.purple {
-  background-color: #9a4dcb;
-}
-.header.yellow {
-  background-color: #e0a559;
-}
-.header.green {
-  background-color: #419d78;
 }
 
-.content {
-  display: flex;
-  justify-content: center;
+img {
+  width: 50px;
+}
+
+.title {
+  text-align: center;
+  line-height: 50px;
+  padding-left: 25px;
+}
+
+.purple {
+  background-color: #9a4dcb;
+}
+
+.yellow {
+  background-color: #e0a559;
+}
+
+.green {
+  background-color: #419d78;
 }
 
 /*# sourceMappingURL=template.css.map */

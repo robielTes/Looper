@@ -1,11 +1,13 @@
 <?php
-$title = 'New Exercise';
 $color = 'purple';
+$title = '';
 ?>
 
 
 <?php ob_start() ?>
-    <p>Take an exercise here</p>
+    <div>
+
+    </div>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('views/templates/template.php'); ?>
