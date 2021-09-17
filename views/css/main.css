@@ -3,6 +3,18 @@ body {
   font-family: Helvetica, Arial sans-serif;
 }
 
+a{
+  text-decoration: none;
+  color:black;
+
+}
+
+a:hover{
+  text-decoration: none;
+  color:white;
+
+}
+
 .header {
   display: flex;
   background: #9a4dcb;
@@ -42,13 +54,16 @@ h1 {
 }
 .buttons button:hover {
   color: white;
+
 }
 .buttons .take {
   color: #9a4dcb;
   border-color: #9a4dcb;
 }
+
 .buttons .take:hover {
   background-color: #9a4dcb;
+  color:white;
 }
 .buttons .create {
   color: #e0a559;
@@ -56,6 +71,7 @@ h1 {
 }
 .buttons .create:hover {
   background-color: #e0a559;
+  color:white;
 }
 .buttons .manage {
   color: #419d78;
@@ -63,6 +79,7 @@ h1 {
 }
 .buttons .manage:hover {
   background-color: #419d78;
+  color:white;
 }
 
 /*# sourceMappingURL=main.css.map */
