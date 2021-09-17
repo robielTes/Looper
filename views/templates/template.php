@@ -10,6 +10,8 @@
     <img src="views/assets/logo.png"/>
     <p class="title"><?= $title ?></p>
 </div>
-<?= $content ?>
+<div class="px-12 sm:px-24 md:px-40">
+    <?= $content ?>
+</div>
 </body>
 </html>
