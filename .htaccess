@@ -5,6 +5,9 @@
     RewriteBase /
     Options -Indexes
 
+    # rewrite condition:
+    RewriteCond %{REQUEST_URI}  !(\.png|\.jpg|\.gif|\.jpeg|\.zip|\.css|\.svg|\.js)$
+
     # rewrite rules:
     RewriteRule . index.php [NC,L]
 
