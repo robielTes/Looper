@@ -1,85 +1,11 @@
-body {
-  margin: 0px;
-  font-family: Helvetica, Arial sans-serif;
-}
-
-a{
-  text-decoration: none;
-  color:black;
-
-}
-
-a:hover{
-  text-decoration: none;
-  color:white;
-
-}
-
-.header {
-  display: flex;
-  background: #9a4dcb;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.logo {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.title {
-  text-align: center;
-  letter-spacing: 5px;
-}
-
-h1 {
-  color: white;
-  font-size: 50px;
-}
-
-.buttons {
-  display: flex;
-  justify-content: center;
-  padding: 0.85em 0.75em;
-  margin: 30px;
-  height: 50px;
-}
-.buttons button {
-  background-color: rgba(0, 0, 0, 0);
-  margin-left: 25px;
-  margin-right: 25px;
-  width: 20%;
-  border: 3px solid;
-  border-radius: 25px;
-}
-.buttons button:hover {
-  color: white;
-
-}
-.buttons .take {
-  color: #9a4dcb;
-  border-color: #9a4dcb;
-}
-
-.buttons .take:hover {
+.purple {
   background-color: #9a4dcb;
-  color:white;
-}
-.buttons .create {
-  color: #e0a559;
-  border-color: #e0a559;
-}
-.buttons .create:hover {
-  background-color: #e0a559;
-  color:white;
-}
-.buttons .manage {
-  color: #419d78;
-  border-color: #419d78;
-}
-.buttons .manage:hover {
-  background-color: #419d78;
-  color:white;
 }
 
-/*# sourceMappingURL=main.css.map */
+.yellow {
+  background-color: #e0a559;
+}
+
+.green {
+  background-color: #419d78;
+}
