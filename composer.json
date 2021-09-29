@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "classmap": [
+            "tests/"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
