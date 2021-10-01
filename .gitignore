@@ -476,3 +476,6 @@ composer.lock
 
 
 node_modules/
+
+/vendor
+env.ini
