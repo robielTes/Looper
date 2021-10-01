@@ -1,5 +1,5 @@
 <?php
-
+set_include_path(dirname());
 
 /**
  *
@@ -35,3 +35,7 @@ $router->get('/take', '/exercises/take.php');
  * handle /manage route
  */
 $router->get('/manage', '/exercises/manage.php');
+/**
+ * handle /field route
+ */
+$router->get('/create/field', '/exercises/fields/field.php');

@@ -1,11 +1,3 @@
-.header {
-  display: flex;
-}
-
-img {
-  width: 50px;
-}
-
 .title {
   text-align: center;
   line-height: 50px;
@@ -23,5 +15,3 @@ img {
 .green {
   background-color: #419d78;
 }
-
-/*# sourceMappingURL=template.css.map */
