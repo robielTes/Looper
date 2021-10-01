@@ -13,7 +13,7 @@
     </div>
     <div class="py-8">
         <h1 class="text-center text-white text-6xl tracking-widest">Exercise<br>Looper</h1>
-    </div>
+  </div>
 </div>
 <div class="flex justify-center py-8">
     <a href="\take" class="purple hover:bg-blue-700 text-white font-bold rounded mx-8 py-4 px-32">TAKE AND EXERCISE</a>
