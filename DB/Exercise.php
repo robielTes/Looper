@@ -1,6 +1,6 @@
 <?php
 require 'DB.php';
-class Exercice extends Model
+class Exercise extends Model
 {
     public $id;
     public $title;
