@@ -1,5 +1,5 @@
 <?php
-set_include_path(dirname());
+//set_include_path(dirname());
 
 /**
  *
