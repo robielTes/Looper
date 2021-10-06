@@ -58,12 +58,12 @@ class Field extends Model
 
     public function update(): bool
     {
-        return  $res = DB::execute(' UPDATE `fields` SET label = : label ,lines_id = :lines_id, exercises_id = :exercises_id WHERE id :id',
+        return  $res = DB::execute(' UPDATE `fields` SET label = : label ,lines_id = :lines_id, exercises_id = :exercises_id WHERE id = :id',
             ["label" => $this->label, "lines_id" => $this->lines_id,"exercises_id" =>$this->exercises_id,"id" => self::$id]);
     }
 
     static public function destroy($id): bool
     {
-        return  $res = DB::execute(' DELETE FROM `fields` WHERE id :id', ["id" => $id]);
+        return  $res = DB::execute(' DELETE FROM `fields` WHERE id = :id', ["id" => $id]);
     }
 }

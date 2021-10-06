@@ -46,6 +46,8 @@ class DB
     {
         $pdo = self::connexion();
         $sth = $pdo->prepare($query);
+        //var_dump($args);
+        //var_dump($sth);
         $sth->execute($args);
         return $sth->rowCount();
     }
