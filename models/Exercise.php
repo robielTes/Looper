@@ -1,7 +1,7 @@
 <?php
 
-require 'models/Model.php';
-require 'models/DB.php';
+require 'Model.php';
+
 
 class Exercise extends Model
 {
@@ -27,7 +27,9 @@ class Exercise extends Model
 
     static public function create(array $fields):Exercise
     {
-        return new Exercise($fields['title'],$fields['states_id']);
+        $exercise =new Exercise($fields['title'],$fields['states_id']);
+        $exercise->store();
+        return $exercise;
     }
 
     public function store(): bool
@@ -35,15 +37,14 @@ class Exercise extends Model
         if(isset($this->title )&& isset($this->states_id)){
             $res = DB::insert('INSERT INTO exercises (title,states_id) VALUES (:title,:states_id )',
                 ["title" => $this->title, "states_id" => $this->states_id]);
-            self::$id = $res;
-            return isset(self::$id);
+            return true;
         }
         return false;
     }
 
     static public function show($id)
     {
-        return  $res = self::make(DB::selectOne("SELECT * FROM exercises where id = :id", ["id" => $id]));
+        return  $res = self::create(DB::selectOne("SELECT * FROM exercises where id = :id", ["id" => $id]));
     }
 
     static public function edit(array $fields, $id)

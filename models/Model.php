@@ -1,5 +1,5 @@
 <?php
-
+require 'DB.php';
 abstract class Model
 {
     abstract static public function index():array; //all

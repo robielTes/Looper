@@ -1,7 +1,6 @@
 <?php
 
-require 'models/Model.php';
-require 'models/DB.php';
+require 'Model.php';
 
 class State extends Model
 {
@@ -25,7 +24,9 @@ class State extends Model
 
     static public function create(array $fields):State
     {
-        return new State($fields['name']);
+        $state = new State($fields['name']);
+        $state->store();
+        return $state;
     }
 
     public function store(): bool
@@ -33,15 +34,14 @@ class State extends Model
         if(isset($this->name )){
             $res = DB::insert('INSERT INTO states (name) VALUES (:name )',
                 ["name" => $this->name]);
-            self::$id = $res;
-            return isset(self::$id);
+            return true;
         }
         return false;
     }
 
     static public function show($id)
     {
-        return  $res = self::make(DB::selectOne("SELECT * FROM states where id = :id", ["id" => $id]));
+        return  $res = self::create(DB::selectOne("SELECT * FROM states where id = :id", ["id" => $id]));
     }
 
     static public function edit(array $fields, $id)

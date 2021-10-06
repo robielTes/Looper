@@ -1,7 +1,6 @@
 <?php
 
-require 'models/Model.php';
-require 'models/DB.php';
+require 'Model.php';
 
 class Line extends Model
 {
@@ -24,7 +23,9 @@ class Line extends Model
 
     static public function create(array $fields):Line
     {
-        return new Line($fields['kind']);
+        $line = new Line($fields['kind']);
+        $line->store();
+        return $line;
     }
 
     public function store(): bool
@@ -32,15 +33,14 @@ class Line extends Model
         if(isset($this->kind )){
             $res = DB::insert('INSERT INTO lines (kind) VALUES (:kind)',
                 ["kind" => $this->kind]);
-            self::$id= $res;
-            return isset(self::$id);
+            return true;
         }
         return false;
     }
 
     static public function show($id)
     {
-        return  $res = self::make(DB::selectOne("SELECT * FROM lines where id = :id", ["id" => $id]));
+        return  $res = self::create(DB::selectOne("SELECT * FROM lines where id = :id", ["id" => $id]));
     }
 
     static public function edit(array $fields, $id)
