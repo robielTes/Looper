@@ -30,7 +30,7 @@ class Line extends Model
     public function store(): bool
     {
         if(isset($this->kind )){
-            $res = DB::insert('INSERT INTO lines (kind) VALUES (:kind)',
+            $res = DB::insert('INSERT INTO `lines` (kind) VALUES (:kind)',
                 ["kind" => $this->kind]);
             return true;
         }
@@ -39,7 +39,7 @@ class Line extends Model
 
     static public function show($id)
     {
-        return  $res = self::create(DB::selectOne("SELECT * FROM lines where id = :id", ["id" => $id]));
+        return  $res = self::create(DB::selectOne("SELECT * FROM `lines` where id = :id", ["id" => $id]));
     }
 
     static public function edit( $id,array $fields)
@@ -53,12 +53,12 @@ class Line extends Model
 
     public function update(): bool
     {
-        return  $res = DB::execute(' UPDATE lines SET kind = : kind WHERE id :id',
+        return  $res = DB::execute(' UPDATE `lines` SET kind = : kind WHERE id =:id',
             ["kind" => $this->kind,"id" => self::$id]);
     }
 
     static public function destroy($id): bool
     {
-        return  $res = DB::execute(' DELETE FROM lines WHERE id :id', ["id" => $id]);
+        return  $res = DB::execute(' DELETE FROM `lines` WHERE id = :id', ["id" => $id]);
     }
 }

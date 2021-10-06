@@ -57,12 +57,12 @@ class Answer extends Model
 
     public function update(): bool
     {
-        return  $res = DB::execute(' UPDATE `answers` SET take = : take ,answer = :answer, fields_id = :fields_id WHERE id :id',
+        return  $res = DB::execute(' UPDATE `answers` SET take = : take ,answer = :answer, fields_id = :fields_id WHERE id = :id',
             ["take" => $this->take, "answer" => $this->answer,"fields_id" =>$this->fields_id,"id" =>self::$id]);
     }
 
     static public function destroy($id): bool
     {
-        return  $res = DB::execute(' DELETE FROM `answers` WHERE id :id', ["id" => $id]);
+        return  $res = DB::execute(' DELETE FROM `answers` WHERE id = :id', ["id" => $id]);
     }
 }
