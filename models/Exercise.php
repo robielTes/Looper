@@ -1,18 +1,26 @@
 <?php
 require 'DB.php';
+require 'Model.php';
 class Exercise extends Model
 {
     public $id;
     public $title;
-    public $state;
+    public $state ;
 
     private $db;
 
-    function __construct($db_conn)
+    function __construct()
     {
-        $this->db = $db_conn;
+        $this->state = 1;
 
-        session_start();
+        $pdo = new DB();
+
+        $this->db = $pdo->connection();
+
+        if($this->id === null){
+            $this->id = 1;
+        }
+
     }
 
 
@@ -28,7 +36,7 @@ class Exercise extends Model
         }
     }
 
-    public function create($title,)
+    public function create($title)
     {
         $this->title = $title;
         $this->store();
