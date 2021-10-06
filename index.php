@@ -1,6 +1,4 @@
 <?php
-set_include_path(dirname());
-
 /**
  *
  * Require files
@@ -8,6 +6,8 @@ set_include_path(dirname());
  */
 require_once __DIR__ . '/config/__init.php';
 require_once __DIR__ . '/router/Route.php';
+set_include_path(".");
+session_start();
 
 
 /**
@@ -24,18 +24,18 @@ $router->get('/', 'main.php');
 /**
  * handle /create route
  */
-$router->get('/create', '/exercises/create.php');
+$router->get('/create', '/pages/create_exercise.php');
 
 /**
  * handle /take route
  */
-$router->get('/take', '/exercises/take.php');
+$router->get('/take', '/pages/take_exercise.php');
 
 /**
  * handle /manage route
  */
-$router->get('/manage', '/exercises/manage.php');
+$router->get('/manage', '/pages/manage_exercise.php');
 /**
- * handle /field route
+ * handle /add_field route
  */
-$router->get('/create/field', '/exercises/fields/field.php');
+$router->get('/create/field', '/pages/add_field.php');

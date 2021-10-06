@@ -2,8 +2,6 @@
 $color = 'purple';
 $title = '';
 ?>
-
-
 <?php ob_start() ?>
     <div class="grid grid-cols-3 shadow-lg bg-gray-200 bg-opacity-75">
         <div class="col-start-2 text-center py-3">Ceci est un questionnaire</div>
