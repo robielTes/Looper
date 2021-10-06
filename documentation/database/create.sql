@@ -25,15 +25,15 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `looper`.`exercices`
+-- Table `looper`.`exercises`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `looper`.`exercices` (
+CREATE TABLE IF NOT EXISTS `looper`.`exercises` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` LONGTEXT NULL,
   `states_id` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
-  INDEX `fk_exercices_states1_idx` (`states_id` ASC) VISIBLE,
-  CONSTRAINT `fk_exercices_states1`
+  INDEX `fk_exercises_states1_idx` (`states_id` ASC) VISIBLE,
+  CONSTRAINT `fk_exercises_states1`
     FOREIGN KEY (`states_id`)
     REFERENCES `looper`.`states` (`id`)
     ON DELETE NO ACTION
@@ -58,18 +58,18 @@ CREATE TABLE IF NOT EXISTS `looper`.`fields` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `label` LONGTEXT NULL,
   `lines_id` INT NOT NULL DEFAULT 1,
-  `exercices_id` INT NOT NULL,
+  `exercises_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_fields_lines_idx` (`lines_id` ASC) VISIBLE,
-  INDEX `fk_fields_exercices1_idx` (`exercices_id` ASC) VISIBLE,
+  INDEX `fk_fields_exercises1_idx` (`exercises_id` ASC) VISIBLE,
   CONSTRAINT `fk_fields_lines`
     FOREIGN KEY (`lines_id`)
     REFERENCES `looper`.`lines` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_fields_exercices1`
-    FOREIGN KEY (`exercices_id`)
-    REFERENCES `looper`.`exercices` (`id`)
+  CONSTRAINT `fk_fields_exercises1`
+    FOREIGN KEY (`exercises_id`)
+    REFERENCES `looper`.`exercises` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

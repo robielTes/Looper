@@ -1,57 +1,63 @@
 <?php
 
+require 'Model.php';
+
 class State extends Model
 {
-    public $id;
+
+    public static $id;
     public $name;
 
-    private $db;
-
-    function __construct()
+    /**
+     * @param $name
+     */
+    public function __construct($name)
     {
+        $this->name = $name;
+    }
 
-        $pdo = new DB();
 
-        $this->db = $pdo->connection();
+    static public function index(): array
+    {
+        return $res = DB::selectMany("SELECT * FROM `states`", []);
+    }
 
-        if($this->id === null){
-            $this->id = 1;
+    static public function create(array $fields):State
+    {
+        $state = new State($fields['name']);
+        $state->store();
+        return $state;
+    }
+
+    public function store(): bool
+    {
+        if(isset($this->name )){
+            $res = DB::insert('INSERT INTO `states` (name) VALUES (:name )',
+                ["name" => $this->name]);
+            return true;
         }
-
+        return false;
     }
 
-    public function index()
+    static public function show($id)
     {
-        // TODO: Implement index() method.
+        return  $res = self::create(DB::selectOne("SELECT * FROM `states` where id = :id", ["id" => $id]));
     }
 
-    public function create($title)
+    static public function edit( $id,array $fields)
     {
-        // TODO: Implement create() method.
+        self::$id = $id;
+        return new State($fields['title'],$fields['states_id']);
     }
 
-    public function store()
+    public function update(): bool
     {
-        // TODO: Implement store() method.
+        return  $res = DB::execute(' UPDATE `states` SET name = : name WHERE id :id',
+            ["name" => $this->name,"id" => $this->id]);
     }
 
-    public function show($id)
+    static public function destroy($id): bool
     {
-        // TODO: Implement show() method.
-    }
-
-    public function edit($state, $id)
-    {
-        // TODO: Implement edit() method.
-    }
-
-    public function update()
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function destroy($id)
-    {
-        // TODO: Implement destroy() method.
+        return  $res = DB::execute(' DELETE FROM `states` WHERE id :id', ["id" => $id]);
     }
 }
