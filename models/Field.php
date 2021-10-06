@@ -25,7 +25,7 @@ class Field extends Model
 
     static public function index(): array
     {
-        return $res = DB::selectMany("SELECT * FROM fields", []);
+        return $res = DB::selectMany("SELECT * FROM `fields`", []);
     }
 
     static public function create(array $fields):Field
@@ -38,7 +38,7 @@ class Field extends Model
     public function store(): bool
     {
         if(isset($this->label )&& isset($this->lines_id) && isset($this->exercises_id)){
-            $res = DB::insert('INSERT INTO fields (label,lines_id,exercises_id) VALUES (:name,:lines_id,:exercises_id )',
+            $res = DB::insert('INSERT INTO `fields` (label,lines_id,exercises_id) VALUES (:name,:lines_id,:exercises_id )',
                 ["label" => $this->label, "lines_id" => $this->lines_id,"exercises_id" =>$this->exercises_id]);
             return true;
         }
@@ -47,10 +47,10 @@ class Field extends Model
 
     static public function show($id)
     {
-        return  $res = self::create(DB::selectOne("SELECT * FROM fields where id = :id", ["id" => $id]));
+        return  $res = self::create(DB::selectOne("SELECT * FROM `fields` where id = :id", ["id" => $id]));
     }
 
-    static public function edit(array $fields, $id)
+    static public function edit( $id,array $fields)
     {
         self::$id = $id;
         return new Field($fields['title'],$fields['states_id']);
@@ -58,12 +58,12 @@ class Field extends Model
 
     public function update(): bool
     {
-        return  $res = DB::execute(' UPDATE fields SET label = : label ,lines_id = :lines_id, exercises_id = :exercises_id WHERE id :id',
+        return  $res = DB::execute(' UPDATE `fields` SET label = : label ,lines_id = :lines_id, exercises_id = :exercises_id WHERE id :id',
             ["label" => $this->label, "lines_id" => $this->lines_id,"exercises_id" =>$this->exercises_id,"id" => self::$id]);
     }
 
     static public function destroy($id): bool
     {
-        return  $res = DB::execute(' DELETE FROM fields WHERE id :id', ["id" => $id]);
+        return  $res = DB::execute(' DELETE FROM `fields` WHERE id :id', ["id" => $id]);
     }
 }

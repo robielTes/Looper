@@ -15,10 +15,9 @@ class Line extends Model
         $this->kind = $kind;
     }
 
-
     static public function index(): array
     {
-        return $res = DB::selectMany("SELECT * FROM lines", []);
+        return $res = DB::selectMany("SELECT * FROM `lines`", []);
     }
 
     static public function create(array $fields):Line
@@ -43,10 +42,13 @@ class Line extends Model
         return  $res = self::create(DB::selectOne("SELECT * FROM lines where id = :id", ["id" => $id]));
     }
 
-    static public function edit(array $fields, $id)
+    static public function edit( $id,array $fields)
     {
+        //TODO VERIFICATION IF THERE IS CHANGE AND WHICH COLUMNS
         self::$id = $id;
-        return new Line($fields['title'],$fields['states_id']);
+        $line = new Line($fields['kind']);
+        $line->update();
+        return $line;
     }
 
     public function update(): bool

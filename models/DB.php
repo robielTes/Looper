@@ -24,6 +24,7 @@ class DB
     {
         $pdo = self::connexion();
         $sth = $pdo->prepare($query);
+        var_dump($sth);
         $sth->execute($args);
         return $sth->fetchAll();
     }
@@ -48,5 +49,7 @@ class DB
         $sth->execute($args);
         return $sth->rowCount();
     }
+
+
 
 }

@@ -1,17 +1,58 @@
 <?php
+//require 'Line.php';
+
+//$line = Line::index();
+//$line = Line::show(9);
+//$line = Line::destroy(3); //X
+//$line = Line::create(['title'=>'pol768io78','states_id'=>'2']);
+
+
+//var_dump($line);
+
+
+
+
+
+
+
+
+
+
+
 require 'Exercise.php';
+//$exercises = Exercise::index();
+//$exercises = Exercise::show(9);
+//$exercises = Exercise::create(['title'=>'x67xx','states_id'=>'2']);
+//$exercises = Exercise::destroy(8);
+$exercises = Exercise::edit(7,['title'=>'filipe','states_id'=>1]);
+
+var_dump($exercises);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //require 'Field.php';
 //require 'Answer.php';
 //require 'State.php';
-//require 'Line.php';
 
-//$exercises = Exercise::index();
-$exercises = Exercise::show(9);
-//$exercises = Exercise::destroy(3); //X
-//$exercises = Exercise::create(['title'=>'pol768io78','states_id'=>'2']);
-
-
-var_dump($exercises);
 
 //$fields = Field::index();
 //$fields = Field::show(5);
@@ -37,10 +78,7 @@ var_dump($exercises);
 
 //var_dump($state);
 
-//$line = Line::index();
-//$line = Line::show(9);
-//$line = Line::destroy(3); //X
-//$line = Line::create(['title'=>'pol768io78','states_id'=>'2']);
 
 
-//var_dump($line);
+//======================
+

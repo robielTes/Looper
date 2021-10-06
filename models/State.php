@@ -19,7 +19,7 @@ class State extends Model
 
     static public function index(): array
     {
-        return $res = DB::selectMany("SELECT * FROM states", []);
+        return $res = DB::selectMany("SELECT * FROM `states`", []);
     }
 
     static public function create(array $fields):State
@@ -32,7 +32,7 @@ class State extends Model
     public function store(): bool
     {
         if(isset($this->name )){
-            $res = DB::insert('INSERT INTO states (name) VALUES (:name )',
+            $res = DB::insert('INSERT INTO `states` (name) VALUES (:name )',
                 ["name" => $this->name]);
             return true;
         }
@@ -41,10 +41,10 @@ class State extends Model
 
     static public function show($id)
     {
-        return  $res = self::create(DB::selectOne("SELECT * FROM states where id = :id", ["id" => $id]));
+        return  $res = self::create(DB::selectOne("SELECT * FROM `states` where id = :id", ["id" => $id]));
     }
 
-    static public function edit(array $fields, $id)
+    static public function edit( $id,array $fields)
     {
         self::$id = $id;
         return new State($fields['title'],$fields['states_id']);
@@ -52,12 +52,12 @@ class State extends Model
 
     public function update(): bool
     {
-        return  $res = DB::execute(' UPDATE states SET name = : name WHERE id :id',
+        return  $res = DB::execute(' UPDATE `states` SET name = : name WHERE id :id',
             ["name" => $this->name,"id" => $this->id]);
     }
 
     static public function destroy($id): bool
     {
-        return  $res = DB::execute(' DELETE FROM states WHERE id :id', ["id" => $id]);
+        return  $res = DB::execute(' DELETE FROM `states` WHERE id :id', ["id" => $id]);
     }
 }
