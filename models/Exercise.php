@@ -1,109 +1,70 @@
 <?php
-require 'DB.php';
+
+require 'Model.php';
+
+
 class Exercise extends Model
 {
-    public $id;
+    public static $id;
     public $title;
-    public $state;
+    public $states_id;
 
-    private $db;
-
-    function __construct($db_conn)
-    {
-        $this->db = $db_conn;
-
-        session_start();
-    }
-
-
-    public function index()
-    {
-        try {
-            $query = $this->db->prepare("SELECT * FROM exercices");
-            $query->execute();
-            return $query->fetch();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-        }
-    }
-
-    public function create($title,)
+    /**
+     * @param $title
+     * @param $states_id
+     */
+    public function __construct($title, $states_id)
     {
         $this->title = $title;
-        $this->store();
-
-        //redirect
+        $this->states_id = $states_id;
     }
 
-    public function store()
+
+    static public function index(): array
     {
-        try
-        {
-            $query = $this->db->prepare("INSERT INTO exercices(id, title, states_id) VALUES(:id, :title, :state)");
-            $query->bindParam(":id", $this->id);
-            $query->bindParam(":title", $this->title);
-            $query->bindParam(":state", $this->state);
-            $query->execute();
+        return $res = DB::selectMany("SELECT * FROM `exercises`", []);
+    }
+
+    static public function create(array $fields):Exercise
+    {
+        $exercise =new Exercise($fields['title'],$fields['states_id']);
+        $exercise->store();
+        return $exercise;
+    }
+
+    public function store(): bool
+    {
+        if(isset($this->title )&& isset($this->states_id)){
+            $res = DB::insert('INSERT INTO `exercises` (title,states_id) VALUES (:title,:states_id )',
+                ["title" => $this->title, "states_id" => $this->states_id]);
             return true;
-
-        }catch(PDOException $e){
-            echo $e->getMessage();
-            return false;
         }
+        return false;
     }
 
-    public function show($id)
+    static public function show($id)
     {
-        try {
-            $query = $this->db->prepare("SELECT * FROM exercices WHERE id = :id");
-            $query->bindParam(":id", $id);
-            $query->execute();
-            return $query->fetch();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-        }
+        return  $res = self::create(DB::selectOne("SELECT * FROM `exercises` where id = :id", ["id" => $id]));
+    }
+
+    static public function edit($id,array $fields):Exercise
+    {
+        //TODO VERIFICATION IF THERE IS CHANGE AND WHICH COLUMNS
+        self::$id = $id;
+        $exercise = new Exercise($fields['title'],$fields['states_id']);
+        $exercise->update();
+        return $exercise;
 
     }
 
-    public function edit($state,$id)
+    public function update(): bool
     {
-       $this->state = $state;
-       $this->id = $id;
-       $this->update();
-
-       //redirect
+        return  $res = DB::execute(' UPDATE `exercises` SET title = :title ,states_id = :states_id WHERE id = :id',
+            ["title" => $this->title, "states_id" => $this->states_id,"id" => self::$id]);
     }
 
-    public function update()
+    static public function destroy($id): bool
     {
-        try
-        {
-            $query = $this->db->prepare("UPDATE exercices SET states_id = :state) WHERE (id = :id)");
-            $query->bindParam(":id", $this->id);
-            $query->bindParam(":state", $this->state);
-            $query->execute();
-            return true;
-
-        }catch(PDOException $e){
-            echo $e->getMessage();
-            return false;
-        }
-    }
-
-    public function destroy($id)
-    {
-        try
-        {
-            $query = $this->db->prepare("DELETE FROM exercices WHERE (id = :id)");
-            $query->bindParam(":id", $this->id);
-            $query->execute();
-            return true;
-
-        }catch(PDOException $e){
-            echo $e->getMessage();
-            return false;
-        }
+        return  $res = DB::execute(' DELETE FROM `exercises` WHERE id = :id', ["id" => $id]);
     }
 }
