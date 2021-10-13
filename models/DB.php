@@ -1,6 +1,6 @@
 <?php
 
-require '../env.php';
+require 'env.php';
 
 class DB
 {

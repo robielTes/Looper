@@ -1,6 +1,8 @@
 <?php
 $title = 'Exercice: test';
 $color = 'yellow';
+
+
 ?>
 <?php ob_start() ?>
 <div class="flex flex-row">

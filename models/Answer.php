@@ -1,10 +1,10 @@
 <?php
 
-require 'Model.php';
+require_once 'models/DB.php';
 
-class Answer extends Model
+class Answer
 {
-    public static $id;
+    protected string $id;
     public $take;
     public $answer;
     public $fields_id;
