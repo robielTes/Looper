@@ -475,8 +475,9 @@ composer.lock
 *.sass.map
 *.scss.map
 
-# php storm
-.idea/*
 
-.phpunit.result.cache
-.env.php
+
+node_modules/
+
+/vendor
+env.ini

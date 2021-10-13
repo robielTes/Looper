@@ -6,8 +6,5 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
-    },
-    "require": {
-        "filu/maw_orm": "^2.0"
     }
 }
