@@ -31,6 +31,7 @@ $router->get('/create', '/pages/create_exercise.php');
  */
 $router->get('/take', '/pages/take_exercise.php');
 
+
 /**
  * handle /manage route
  */
