@@ -1,7 +1,6 @@
 <?php
 $title = 'Manage Exercise';
 $color = 'green';
-//TODO put font awesome icons used by the teacher
 ?>
 
 
