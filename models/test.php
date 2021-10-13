@@ -1,46 +1,6 @@
 <?php
-require 'Line.php';
 
-//$line = Line::index();
-//$line = Line::show(2);
-//$line = Line::create(['kind'=>'pol768io78']);
-//$line = Line::destroy(4); //X
-$line = Line::edit(8,['kind'=>'pol0']);
-
-var_dump($line);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//require 'Exercise.php';
+require 'Exercise.php';
 //$exercises = Exercise::index();
 //$exercises = Exercise::show(9);
 //$exercises = Exercise::create(['title'=>'x67xx','states_id'=>'2']);
@@ -51,6 +11,24 @@ var_dump($line);
 
 
 
+
+
+
+
+
+
+
+
+
+//require 'Line.php';
+
+//$line = Line::index();
+//$line = Line::show(2);
+//$line = Line::create(['kind'=>'pol768io78']);
+//$line = Line::destroy(4); //X
+//$line = Line::edit(8,['kind'=>'pol0']);
+
+//var_dump($line);
 
 
 

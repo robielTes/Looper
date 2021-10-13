@@ -5,16 +5,13 @@ require 'Model.php';
 
 class Exercise extends Model
 {
-    public static $id;
+    public $id;
     public $title;
     public $states_id;
 
-    /**
-     * @param $title
-     * @param $states_id
-     */
-    public function __construct($title, $states_id)
+    public function __construct($id, $title, $states_id)
     {
+        $this->id = $id;
         $this->title = $title;
         $this->states_id = $states_id;
     }
@@ -27,9 +24,13 @@ class Exercise extends Model
 
     static public function create(array $fields):Exercise
     {
-        $exercise =new Exercise($fields['title'],$fields['states_id']);
-        $exercise->store();
-        return $exercise;
+        if (is_array($fields)){
+            $res = DB::selectMany("SELECT id FROM `exercises` order by id desc limit 1", []);
+            new Member($res[0]->id,$fields['title'], $fields['title'], $fields['states_id']);
+            return true;
+        }
+
+        return new Member($fields->id,$fields->title, $fields->title, $fields->states_id);
     }
 
     public function store(): bool
@@ -40,11 +41,16 @@ class Exercise extends Model
             return true;
         }
         return false;
+
     }
 
     static public function show($id)
     {
-        return  $res = self::create(DB::selectOne("SELECT * FROM `exercises` where id = :id", ["id" => $id]));
+        $select = DB::selectOne("SELECT * FROM `exercises` where id = :id", ["id" => $id]);
+        if($select != null){
+            return self::make($select);
+        }
+        return null;
     }
 
     static public function edit($id,array $fields):Exercise
