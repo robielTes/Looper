@@ -38,6 +38,10 @@
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
       <path value="$PROJECT_DIR$/vendor/filu/maw_orm" />
+<<<<<<< HEAD
+=======
+      <path value="$PROJECT_DIR$/vendor/nikic/fast-route" />
+>>>>>>> feature/feature_fastrouter
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
