@@ -5,7 +5,10 @@ class ExerciceController
 {
     public function index()
     {
-        $members = Exercise::index();
-        require_once('views/.php');
+        $exercise = new Exercise();
+        $exercise->title = "test";
+        $exercise->states_id = "2";
+        $exercise->create();
+        require_once ('views/pages/add_field.php');
     }
 }

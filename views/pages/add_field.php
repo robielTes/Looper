@@ -1,5 +1,5 @@
 <?php
-$title = 'Exercice: test';
+$title = 'Exercice: {{id}}';
 $color = 'yellow';
 ?>
 <?php ob_start() ?>
