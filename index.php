@@ -1,41 +1,30 @@
 <?php
-//set_include_path(dirname());
+session_start();
+set_include_path(".");
+require '.env.php';
+require 'vendor/autoload.php';
 
-/**
- *
- * Require files
- *
- */
-require_once __DIR__ . '/config/__init.php';
-require_once __DIR__ . '/router/Route.php';
+require_once ('controllers/HomeController.php');
+require_once ('controllers/ExerciceController.php');
 
+$HomeController = new HomeController();
+$ExerciceController = new ExerciceController();
 
-/**
- * new Instance of router
- */
-$router = new Router();
+function main()
+{
+    $controller = "HomeController";
+    $method = "index";
 
+    if (isset($_GET["controller"])) {
+        $controller = $_GET["controller"];
+    }
 
-/**
- * handle / route
- */
-$router->get('/', 'main.php');
+    if (isset($_GET["method"])) {
+        $method = $_GET["method"];
+    }
 
-/**
- * handle /create route
- */
-$router->get('/create', '/exercises/create.php');
+    $c = new $controller();
+    $c->$method();
+}
 
-/**
- * handle /take route
- */
-$router->get('/take', '/exercises/take.php');
-
-/**
- * handle /manage route
- */
-$router->get('/manage', '/exercises/manage.php');
-/**
- * handle /field route
- */
-$router->get('/create/field', '/exercises/fields/field.php');
+main();

@@ -42,8 +42,8 @@ Explain what the project is about
 ### Built With
 
 * [HMTL & CSS]()
-* [Tailwind]()
-* [PHP]()
+* [Tailwind]() Version 2.2.15
+* [PHP]() Version 8.1
 
 <!-- GETTING STARTED -->
 

@@ -16,9 +16,15 @@
   </div>
 </div>
 <div class="flex justify-center py-8">
-    <a href="\take" class="purple hover:bg-blue-700 text-white font-bold rounded mx-8 py-4 px-32">TAKE AND EXERCISE</a>
-    <a href="\create" class="yellow hover:bg-blue-700 text-white font-bold rounded mx-8 py-4 px-32">CREATE AND EXERCISE</a>
-    <a href="\manage" class="green hover:bg-blue-700 text-white font-bold rounded mx-8 py-4 px-32">MANAGE AND EXERCISE</a>
+    <a href="index.php?controller=HomeController&method=take" class="purple text-white font-bold rounded mx-8 py-4 px-32">
+        TAKE AN EXERCISE
+    </a>
+    <a href="index.php?controller=HomeController&method=create" class="yellow text-white font-bold rounded mx-8 py-4 px-32">
+        CREATE AN EXERCISE
+    </a>
+    <a href="index.php?controller=HomeController&method=manage" class="green text-white font-bold rounded mx-8 py-4 px-32">
+        MANAGE AN EXERCISE
+    </a>
 </div>
 </body>
 </html>

@@ -42,7 +42,7 @@ class Router
     function __destruct()
     {
         if (!$this->handled) {
-            return include_once(views . '404.php');
+            return include_once(views . '/pages/404.php');
         }
     }
 
