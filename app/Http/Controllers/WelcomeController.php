@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\View;
 use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 
 class WelcomeController
 {
 
-    public function index($response): Response
+    public function index(View $view): Response
     {
-        $response->getBody()->write('Welcome Controller Worked!');
-        return $response;
+        $name = 'Robiel';
+        return $view('auth.home',compact('name'));
     }
 
-    public function show($response,$name, $age): Response
+    public function show(View $view,$name, $age): Response
     {
-
-        $response->getBody()->write("Welcome {$name} how is {$age} years old");
-        return $response;
+        return $view('user.show',compact('name','age'));
+    }
+    public function delete(View $view,$name): Response
+    {
+        return $view('user.delete',compact('name','name'));
     }
 }
