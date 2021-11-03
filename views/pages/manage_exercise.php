@@ -15,9 +15,9 @@ $color = 'green';
             </div>
             <div class="flex-grow"></div>
             <div class="flex flex-row">
-                <img src="views/assets/edit.png" alt="edit">
-                <img src="views/assets/trash.png" alt="trash">
-                <img src="views/assets/stop.png" alt="stop" >
+                <img src="../../view/assets/edit.png" alt="edit">
+                <img src="../../view/assets/trash.png" alt="trash">
+                <img src="../../view/assets/stop.png" alt="stop" >
             </div>
         </div>
     </div>
@@ -30,8 +30,8 @@ $color = 'green';
             </div>
             <div class="flex-grow"></div>
             <div class="flex flex-row">
-                <img src="views/assets/edit.png" alt="edit">
-                <img src="views/assets/stop.png" alt="stop" >
+                <img src="../../view/assets/edit.png" alt="edit">
+                <img src="../../view/assets/stop.png" alt="stop" >
             </div>
         </div>
     </div>
@@ -44,8 +44,8 @@ $color = 'green';
             </div>
             <div class="flex-grow"></div>
             <div class="flex flex-row">
-                <img src="views/assets/edit.png" alt="edit">
-                <img src="views/assets/trash.png" alt="trash">
+                <img src="../../view/assets/edit.png" alt="edit">
+                <img src="../../view/assets/trash.png" alt="trash">
             </div>
         </div>
     </div>
