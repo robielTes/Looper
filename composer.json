@@ -5,6 +5,9 @@
         },
         "classmap": [
             "tests/"
+        ],
+        "files": [
+            "./app/helpers.php"
         ]
     },
     "require-dev": {

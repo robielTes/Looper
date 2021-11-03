@@ -1,11 +1,14 @@
 <?php
 
 use DI\Container;
+use App\Models\User;
 use Slim\Factory\AppFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$container = new Container();
+$user = new User;
+
+$container = new Container;
 
 $settings = require __DIR__ .'/../app/settings.php';
 $settings($container);
