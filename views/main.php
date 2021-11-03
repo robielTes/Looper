@@ -3,13 +3,13 @@
 <head>
     <title>Looper</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="views/css/tailwind.css">
-    <link rel="stylesheet" href="views/css/main.css">
+    <link rel="stylesheet" href="../view/css/tailwind.css">
+    <link rel="stylesheet" href="../view/css/main.css">
 </head>
 <body>
 <div class="flex flex-col justify-center bg-purple-500">
     <div class="m-auto py-4">
-        <img src="views/assets/logo.png"/>
+        <img src="../view/assets/logo.png"/>
     </div>
     <div class="py-8">
         <h1 class="text-center text-white text-6xl tracking-widest">Exercise<br>Looper</h1>

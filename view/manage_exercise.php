@@ -1,10 +1,3 @@
-<?php
-$title = 'Manage Exercise';
-$color = 'green';
-?>
-
-
-<?php ob_start() ?>
 <div class="flex flex-row">
     <div class="flex-1 px-2">
         <h1 class="text-4xl font-semibold">Building</h1>
@@ -15,9 +8,9 @@ $color = 'green';
             </div>
             <div class="flex-grow"></div>
             <div class="flex flex-row">
-                <img src="../../view/assets/edit.png" alt="edit">
-                <img src="../../view/assets/trash.png" alt="trash">
-                <img src="../../view/assets/stop.png" alt="stop" >
+                <img src="assets/edit.png" alt="edit">
+                <img src="assets/trash.png" alt="trash">
+                <img src="assets/stop.png" alt="stop" >
             </div>
         </div>
     </div>
@@ -30,8 +23,8 @@ $color = 'green';
             </div>
             <div class="flex-grow"></div>
             <div class="flex flex-row">
-                <img src="../../view/assets/edit.png" alt="edit">
-                <img src="../../view/assets/stop.png" alt="stop" >
+                <img src="assets/edit.png" alt="edit">
+                <img src="assets/stop.png" alt="stop" >
             </div>
         </div>
     </div>
@@ -44,12 +37,9 @@ $color = 'green';
             </div>
             <div class="flex-grow"></div>
             <div class="flex flex-row">
-                <img src="../../view/assets/edit.png" alt="edit">
-                <img src="../../view/assets/trash.png" alt="trash">
+                <img src="assets/edit.png" alt="edit">
+                <img src="assets/trash.png" alt="trash">
             </div>
         </div>
     </div>
 </div>
-<?php $content = ob_get_clean(); ?>
-
-<?php require('views/templates/template.php'); ?>
