@@ -1,14 +1,11 @@
 <?php
-session_start();
 set_include_path(".");
-require '.env.php';
-require 'vendor/autoload.php';
 
-require_once ('controllers/HomeController.php');
-require_once ('controllers/ExerciceController.php');
+require_once('vendor/autoload.php');
+require_once('app/controllers/HomeController.php');
+require_once("public/router/router.php");
 
 $HomeController = new HomeController();
-$ExerciceController = new ExerciceController();
 
 function main()
 {
