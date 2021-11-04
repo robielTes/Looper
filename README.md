@@ -7,7 +7,11 @@
 <br />
 <p align="center">
   <a href="https://github.com/robielcpnv/repo_name">
+<<<<<<< HEAD
     <img src="view/assets/logo.png" alt="Logo" width="80" height="80">
+=======
+    <img src="public/view/assets/logo.png" alt="Logo" width="80" height="80">
+>>>>>>> 679cfaa5b950039a22b96e00dd7a0f5844a01ff2
   </a>
 <h3 align="center">Exercise Looper</h3>
 

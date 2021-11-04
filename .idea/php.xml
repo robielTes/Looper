@@ -38,6 +38,7 @@
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
       <path value="$PROJECT_DIR$/vendor/filu/maw_orm" />
+<<<<<<< HEAD
       <path value="$PROJECT_DIR$/vendor/slim/slim" />
       <path value="$PROJECT_DIR$/vendor/psr/log" />
       <path value="$PROJECT_DIR$/vendor/psr/http-server-middleware" />
@@ -75,6 +76,8 @@
       <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
       <path value="$PROJECT_DIR$/vendor/jenssegers/blade" />
       <path value="$PROJECT_DIR$/vendor/php-di/slim-bridge" />
+=======
+>>>>>>> 679cfaa5b950039a22b96e00dd7a0f5844a01ff2
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1">
