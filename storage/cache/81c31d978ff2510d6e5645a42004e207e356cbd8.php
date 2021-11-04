@@ -10,7 +10,8 @@
 </head>
 <body>
     <div>
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
     </div>
 </body>
 </html>
+<?php /**PATH D:\Looper\resources\views/layouts/app.blade.php ENDPATH**/ ?>

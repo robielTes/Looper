@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class FieldController extends \App\Controller
+class FieldController
 {
     public function index()
     {

@@ -5,11 +5,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/main.css">
     <title>Looper</title>
 </head>
 <body>
     <div>
-        <h1>Hello World Of Blade Templates!</h1>
         <?php echo $__env->yieldContent('content'); ?>
     </div>
 </body>

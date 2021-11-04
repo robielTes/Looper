@@ -1,42 +1,48 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Http\Controllers;
+
+use App\Support\View;
+use Psr\Http\Message\ResponseInterface as Response;
 
 class HomeController
 {
 
-    public function home()
+    public function home(View $view): Response
     {
-      require_once 'views/main.php';
-    }
-    public function take()
-    {
-        echo 'take';
+        return $view('main.home');
     }
 
-    public function create()
+    public function take(View $view): Response
     {
-        echo 'create';
+        $title = '';
+        $color = 'purple';
+        return $view('main.take',compact('title','color'));
     }
-    public function manage()
+
+    public function create(View $view): Response
     {
-        echo 'manage';
+        $title = 'New exercise';
+        $color = 'yellow';
+        return $view('main.create',compact('title','color'));
+    }
+    public function manage(View $view): Response
+    {
+        $title = '';
+        $color = 'green';
+        return $view('main.manage',compact('title','color'));
+    }
+
+    public function hello(View $view): Response
+    {
+        return $view('main.hello');
+    }
+
+    public function pol(View $view,$id): Response
+    {
+        var_dump($id);
+        die();
+        return $view('main.manage',compact('pol'));
     }
 }
 
-/*
- public function take()
-    {
-        $args = [
-            "title" => '',
-            "color" => 'purple',
-        ];
-        return $this->render('take_exercise',$args);
-    }
-
- * public function home(Request $request)
-{
-    $body = $request->getBody();
-    return 'Home controller';
-}
-*/

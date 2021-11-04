@@ -1,0 +1,17 @@
+.title {
+  text-align: center;
+  line-height: 50px;
+  padding-left: 25px;
+}
+
+.purple {
+  background-color: #9a4dcb;
+}
+
+.yellow {
+  background-color: #e0a559;
+}
+
+.green {
+  background-color: #419d78;
+}

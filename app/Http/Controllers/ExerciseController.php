@@ -3,7 +3,7 @@
 namespace App\Controllers;
 use App\Controller;
 
-class ExerciseController extends Controller
+class ExerciseController
 {
     public function index()
     {
