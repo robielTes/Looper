@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Support\View;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Models\Exercise;
@@ -12,20 +13,21 @@ class ExerciseController
     {
         $title = '';
         $color = 'purple';
-        $exercises =Exercise::all();
-        return $view('main.take',compact('title','color','exercises'));
+        $exercises = Exercise::all();
+        return $view('exercises.take',compact('title','color','exercises'));
     }
 
     public function create(View $view): Response
     {
         $title = 'New exercise';
         $color = 'yellow';
-        return $view('main.create',compact('title','color'));
+        return $view('exercises.create',compact('title','color'));
     }
     public function manage(View $view): Response
     {
         $title = '';
         $color = 'green';
-        return $view('main.manage',compact('title','color'));
+        $exercises = Exercise::all();
+        return $view('exercises.manage',compact('title','color','exercises'));
     }
 }

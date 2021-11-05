@@ -9,7 +9,7 @@ class HomeController
 {
     public function home(View $view): Response
     {
-        return $view('main.home');
+        return $view('home');
     }
 }
 
