@@ -1,49 +1,29 @@
 <?php
 
-namespace App\Controllers;
-use App\Controller;
+namespace App\Http\Controllers;
+
+use App\Support\View;
+use Psr\Http\Message\ResponseInterface as Response;
 
 class ExerciseController
 {
-    public function index()
+    public function take(View $view): Response
     {
-        
+        $title = '';
+        $color = 'purple';
+        return $view('main.take',compact('title','color'));
     }
-    public function create()
-    {
 
-    }
-    public function store()
+    public function create(View $view): Response
     {
-
+        $title = 'New exercise';
+        $color = 'yellow';
+        return $view('main.create',compact('title','color'));
     }
-    public function show()
+    public function manage(View $view): Response
     {
-
+        $title = '';
+        $color = 'green';
+        return $view('main.manage',compact('title','color'));
     }
-    public function edit()
-    {
-
-    }
-    public function update()
-    {
-
-    }
-    public function destroy()
-    {
-
-    }
-    
-    
 }
-
-
-/*
-Verb	    URI	                            Action	    Route Name
-GET	        /exercises	                    index	    exercises.index
-GET	        /exercises/create	            create	    exercises.create
-POST	    /exercises	                    store	    exercises.store
-GET	        /exercises/{exercise}	        show	    exercises.show
-GET	        /exercises/{exercise}/edit	    edit	    exercises.edit
-PUT     	/exercises/{exercise}	        update	    exercises.update
-DELETE	    /exercises/{exercise}	        destroy	    exercises.destroy*/

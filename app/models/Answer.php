@@ -1,7 +1,6 @@
 <?php
 
-require_once 'vendor/autoload.php';
-
+require_once __DIR__.'../../vendor/autoload.php';
 use filu\maw_orm\Model;
 
 class Answer extends Model
