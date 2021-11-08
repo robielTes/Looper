@@ -1,6 +1,6 @@
 
 <?php
-
+namespace App\Models;
 use App\Models;
 use filu\maw_orm\Model;
 
