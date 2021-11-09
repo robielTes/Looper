@@ -22,7 +22,8 @@ class ExerciseController
     {
         $title = 'New exercise';
         $color = 'yellow';
-        return $view('exercises.create',compact('title','color'));
+        $last = array_key_last(Exercise::all())+2;
+        return $view('exercises.create',compact('title','color','last'));
     }
     public function manage(View $view): Response
     {
@@ -31,11 +32,19 @@ class ExerciseController
         $exercises = Exercise::all();
         return $view('exercises.manage',compact('title','color','exercises'));
     }
-    public function store(View $view): Response
+    public function store(View $view ,$id): Response
     {
         $title = $_REQUEST['title'];
         $color = 'yellow';
         Exercise::make(['title'=>$title,'states_id'=>1])->create();
         return $view('fields.create',compact('title','color'));
+    }
+
+    public function show(View $view ,$id): Response
+    {
+        $exercise = Exercise::find($id);
+        $color = 'yellow';
+        $title = $exercise->title;
+        return $view('fields.create',compact('title','exercise','color'));
     }
 }

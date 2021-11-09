@@ -8,10 +8,12 @@ use App\Models\Exercise;
 
 class FieldController
 {
-    public function create(View $view): Response
+
+    public function show(View $view, $id): Response
     {
+
         $title = 'New exercise';
         $color = 'yellow';
-        return $view('fields.create',compact('title','color'));
+        return $view('fields.show',compact('title','color'));
     }
 }
