@@ -30,6 +30,14 @@
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="label" name="label"><br><br>
             <label class="text-gray-700 text-xl">Value kind</label>
             <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="value-kind">
+                @foreach($fields as $field)
+
+                    <tr>
+                        <td>{{$field->label}}</td>
+                        <td>{{$field->kind}}</td>
+                    </tr>
+
+                @endforeach
                 <option value="single-line-text" selected>Single line text</option>
                 <option value="list-of-single-lines">List of single lines</option>
                 <option value="multi-line text">Multi-line text</option>
