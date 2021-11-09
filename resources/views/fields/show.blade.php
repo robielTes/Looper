@@ -10,10 +10,15 @@
                     <th>Label</th>
                     <th>Value kind</th>
                 </tr>
-                <tr>
-                    <td>test</td>
-                    <td>single_line</td>
-                </tr>
+                @foreach($fields as $field)
+
+                    <tr>
+                        <td>{{$field->label}}</td>
+                        <td>{{$field->kind}}</td>
+                    </tr>
+
+                @endforeach
+
             </table>
             <form class="py-8">
                 <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" value="Complete and be ready for answers">

@@ -6,7 +6,7 @@ use App\Support\View;
 use App\Support\Redirect;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Models\Exercise;
-use App\Models\Line;
+use App\Models\Field;
 
 class ExerciseController
 {
@@ -45,6 +45,8 @@ class ExerciseController
         $exercise = Exercise::find($id);
         $color = 'yellow';
         $title = $exercise->title;
-        return $view('fields.create',compact('title','exercise','color'));
+        $fields = $exercise->fields();
+        //dd($exercise->fields());
+        return $view('fields.create',compact('title','exercise','color','fields'));
     }
 }
