@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Support\View;
-use App\Support\Redirect;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Models\Exercise;
 use App\Models\Field;
