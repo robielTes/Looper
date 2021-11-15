@@ -15,10 +15,10 @@
                                 <p>{{$exercise->title}} </p>
                             </div>
                             <div class="flex-grow"></div>
-                            <div class="flex flex-row">
-                                <img src="/assets/edit.png" alt="edit">
-                                <img src="/assets/trash.png" alt="trash">
-                                <img src="/assets/stop.png" alt="stop" >
+                            <div>
+                                <a><i class="fa fa-comment"></i></a>
+                                <a href="/exercises/{{$exercise->id}}/fields"><i class="fa fa-edit"></i></a>
+                                <a><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     @endif
@@ -35,10 +35,9 @@
                                 <p>{{$exercise->title}} </p>
                             </div>
                             <div class="flex-grow"></div>
-                            <div class="flex flex-row">
-                                <img src="/assets/edit.png" alt="edit">
-                                <img src="/assets/trash.png" alt="trash">
-                                <img src="/assets/stop.png" alt="stop" >
+                            <div>
+                                <a><i class="fa fa-chart-bar"></i></a>
+                                <a><i class="fa fa-minus-circle"></i></a>
                             </div>
                         </div>
                     @endif
@@ -54,10 +53,9 @@
                                 <p>{{$exercise->title}} </p>
                             </div>
                             <div class="flex-grow"></div>
-                            <div class="flex flex-row">
-                                <img src="/assets/edit.png" alt="edit">
-                                <img src="/assets/trash.png" alt="trash">
-                                <img src="/assets/stop.png" alt="stop" >
+                            <div>
+                                <a><i class="fa fa-chart-bar"></i></a>
+                                <a><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     @endif
