@@ -7,6 +7,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use App\Models\Exercise;
 use App\Models\Field;
 use App\Models\Line;
+use App\Models\State;
 
 class ExerciseController
 {
@@ -34,17 +35,19 @@ class ExerciseController
     }
     public function store(View $view ,$id): Response
     {
+        $lines = Line::all();
         $title = $_REQUEST['title'];
         $color = 'yellow';
         Exercise::make(['title'=>$title,'states_id'=>1])->create();
-        return $view('fields.create',compact('title','color'));
+        return $view('fields.create',compact('title','color','lines'));
     }
 
     public function show(View $view ,$id): Response
     {
+        $lines = Line::all();
         $exercise = Exercise::find($id);
         $color = 'yellow';
         $title = $exercise->title;
-        return $view('fields.create',compact('title','exercise','color'));
+        return $view('fields.create',compact('title','exercise','color','lines'));
     }
 }

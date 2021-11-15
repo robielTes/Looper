@@ -5,7 +5,8 @@ use filu\maw_orm\Model;
 
 class State extends Model
 {
-    static protected string $table = "answers";
+    static protected string $table = "states";
     protected string $primaryKey = "id";
     public int $name;
 }
+

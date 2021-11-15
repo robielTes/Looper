@@ -3,7 +3,6 @@
 
 @section('exercises')
 
-
         <div class="flex flex-row">
             <div class="flex-1 px-2">
                 <h1 class="text-4xl font-semibold">Building</h1>

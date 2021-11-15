@@ -34,9 +34,10 @@
                <label class="text-gray-700 text-xl">Value kind</label>
                <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="value-kind">
 
-                   <option value="single-line-text" selected>Single line text</option>
-                   <option value="list-of-single-lines">List of single lines</option>
-                   <option value="multi-line text">Multi-line text</option>
+                   @foreach($lines as $line)
+                       <option value="{{str_replace(" ","-",$line->kind)}}" {{$line->id == 1? 'selected' :''}}>{{$line->kind}}</option>
+                   @endforeach
+
                </select>
                <div class="pt-8 content-end" >
                    <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" value="Create Field">
