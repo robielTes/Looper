@@ -17,9 +17,10 @@ class AnswerController
     }
     public function edit(View $view,$id): Response
     {
+        $inputData = $_REQUEST;
         $exercise = Exercise::find($id);
         $title = $exercise->title;
         $color = 'purple';
-        return $view('answers.edit',compact('title','color','exercise'));
+        return $view('answers.edit',compact('title','color','exercise','inputData'));
     }
 }
