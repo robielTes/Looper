@@ -22,5 +22,6 @@
             <p>MANAGE AN EXERCISE</p>
         </a>
     </div>
+
 @endsection
 
