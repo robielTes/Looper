@@ -30,11 +30,11 @@ CREATE TABLE IF NOT EXISTS `looper`.`states` (
 CREATE TABLE IF NOT EXISTS `looper`.`exercises` (
                                                     `id` INT NOT NULL AUTO_INCREMENT,
                                                     `title` LONGTEXT NULL,
-                                                    `states_id` INT NOT NULL DEFAULT 1,
+                                                    `state_id` INT NOT NULL DEFAULT 1,
                                                     PRIMARY KEY (`id`),
-    INDEX `fk_exercises_states1_idx` (`states_id` ASC) VISIBLE,
-    CONSTRAINT `fk_exercises_states1`
-    FOREIGN KEY (`states_id`)
+    INDEX `fk_exercises_states_idx` (`state_id` ASC) VISIBLE,
+    CONSTRAINT `fk_exercises_states`
+    FOREIGN KEY (`state_id`)
     REFERENCES `looper`.`states` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -57,18 +57,18 @@ CREATE TABLE IF NOT EXISTS `looper`.`lines` (
 CREATE TABLE IF NOT EXISTS `looper`.`fields` (
                                                  `id` INT NOT NULL AUTO_INCREMENT,
                                                  `label` LONGTEXT NULL,
-                                                 `lines_id` INT NOT NULL DEFAULT 1,
-                                                 `exercises_id` INT NOT NULL,
+                                                 `line_id` INT NOT NULL DEFAULT 1,
+                                                 `exercise_id` INT NOT NULL,
                                                  PRIMARY KEY (`id`),
-    INDEX `fk_fields_lines_idx` (`lines_id` ASC) VISIBLE,
-    INDEX `fk_fields_exercises1_idx` (`exercises_id` ASC) VISIBLE,
+    INDEX `fk_fields_lines_idx` (`line_id` ASC) VISIBLE,
+    INDEX `fk_fields_exercises_idx` (`exercise_id` ASC) VISIBLE,
     CONSTRAINT `fk_fields_lines`
-    FOREIGN KEY (`lines_id`)
+    FOREIGN KEY (`line_id`)
     REFERENCES `looper`.`lines` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-    CONSTRAINT `fk_fields_exercises1`
-    FOREIGN KEY (`exercises_id`)
+    CONSTRAINT `fk_fields_exercises`
+    FOREIGN KEY (`exercise_id`)
     REFERENCES `looper`.`exercises` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -82,11 +82,11 @@ CREATE TABLE IF NOT EXISTS `looper`.`answers` (
                                                   `id` INT NOT NULL AUTO_INCREMENT,
                                                   `take` DATETIME NOT NULL DEFAULT now(),
     `answer` LONGTEXT NULL,
-    `fields_id` INT NOT NULL,
+    `field_id` INT NOT NULL,
     PRIMARY KEY (`id`),
-    INDEX `fk_answer_fields1_idx` (`fields_id` ASC) VISIBLE,
-    CONSTRAINT `fk_answer_fields1`
-    FOREIGN KEY (`fields_id`)
+    INDEX `fk_answer_fields_idx` (`field_id` ASC) VISIBLE,
+    CONSTRAINT `fk_answer_fields`
+    FOREIGN KEY (`field_id`)
     REFERENCES `looper`.`fields` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -112,27 +112,27 @@ INSERT INTO `looper`.`states` (`name`) VALUES ('Closed');
 
 -- Exercises
 
-INSERT INTO `looper`.`exercises` (`title`, `states_id`) VALUES ('Manger ou bouger ?', '1');
-INSERT INTO `looper`.`exercises` (`title`, `states_id`) VALUES ('Le sport pour vous', '2');
-INSERT INTO `looper`.`exercises` (`title`, `states_id`) VALUES ('Une enquête unique au sujet de moi', '3');
-INSERT INTO `looper`.`exercises` (`title`, `states_id`) VALUES ('Pour combien ?', '2');
+INSERT INTO `looper`.`exercises` (`title`, `state_id`) VALUES ('Manger ou bouger ?', '1');
+INSERT INTO `looper`.`exercises` (`title`, `state_id`) VALUES ('Le sport pour vous', '2');
+INSERT INTO `looper`.`exercises` (`title`, `state_id`) VALUES ('Une enquête unique au sujet de moi', '3');
+INSERT INTO `looper`.`exercises` (`title`, `state_id`) VALUES ('Pour combien ?', '2');
 
 -- Fields
 
-INSERT INTO `looper`.`fields` (`label`, `lines_id`, `exercises_id`) VALUES ('Cola ou fanta', '2' ,'1');
-INSERT INTO `looper`.`fields` (`label`, `lines_id`, `exercises_id`) VALUES ('Corde à sauter ou trampoline', '3' ,'1');
-INSERT INTO `looper`.`fields` (`label`, `lines_id`, `exercises_id`) VALUES ('WWF ou WWE', '2' ,'1');
-INSERT INTO `looper`.`fields` (`label`, `lines_id`, `exercises_id`) VALUES ('Intéressant ou pas', '1','2');
-INSERT INTO `looper`.`fields` (`label`, `lines_id`, `exercises_id`) VALUES ('Combien de fois par semaine', '2' ,'2');
-INSERT INTO `looper`.`fields` (`label`, `lines_id`, `exercises_id`) VALUES ('Je suis beau ?', '3' ,'3');
-INSERT INTO `looper`.`fields` (`label`, `lines_id`, `exercises_id`) VALUES ('Pour combien, tu sautes', '1' ,'4');
-INSERT INTO `looper`.`fields` (`label`, `lines_id`, `exercises_id`) VALUES ('Pour combien, tu frappes', '1' ,'4');
+INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Cola ou fanta', '2' ,'1');
+INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Corde à sauter ou trampoline', '3' ,'1');
+INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('WWF ou WWE', '2' ,'1');
+INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Intéressant ou pas', '1','2');
+INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Combien de fois par semaine', '2' ,'2');
+INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Je suis beau ?', '3' ,'3');
+INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Pour combien, tu sautes', '1' ,'4');
+INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Pour combien, tu frappes', '1' ,'4');
 
 
 -- Answer
 
-INSERT INTO `looper`.`answers` (`answer`, `fields_id`) VALUES ('Oui', '1');
-INSERT INTO `looper`.`answers` (`answer`, `fields_id`) VALUES ('Je dirais plutôt non', '2');
-INSERT INTO `looper`.`answers` (`answer`, `fields_id`) VALUES ('A voir', '1');
-INSERT INTO `looper`.`answers` (`answer`, `fields_id`) VALUES ('Pas possible', '4');
-INSERT INTO `looper`.`answers` (`answer`, `fields_id`) VALUES ('Exactement', '2');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`) VALUES ('Oui', '1');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`) VALUES ('Je dirais plutôt non', '2');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`) VALUES ('A voir', '1');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`) VALUES ('Pas possible', '4');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`) VALUES ('Exactement', '2');

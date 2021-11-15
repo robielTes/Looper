@@ -9,7 +9,7 @@
                 <h1 class="text-4xl font-semibold">Building</h1>
                 <h5 class="pt-5 border-b-2">Title</h5>
                 @foreach($exercises as $exercise)
-                    @if($exercise->states_id === 1)
+                    @if($exercise->state_id === 1)
                         <div class="flex flex-row">
                             <div>
                                 <p>{{$exercise->title}} </p>
@@ -29,7 +29,7 @@
                 <h1 class="text-4xl font-semibold">Answering</h1>
                 <h5 class="pt-5 border-b-2">Title</h5>
                 @foreach($exercises as $exercise)
-                    @if($exercise->states_id === 2)
+                    @if($exercise->state_id === 2)
                         <div class="flex flex-row">
                             <div>
                                 <p>{{$exercise->title}} </p>
@@ -48,7 +48,7 @@
                 <h1 class="text-4xl font-semibold">Closed</h1>
                 <h5 class="pt-5 border-b-2">Title</h5>
                 @foreach($exercises as $exercise)
-                    @if($exercise->states_id === 3)
+                    @if($exercise->state_id === 3)
                         <div class="flex flex-row">
                             <div>
                                 <p>{{$exercise->title}} </p>

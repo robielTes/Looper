@@ -10,5 +10,5 @@ class Answer extends Model
     protected string $primaryKey = "id";
     public int $take;
     public string $answer;
-    public int $fields_id;
+    public int $field_id;
 }
