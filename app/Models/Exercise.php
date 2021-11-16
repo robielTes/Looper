@@ -15,7 +15,7 @@ class Exercise extends Model
 
     public function fields()
     {
-        $query = "select label, kind from fields
+        $query = "select fields.id, label, kind from fields
         inner join `lines` on lines.id = fields.line_id
         where fields.exercise_id = :id";
         $connector = DB::getInstance();

@@ -83,11 +83,17 @@ CREATE TABLE IF NOT EXISTS `looper`.`answers` (
                                                   `take` DATETIME NOT NULL DEFAULT now(),
     `answer` LONGTEXT NULL,
     `field_id` INT NOT NULL,
+    `exercise_id` INT NOT NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_answer_fields_idx` (`field_id` ASC) VISIBLE,
     CONSTRAINT `fk_answer_fields`
     FOREIGN KEY (`field_id`)
     REFERENCES `looper`.`fields` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_answer_exercises`
+    FOREIGN KEY (`exercise_id`)
+    REFERENCES `looper`.`exercises` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
     ENGINE = InnoDB;
@@ -131,8 +137,8 @@ INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Pour 
 
 -- Answer
 
-INSERT INTO `looper`.`answers` (`answer`, `field_id`) VALUES ('Oui', '1');
-INSERT INTO `looper`.`answers` (`answer`, `field_id`) VALUES ('Je dirais plutôt non', '2');
-INSERT INTO `looper`.`answers` (`answer`, `field_id`) VALUES ('A voir', '1');
-INSERT INTO `looper`.`answers` (`answer`, `field_id`) VALUES ('Pas possible', '4');
-INSERT INTO `looper`.`answers` (`answer`, `field_id`) VALUES ('Exactement', '2');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('Oui', '1','1');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('Je dirais plutôt non', '2','1');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('A voir', '1','1');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('Pas possible', '4','2');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('Exactement', '2','1');
