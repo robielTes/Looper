@@ -1,6 +1,6 @@
-@extends('layouts.take')
+@extends('layouts.app')
 
-@section('exercises')
+@section('content')
 
     <div class="flex flex-row">
         <div class="flex-1 px-2">
