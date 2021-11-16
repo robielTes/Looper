@@ -1,4 +1,4 @@
-@extends('layouts.take')
+@extends('layouts.app')
 
 @section('exercises')
 
