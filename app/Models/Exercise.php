@@ -10,6 +10,7 @@ class Exercise extends Model
 {
     static protected string $table = "exercises";
     protected string $primaryKey = "id";
+    public int $id;
     public string $title;
     public int $state_id;
 

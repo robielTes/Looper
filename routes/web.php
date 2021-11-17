@@ -15,5 +15,6 @@ Route::post('/exercises/{id}/fields', 'ExerciseController@store');
 //================= Answers =================
 Route::post('/exercises/{id}/fulfillments/new', 'AnswerController@create');
 Route::post('/exercises/{id}/fulfillments/edit', 'AnswerController@edit');
+Route::get('/exercises/{id}/results', 'AnswerController@index');
 
 //================= Fields =================

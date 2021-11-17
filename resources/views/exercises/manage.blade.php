@@ -34,7 +34,7 @@
                         </div>
                         <div class="flex-grow"></div>
                         <div>
-                            <a><i class="fa fa-chart-bar"></i></a>
+                            <a href="/exercises/{{$exercise->id}}/results" title="Show results"><i class="fa fa-chart-bar"></i></a>
                             <a><i class="fa fa-minus-circle"></i></a>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="flex-grow"></div>
                         <div>
-                            <a><i class="fa fa-chart-bar"></i></a>
+                            <a href="/exercises/{{$exercise->id}}/results" title="Show results"><i class="fa fa-chart-bar"></i></a>
                             <a><i class="fa fa-trash"></i></a>
                         </div>
                     </div>

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
-@section('exercises')
-
+@section('content')
         <div class="flex-1 px-2">
             <div class="pb-8 text-gray-600 ">
                 <h1 class="text-5xl pb-4">Your take</h1>

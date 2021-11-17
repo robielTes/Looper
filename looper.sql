@@ -137,8 +137,6 @@ INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Pour 
 
 -- Answer
 
-INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('Oui', '1','1');
-INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('Je dirais plutôt non', '2','1');
-INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('A voir', '1','1');
-INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('Pas possible', '4','2');
-INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('Exactement', '2','1');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('Cola', '1','1');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('trampoline', '3','1');
+INSERT INTO `looper`.`answers` (`answer`, `field_id`,`exercise_id`) VALUES ('WWE', '2','1');

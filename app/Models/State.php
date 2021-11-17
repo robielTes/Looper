@@ -7,6 +7,7 @@ class State extends Model
 {
     static protected string $table = "states";
     protected string $primaryKey = "id";
+    public int $id;
     public int $name;
 }
 

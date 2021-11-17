@@ -7,6 +7,7 @@ class Field extends Model
 {
     static protected string $table = "fields";
     protected string $primaryKey = "id";
+    public int $id;
     public string $label;
     public int $line_id;
     public int $exercise_id;
