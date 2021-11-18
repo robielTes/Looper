@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `looper`.`exercises` (
 CREATE TABLE IF NOT EXISTS `looper`.`lines` (
                                                 `id` INT NOT NULL AUTO_INCREMENT,
                                                 `kind` VARCHAR(45) NOT NULL,
+    `slug` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
@@ -105,9 +106,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- Lines
 
-INSERT INTO `looper`.`lines` (`kind`) VALUES ('Single line text');
-INSERT INTO `looper`.`lines` (`kind`) VALUES ('List of single lines');
-INSERT INTO `looper`.`lines` (`kind`) VALUES ('Multi-line text');
+INSERT INTO `looper`.`lines` (`kind`,`slug`) VALUES ('Single line text','single');
+INSERT INTO `looper`.`lines` (`kind`,`slug`) VALUES ('List of single lines','list');
+INSERT INTO `looper`.`lines` (`kind`,`slug`) VALUES ('Multi-line text','multi');
 
 -- State
 

@@ -8,23 +8,19 @@
                 <tr class="text-left">
                     <th class="w-1/2">Take</th>
                     @foreach($exercise->fields() as $fields)
-                        <th >{{$fields->label}}</th>
+                        <th >{{$fields->slug}}</th>
                     @endforeach
-
                 </tr>
             </thead>
             <tbody>
-
-           {{-- @foreach($answers as $answer)
-                <tr>
-                    <td>{{$answer->take}}</td>
-                    @foreach($answer->result() as $response)
-                        <td>{{$response->answer}}</td>
+            @foreach($answers as $answer)
+                <tr class="text-left">
+                    <td class="w-1/2">{{$answer->take}}</td>
+                    @foreach($exercise->fields() as $fields)
+                        <td >{{$fields->slug}}</td>
                     @endforeach
                 </tr>
-            @endforeach--}}
-
-
+            @endforeach
             </tbody>
         </table>
     </div>
