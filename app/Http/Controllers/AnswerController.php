@@ -31,10 +31,19 @@ class AnswerController
 
     public function index(View $view,$id): Response
     {
-        $answers = Answer::where('exercise_id',$id);
+        $answers = [];
+        $time =null;
+        foreach (Answer::where('exercise_id',$id) as $answer){
+            if($time === $answer->take){
+                continue;
+            }
+            array_push($answers,$answer);
+            $time = $answer->take;
+        }
         $exercise = Exercise::find($id);
         $title = $exercise->title;
         $color = 'green';
-        return $view('answers.index',compact('title','color','exercise', 'answers'));
+        $time = $answers[0]->take;
+        return $view('answers.index',compact('title','color','exercise', 'answers','time'));
     }
 }

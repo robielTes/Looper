@@ -14,15 +14,16 @@
             </thead>
             <tbody>
             @foreach($answers as $answer)
-                <tr class="text-left">
-                    <td class="w-1/2">{{$answer->take}}</td>
-                    @foreach($exercise->fields() as $fields)
-                        <td >{{$fields->slug}}</td>
-                    @endforeach
-                </tr>
+               <tr class="text-left">
+                   <td class="w-1/2">{{$answer->take}}</td>
+                   @foreach($answer->result() as $result)
+                       <td >{{$result->answer}}</td>
+                   @endforeach
+               </tr>
             @endforeach
             </tbody>
         </table>
+
     </div>
 
 @endsection

@@ -16,11 +16,12 @@ class Answer extends Model
 
     public function result()
     {
-        $query = "SELECT answer, label FROM `answers`
-        INNER JOIN `fields` on fields.id = `answers`.field_id
-        WHERE `answers`.exercise_id = :id";
+        $query = "SELECT take,answer,label,slug FROM `answers`
+                INNER JOIN `fields` on field_id = fields.id
+                INNER JOIN `exercises` on `answers`.exercise_id = exercises.id
+                INNER JOIN `lines` on line_id = `lines`.id
+                where take = :take";
         $connector = DB::getInstance();
-        return $connector->selectMany($query, ["id" => $this->id], Answer::class);
-
+        return $connector->selectMany($query, ["take" => $this->take], Answer::class);
     }
 }

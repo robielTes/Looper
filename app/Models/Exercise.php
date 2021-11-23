@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-use App\Models;
 use filu\maw_orm\Model;
 use filu\maw_orm\database\DB;
 
