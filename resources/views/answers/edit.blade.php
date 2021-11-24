@@ -7,14 +7,13 @@
             <h1 class="text-5xl pb-4">Your take</h1>
             <p>Bookmark this page, it's yours. You'll be able to come back later to finish.</p>
         </div>
-        <form method="post" action="/exercises/{{$exercise->id}}/fulfillments/edit">
-
+        <form method="post" action="/exercises/{{$exercise->id}}/fulfillments/update">
             @if($exercise !== null)
-
                 @foreach($exercise->fields() as $field)
                     <label class="text-gray-700 text-xl">{{$field->label}}</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           type="text" name="{{str_replace(" ","_",$field->label)}}" value="{{$inputData[$field->id]}}"> <br><br>
+                           type="text" name="{{$ids[$field->id-1]}}"
+                           value="{{$new ? $inputData[$field->id]: $inputData[$ids[$field->id-1]]}}"> <br><br>
 
                 @endforeach
             @endif

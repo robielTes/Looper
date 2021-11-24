@@ -9,26 +9,6 @@ use App\Models\Answer;
 
 class AnswerController
 {
-    public function create(View $view,$id): Response
-    {
-        $exercise = Exercise::find($id);
-        $title = $exercise->title;
-        $color = 'purple';
-        return $view('answers.create',compact('title','color','exercise'));
-    }
-
-    public function edit(View $view,$id): Response
-    {
-        foreach ($_POST as $key=>$value){
-            Answer::make(['answer'=>$value,'field_id'=>$key,'exercise_id'=>$id])->create();
-        }
-        $inputData = $_REQUEST;
-        $exercise = Exercise::find($id);
-        $title = $exercise->title;
-        $color = 'purple';
-        return $view('answers.edit',compact('title','color','exercise','inputData'));
-    }
-
     public function index(View $view,$id): Response
     {
         $answers = [];
@@ -43,7 +23,45 @@ class AnswerController
         $exercise = Exercise::find($id);
         $title = $exercise->title;
         $color = 'green';
-        $time = $answers[0]->take;
-        return $view('answers.index',compact('title','color','exercise', 'answers','time'));
+        return $view('answers.index',compact('title','color', 'exercise', 'answers'));
     }
+
+    public function create(View $view,$id): Response
+    {
+        $exercise = Exercise::find($id);
+        $title = $exercise->title;
+        $color = 'purple';
+        return $view('answers.create',compact('title','color', 'exercise'));
+    }
+
+    public function edit(View $view,$id): Response
+    {
+        $ids = [];
+        foreach ($_POST as $key=>$value){
+           array_push($ids, Answer::make(['answer'=>$value,'field_id'=>$key,'exercise_id'=>$id])->create());
+        }
+        $inputData = $_REQUEST;
+        $exercise = Exercise::find($id);
+        $title = $exercise->title;
+        $color = 'purple';
+        $new = true;
+        return $view('answers.edit',compact('title','color', 'exercise', 'inputData', 'ids', 'new'));
+    }
+
+    public function update(View $view,$id): Response
+    {
+        $ids = [];
+        foreach ($_POST as $key=>$value){
+            array_push($ids, $key);
+            $answer = Answer::find($key);
+            $answer->answer = $value;
+            $answer->save();
+        }
+        $inputData = $_REQUEST;
+        $exercise = Exercise::find($id);
+        $title = $exercise->title;
+        $color = 'purple';
+        return $view('answers.edit',compact('title','color', 'exercise', 'inputData', 'ids'));
+    }
+
 }

@@ -24,4 +24,5 @@ class Answer extends Model
         $connector = DB::getInstance();
         return $connector->selectMany($query, ["take" => $this->take], Answer::class);
     }
+
 }

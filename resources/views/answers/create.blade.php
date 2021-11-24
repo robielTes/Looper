@@ -11,7 +11,8 @@
                @if($exercise !== null)
                    @foreach($exercise->fields() as $field)
                        <label class="text-gray-700 text-xl">{{$field->label}}</label>
-                       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="{{$field->id}}"><br><br>
+                       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                              type="text" name="{{$field->id}}"><br><br>
 
                    @endforeach
                @endif
