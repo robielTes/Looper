@@ -50,4 +50,16 @@ class ExerciseController
         $title = $exercise->title;
         return $view('fields.create',compact('title','exercise','color','lines'));
     }
+
+    public function update(View $view,$id): Response
+    {
+        $exercise = Exercise::find($id);
+        $exercise->state_id += 1 ;
+        $exercise->save();
+
+        $title = '';
+        $color = 'green';
+        $exercises = Exercise::all();
+        return $view('exercises.manage',compact('title','color','exercises'));
+    }
 }
