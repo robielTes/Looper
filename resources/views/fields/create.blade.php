@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="flex flex-row">
         <div class="flex-1 px-2">
             <h1 class="text-4xl font-bold pb-4">Field</h1>
@@ -10,8 +9,7 @@
                     <th>Label</th>
                     <th>Value kind</th>
                 </tr>
-                @if($exercise !== null)
-
+                @if($exercise !== null )
                     @foreach($exercise->fields() as $field)
                         <tr>
                             <td>{{$field->label}}</td>
@@ -28,7 +26,7 @@
         </div>
         <div class="flex-1 px-2">
             <h1 class="text-4xl font-bold pb-4">New Field</h1>
-           <form method="post">
+           <form method="post" action="/exercise/{{$exercise->id}}/fields">
                <label class="text-gray-700 text-xl">Label</label>
                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="label" name="label"><br><br>
                <label class="text-gray-700 text-xl">Value kind</label>
@@ -39,7 +37,7 @@
                    @endforeach
 
                </select>
-               <div class="pt-8 content-end" >
+               <div class="pt-8 content-end">
                    <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" value="Create Field">
                </div>
            </form>

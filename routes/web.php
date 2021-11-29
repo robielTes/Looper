@@ -20,3 +20,4 @@ Route::post('/exercises/{id}/fulfillments/update', 'AnswerController@update');
 Route::get('/exercises/{id}/results', 'AnswerController@index');
 
 //================= Fields =================
+Route::post('/exercise/{id}/fields', 'FieldController@create');
