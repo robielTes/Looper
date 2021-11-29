@@ -17,7 +17,11 @@
                <tr class="text-left">
                    <td class="w-1/2">{{$answer->take}}</td>
                    @foreach($answer->result() as $result)
-                       <td >{{$result->answer}}</td>
+                       @if(empty($result))
+                           <td><i class="fa fa-times"></i></td>
+                       @else
+                           <td><i class="fa fa-check"></i></td>
+                       @endif
                    @endforeach
                </tr>
             @endforeach
