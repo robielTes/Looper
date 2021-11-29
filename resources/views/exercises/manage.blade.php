@@ -35,7 +35,7 @@
                         <div class="flex-grow"></div>
                         <div>
                             <a href="/exercises/{{$exercise->id}}/results" title="Show results"><i class="fa fa-chart-bar"></i></a>
-                            <a href="/exercises/{{$exercise->id}}/state" title="close">><i class="fa fa-minus-circle"></i></a>
+                            <a href="/exercises/{{$exercise->id}}/state" title="close"><i class="fa fa-minus-circle"></i></a>
                         </div>
                     </div>
                 @endif
