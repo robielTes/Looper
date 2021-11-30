@@ -17,7 +17,7 @@
                         <div>
                             <a href="/exercises/{{$exercise->id}}/state" title="Be ready for answers"><i class="fa fa-comment"></i></a>
                             <a href="/exercises/{{$exercise->id}}/fields"><i class="fa fa-edit"></i></a>
-                            <a><i class="fa fa-trash"></i></a>
+                            <a href="/exercises/{{$exercise->id}}/destroy" title="Destroy"><i class="fa fa-trash"></i></a>
                         </div>
                     </div>
                 @endif
@@ -53,7 +53,7 @@
                         <div class="flex-grow"></div>
                         <div>
                             <a href="/exercises/{{$exercise->id}}/results" title="Show results"><i class="fa fa-chart-bar"></i></a>
-                            <a><i class="fa fa-trash"></i></a>
+                            <a href="/exercises/{{$exercise->id}}/destroy" title="Destroy"><i class="fa fa-trash"></i></a>
                         </div>
                     </div>
                 @endif

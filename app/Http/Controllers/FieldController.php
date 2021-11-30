@@ -15,8 +15,10 @@ class FieldController
     {
         $lines = Line::where('kind',str_replace("-"," ",$_REQUEST['value-kind']));
         Field::make(['label' => $_REQUEST['label'], 'line_id' => $lines[0]->id, 'exercise_id' => $id])->create();
-        $title = 'New exercise';
-        $color = 'yellow';
-        return $view('fields.create',compact('title','color'));
+
+        //TODO Create Redirect class
+        header('Location: /exercises/'.$id.'/fields');
+        exit();
+        return $view('fields.create');
     }
 }

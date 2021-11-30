@@ -57,13 +57,23 @@ class ExerciseController
     public function update(View $view, $id): Response
     {
         $exercise = Exercise::find($id);
-        //if($exercise->state_id ==="Building") $exercise->state_id ='Answering';
-        $exercise->state_id += 1;
+        if($exercise->state_id === 1) $exercise->state_id = 2;
+        elseif($exercise->state_id === 2) $exercise->state_id = 3;
         $exercise->save();
 
-        $title = '';
-        $color = 'green';
-        $exercises = Exercise::all();
-        return $view('exercises.manage', compact('title', 'color', 'exercises'));
+        //TODO Create Redirect class
+        header('Location: /exercises');
+        exit();
+        return $view('exercises.manage');
+    }
+    public function destroy(View $view, $id): Response
+    {
+        $exercise = Exercise::find($id);
+        $exercise->delete();
+
+        //TODO Create Redirect class
+        header('Location: /exercises');
+        exit();
+        return $view('exercises.manage');
     }
 }

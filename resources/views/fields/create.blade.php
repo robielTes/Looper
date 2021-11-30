@@ -20,8 +20,10 @@
                 @endif
 
             </table>
-            <form class="py-8">
-                <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" value="Complete and be ready for answers">
+            <form class="py-8" action="/exercises/{{$exercise->id}}/state" method="get"
+            onsubmit="return confirm('Are you sure? You won\'t be able to further edit this exercise');">
+                <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                       type="submit" value="Complete and be ready for answers">
             </form>
         </div>
         <div class="flex-1 px-2">
