@@ -8,7 +8,7 @@
                 <tr class="text-left">
                     <th class="w-1/2">Take</th>
                     @foreach($exercise->fields() as $fields)
-                        <th >{{$fields->slug}}</th>
+                        <th >{{$fields->label}}</th>
                     @endforeach
                 </tr>
             </thead>
@@ -17,7 +17,7 @@
                <tr class="text-left">
                    <td class="w-1/2">{{$answer->take}}</td>
                    @foreach($answer->result() as $result)
-                       @if(empty($result))
+                       @if(empty($result->answer))
                            <td><i class="fa fa-times"></i></td>
                        @else
                            <td><i class="fa fa-check"></i></td>
