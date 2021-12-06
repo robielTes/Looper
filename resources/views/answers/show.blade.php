@@ -2,27 +2,20 @@
 
 
 @section('content')
+    <h2 class="text-5xl pb-4">{{$field->label}}</h2>
     <div class="flex flex-row">
         <table class="table-auto  border-separate p-3 w-9/12">
             <thead>
                 <tr class="text-left">
                     <th class="w-1/2">Take</th>
-                    @foreach($exercise->fields() as $fields)
-                        <th><a href="/exercises/{{$exercise->id}}/results/{{$fields->id}}">{{$fields->label}}</a></th>
-                    @endforeach
+                    <th class="w-1/2">Content</th>
                 </tr>
             </thead>
             <tbody>
             @foreach($answers as $answer)
                <tr class="text-left">
                    <td class="w-1/2">{{$answer->take}}</td>
-                   @foreach($answer->result() as $result)
-                       @if(empty($result->answer))
-                           <td><i class="fa fa-times"></i></td>
-                       @else
-                           <td><i class="fa fa-check"></i></td>
-                       @endif
-                   @endforeach
+                   <td class="w-1/2">{{$answer->answer}}</td>
                </tr>
             @endforeach
             </tbody>

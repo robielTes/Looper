@@ -19,6 +19,7 @@ Route::post('/exercises/{id}/fulfillments/new', 'AnswerController@create');
 Route::post('/exercises/{id}/fulfillments/edit', 'AnswerController@edit');
 Route::post('/exercises/{id}/fulfillments/update', 'AnswerController@update');
 Route::get('/exercises/{id}/results', 'AnswerController@index');
+Route::get('/exercises/{id}/results/{rid}', 'AnswerController@show');
 
 //================= Fields =================
 Route::post('/exercise/{id}/fields', 'FieldController@create');

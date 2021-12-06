@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Support\View;
+use phpDocumentor\Reflection\File;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Models\Exercise;
 use App\Models\Answer;
+use App\Models\Field;
 
 class AnswerController
 {
@@ -20,10 +22,31 @@ class AnswerController
             array_push($answers,$answer);
             $time = $answer->take;
         }
+
         $exercise = Exercise::find($id);
         $title = $exercise->title;
         $color = 'green';
         return $view('answers.index',compact('title','color', 'exercise', 'answers'));
+    }
+
+    public function show(View $view,$id,$rid): Response
+    {
+        $field = Field::find($rid);
+        $answers = [];
+        $time =null;
+        foreach (Answer::where('field_id',$rid) as $answer){
+            if($answer->field_id == $rid){
+                if($time === $answer->take){
+                    continue;
+                }
+                array_push($answers,$answer);
+                $time = $answer->take;
+            }
+        }
+
+        $title = Exercise::find($id)->title;
+        $color = 'green';
+        return $view('answers.show',compact('title','color', 'field', 'answers'));
     }
 
     public function create(View $view,$id): Response
