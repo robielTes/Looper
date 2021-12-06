@@ -14,6 +14,16 @@
                         <tr>
                             <td>{{$field->label}}</td>
                             <td>{{$field->kind}}</td>
+                            <td>
+                                <div>
+                                    <a href="fields/{{$field->id}}/edit" title="edit"><i class="fa fa-edit"></i></a>
+                                    <a href="fields/{{$field->id}}/destroy" title="Destroy"><i class="fa fa-trash"></i></a>
+                                    {{--<form action="fields/{{$field->id}}/destroy" method="get"
+                                                   onsubmit="return confirm('Are you sure?');">
+                                        <button><i class="fa fa-trash" title="Destroy"></i></button>
+                                    </form>--}}
+                                </div>
+                            </td>
                         </tr>
 
                     @endforeach
@@ -23,7 +33,7 @@
             <form class="py-8" action="/exercises/{{$exercise->id}}/state" method="get"
             onsubmit="return confirm('Are you sure? You won\'t be able to further edit this exercise');">
                 <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                       type="submit" value="Complete and be ready for answers">
+                       type="submit" value="COMPLETE AND BE READY FOR ANSWERS">
             </form>
         </div>
         <div class="flex-1 px-2">
@@ -40,7 +50,8 @@
 
                </select>
                <div class="pt-8 content-end">
-                   <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" value="Create Field">
+                   <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit"
+                          value="CREATE FIELD">
                </div>
            </form>
         </div>
