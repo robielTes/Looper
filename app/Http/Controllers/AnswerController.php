@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use App\Models\Exercise;
 use App\Models\Answer;
 use App\Models\Field;
+use App\Models\Fulfillment;
 
 class AnswerController
 {
@@ -59,16 +60,18 @@ class AnswerController
 
     public function edit(View $view,$id): Response
     {
+
+        $filfilment = Fulfillment::make(['take'=>date('Y-m-d H:i:s')])->create();
         $ids = [];
         foreach ($_POST as $key=>$value){
-           array_push($ids, Answer::make(['answer'=>$value,'field_id'=>$key,'exercise_id'=>$id])->create());
+           array_push($ids, Answer::make(['answer'=>$value,'field_id'=>$key,'exercise_id'=>$id, 'fulfillment_id'=>$filfilment])
+               ->create());
         }
         $inputData = $_REQUEST;
         $exercise = Exercise::find($id);
         $title = $exercise->title;
         $color = 'purple';
-        $new = true;
-        return $view('answers.edit',compact('title','color', 'exercise', 'inputData', 'ids', 'new'));
+        return $view('answers.edit',compact('title','color', 'exercise', 'inputData', 'ids', 'filfilment'));
     }
 
     public function update(View $view,$id): Response
