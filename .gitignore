@@ -480,3 +480,5 @@ composer.lock
 
 .phpunit.result.cache
 .env.php
+storage/cache/*
+node_modules

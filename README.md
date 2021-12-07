@@ -7,81 +7,61 @@
 <br />
 <p align="center">
   <a href="https://github.com/robielcpnv/repo_name">
-    <img src="view/assets/logo.png" alt="Logo" width="80" height="80">
+    <img src="public/assets/logo.png" alt="Logo" width="80" height="80">
   </a>
 <h3 align="center">Exercise Looper</h3>
 
-
-
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#contributing">Usage</a></li>
-    <li><a href="#license">License</a></li>
-  </ol>
-</details>
-
 ## About The Project
 
-Explain what the project is about
+This is a CPNV project in which students need to copy a [website](https://stormy-plateau-54488.herokuapp.com/).
+It is about planification, learning and programming.
+
+### Students
+
+* [Filipe Martins](https://github.com/FilipeCPNV)
+* [Robiel Tesfazghi](https://github.com/robielcpnv)
 
 ### Built With
 
 * [HMTL & CSS]()
-* [Tailwind]() Version 2.2.15
-* [PHP]() Version 8.1
+  * [Tailwind CSS](https://tailwindcss.com/docs) Version 2.2.16
+* [PHP](https://www.php.net/) Version 8.1
+  * [Router Slim](https://packagist.org/packages/slim/slim) Version 4.9
+  * [Filu Maw_ORM](https://packagist.org/packages/filu/maw_orm) Version 2
 
 <!-- GETTING STARTED -->
 
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
-
 ### Prerequisites
 
-How to install all the prerequisites.
-
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+In order to install all the packages, you'll need :
+- [NPM](https://nodejs.org/en/download/)
+- [Composer](https://getcomposer.org/download/)
 
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/robielcpnv/Looper.git
    ```
 2. Install NPM packages
    ```sh
    npm install
    ```
-
-<!-- USAGE EXAMPLES -->
-
-## Usage
-
-How to use the website
+3. Install Composer packages
+   ```sh
+   composer install
+   ```
+4. Create and .env.php in public. An example is available in the file "example.env.php"
 
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-<!-- CONTACT -->
+## CONTACT 
 
+Filipe Martins - filipe-alexandre.moita-martins@cpnv.ch
 
-<!-- ACKNOWLEDGEMENTS -->
+Robiel Tesfazghi - robiel.tesfazghi@cpnv.ch
+
