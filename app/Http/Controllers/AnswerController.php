@@ -58,20 +58,37 @@ class AnswerController
         return $view('answers.create',compact('title','color', 'exercise'));
     }
 
+    public function store(View $view,$id): Response
+    {
+        $fulfillments = Fulfillment::make(['take'=>date('Y-m-d H:i:s')])->create();
+        $ids = [];
+        foreach ($_POST as $key=>$value){
+            array_push($ids, Answer::make(['answer'=>$value,'field_id'=>$key,'exercise_id'=>$id, 'fulfillment_id'=>$fulfillments])
+                ->create());
+        }
+        $inputData = $_REQUEST;
+
+        //TODO Create Redirect class
+        header("Location: /exercises/$id/fulfillments/$fulfillments/edit");
+        exit();
+
+        return $view('answers.edit',compact( 'inputData'));
+    }
+
     public function edit(View $view,$id): Response
     {
 
-        $filfilment = Fulfillment::make(['take'=>date('Y-m-d H:i:s')])->create();
+        $fulfillments = Fulfillment::make(['take'=>date('Y-m-d H:i:s')])->create();
         $ids = [];
         foreach ($_POST as $key=>$value){
-           array_push($ids, Answer::make(['answer'=>$value,'field_id'=>$key,'exercise_id'=>$id, 'fulfillment_id'=>$filfilment])
+           array_push($ids, Answer::make(['answer'=>$value,'field_id'=>$key,'exercise_id'=>$id, 'fulfillment_id'=>$fulfillments])
                ->create());
         }
         $inputData = $_REQUEST;
         $exercise = Exercise::find($id);
         $title = $exercise->title;
         $color = 'purple';
-        return $view('answers.edit',compact('title','color', 'exercise', 'inputData', 'ids', 'filfilment'));
+        return $view('answers.edit',compact('title','color', 'exercise', 'inputData', 'ids', 'fulfillments'));
     }
 
     public function update(View $view,$id): Response

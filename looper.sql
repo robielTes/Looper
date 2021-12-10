@@ -10,7 +10,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema looper
 -- -----------------------------------------------------
-
+DROP SCHEMA IF EXISTS `looper`;
 -- -----------------------------------------------------
 -- Schema looper
 -- -----------------------------------------------------
@@ -152,14 +152,14 @@ INSERT INTO `looper`.`states` (`name`) VALUES ('Closed');
 
 -- Exercises
 
-INSERT INTO `looper`.`exercises` (`title`, `state_id`) VALUES ('Manger ou bouger ?', '1');
+INSERT INTO `looper`.`exercises` (`title`, `state_id`) VALUES ('Manger ou bouger ?', '2');
 INSERT INTO `looper`.`exercises` (`title`, `state_id`) VALUES ('Le sport pour vous', '2');
 INSERT INTO `looper`.`exercises` (`title`, `state_id`) VALUES ('Une enquête unique au sujet de moi', '3');
 INSERT INTO `looper`.`exercises` (`title`, `state_id`) VALUES ('Pour combien ?', '2');
 
 -- Fields
 
-INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Cola ou fanta', '2' ,'1');
+INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Cola ou fanta', '1' ,'1');
 INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Corde à sauter ou trampoline', '1' ,'1');
 INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('WWF ou WWE', '1' ,'1');
 INSERT INTO `looper`.`fields` (`label`, `line_id`, `exercise_id`) VALUES ('Intéressant ou pas', '1','2');

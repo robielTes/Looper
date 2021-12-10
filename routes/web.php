@@ -16,8 +16,9 @@ Route::get('/exercises/{id}/destroy', 'ExerciseController@destroy');
 
 //================= Answers =================
 Route::post('/exercises/{id}/fulfillments/new', 'AnswerController@create');
-Route::post('/exercises/{id}/fulfillments/edit', 'AnswerController@edit');
-Route::post('/exercises/{id}/fulfillments/update', 'AnswerController@update');
+Route::post('/exercises/{id}/fulfillments', 'AnswerController@store');
+Route::get('/exercises/{id}/fulfillments/{fid}/edit', 'AnswerController@edit');
+Route::post('/exercises/{id}/fulfillments/{fid}', 'AnswerController@update');
 Route::get('/exercises/{id}/results', 'AnswerController@index');
 Route::get('/exercises/{id}/results/{rid}', 'AnswerController@show');
 
