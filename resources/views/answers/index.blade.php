@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
     <div class="flex flex-row">
         <table class="table-auto  border-separate p-3 w-9/12">
@@ -15,7 +14,7 @@
             <tbody>
             @foreach($answers as $answer)
                <tr class="text-left">
-                   <td class="w-1/2">{{$answer->take}}</td>
+                   <td class="w-1/2">{{$fulfillment[$answer->fulfillment_id]->take}}</td>
                    @foreach($answer->result() as $result)
                        @if(empty($result->answer))
                            <td><i class="fa fa-times"></i></td>

@@ -16,14 +16,14 @@ class Answer extends Model
 
     public function result()
     {
-        $query = "SELECT take,answer,label,slug FROM `answers`
+        $query = "SELECT fulfillment_id,answer,label,slug FROM `answers`
                 INNER JOIN `fields` on field_id = fields.id
                 INNER JOIN `exercises` on `answers`.exercise_id = exercises.id
                 INNER JOIN `lines` on line_id = `lines`.id
                 INNER join `fulfillments` on fulfillment_id = `fulfillments`.id
-                where take = :take";
+                where fulfillment_id = :fulfillment_id";
         $connector = DB::getInstance();
-        return $connector->selectMany($query, ["take" => $this->take], Answer::class);
+        return $connector->selectMany($query, ["fulfillment_id" => $this->fulfillment_id], Answer::class);
     }
 
 }

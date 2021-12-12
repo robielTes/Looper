@@ -15,19 +15,16 @@ class AnswerController
     public function index(View $view,$id): Response
     {
         $answers = [];
-        $time =null;
         foreach (Answer::where('exercise_id',$id) as $answer){
-            if($time === $answer->take){
-                continue;
+            if($answer->fulfillment_id == 1){
+                array_push($answers,$answer);
             }
-            array_push($answers,$answer);
-            $time = $answer->take;
         }
-
+        $fulfillment= Fulfillment::all();
         $exercise = Exercise::find($id);
         $title = $exercise->title;
         $color = 'green';
-        return $view('answers.index',compact('title','color', 'exercise', 'answers'));
+        return $view('answers.index',compact('title','color', 'exercise', 'answers','fulfillment'));
     }
 
     public function show(View $view,$id,$rid): Response
