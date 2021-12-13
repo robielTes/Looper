@@ -26,5 +26,5 @@ Route::get('/exercises/{id}/fulfillments/{fid}', 'AnswerController@showFulfillme
 //================= Fields =================
 Route::post('/exercise/{id}/fields', 'FieldController@create');
 Route::get('/exercises/{id}/fields/{fid}/edit', 'FieldController@edit');
-Route::get('/exercises/{id}/fields/{fid}/destroy', 'FieldController@destroy');
+Route::post('/exercises/{id}/fields/{fid}/destroy', 'FieldController@destroy');
 Route::post('/exercises/{id}/fields/{fid}/update', 'FieldController@update');
