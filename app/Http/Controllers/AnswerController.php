@@ -15,9 +15,11 @@ class AnswerController
     public function index(View $view,$id): Response
     {
         $answers = [];
+        $fulfillment_ids = [];
         foreach (Answer::where('exercise_id',$id) as $answer){
-            if($answer->fulfillment_id == 1){
+            if(!in_array($answer->fulfillment_id,$fulfillment_ids)){
                 array_push($answers,$answer);
+                array_push($fulfillment_ids,$answer->fulfillment_id);
             }
         }
         $fulfillment= Fulfillment::all();
