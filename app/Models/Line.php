@@ -9,4 +9,6 @@ class Line extends Model
     protected string $primaryKey = "id";
     public int $id;
     public string $kind;
+    public string $value_kind;
+    public string $slug;
 }

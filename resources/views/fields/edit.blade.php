@@ -12,7 +12,7 @@
                <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="value-kind">
 
                    @foreach($lines as $line)
-                       <option value="{{str_replace(" ","-",$line->kind)}}" {{$line->id == 1? 'selected' :''}}>{{$line->kind}}</option>
+                       <option value="{{str_replace(" ","-",$line->kind)}}" {{$line->id == $field->line_id? 'selected' :''}}>{{$line->kind}}</option>
                    @endforeach
 
                </select>

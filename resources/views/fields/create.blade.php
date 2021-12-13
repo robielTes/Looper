@@ -13,7 +13,7 @@
                     @foreach($exercise->fields() as $field)
                         <tr>
                             <td>{{$field->label}}</td>
-                            <td>{{$field->kind}}</td>
+                            <td>{{str_replace(" ","_",$field->value_kind)}}</td>
                             <td>
                                 <div>
                                     <a href="fields/{{$field->id}}/edit" title="edit"><i class="fa fa-edit"></i></a>
@@ -45,7 +45,7 @@
                <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="value-kind">
 
                    @foreach($lines as $line)
-                       <option value="{{str_replace(" ","-",$line->kind)}}" {{$line->id == 1? 'selected' :''}}>{{$line->kind}}</option>
+                       <option value="{{str_replace(" ","_",$line->kind)}}" {{$line->id == 1? 'selected' :''}}>{{$line->kind}}</option>
                    @endforeach
 
                </select>

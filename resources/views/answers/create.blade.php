@@ -7,7 +7,7 @@
                 <p>If you'd like to come back later to finish, simply submit it with blanks</p>
             </div>
 
-           <form method="post" action="/exercises/{{$exercise->id}}/fulfillments/edit">
+           <form method="post" action="/exercises/{{$exercise->id}}/fulfillments">
                @if($exercise !== null)
                    @foreach($exercise->fields() as $field)
                        <label class="text-gray-700 text-xl">{{$field->label}}</label>
