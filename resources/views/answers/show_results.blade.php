@@ -13,7 +13,7 @@
             <tbody>
             @foreach($answers as $answer)
                <tr class="text-left">
-                   <td class="w-1/2">{{$answer->take()[0]->take}}</td>
+                   <td class="w-1/2"><a href="/exercises/{{$exercise->id}}/fulfillments/{{$answer->fulfillment_id}}">{{$answer->take()[0]->take}}</a></td>
                    <td class="w-1/2">{{$answer->take()[0]->answer}}</td>
                </tr>
             @endforeach

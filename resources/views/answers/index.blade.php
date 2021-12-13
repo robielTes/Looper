@@ -14,7 +14,7 @@
             <tbody>
             @foreach($answers as $answer)
                <tr class="text-left">
-                   <td class="w-1/2">{{$fulfillment[$answer->fulfillment_id]->take}}</td>
+                   <td class="w-1/2"><a href="/exercises/{{$exercise->id}}/fulfillments/{{$answer->fulfillment_id}}">{{$fulfillment[$answer->fulfillment_id]->take}}</a></td>
                    @foreach($answer->result() as $result)
                        @if(empty($result->answer))
                            <td><i class="fa fa-times"></i></td>

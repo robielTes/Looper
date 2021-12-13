@@ -38,23 +38,19 @@ class AnswerController
                     array_push($answers,$answer);
                 }
         }
-        $title = Exercise::find($id)->title;
+        $exercise = Exercise::find($id);
+        $title = $exercise->title;
         $color = 'green';
-        return $view('answers.show_results',compact('title','color', 'field', 'answers'));
+        return $view('answers.show_results',compact('title','exercise','color', 'field', 'answers'));
     }
 
-    public function show_fulfillment(View $view,$id,$rid): Response
+    public function show_fulfillment(View $view,$id,$fid): Response
     {
-        $field = Field::find($rid);
-        $answers = [];
-        foreach (Answer::where('field_id',$rid) as $answer){
-            if($answer->field_id == $rid){
-                array_push($answers,$answer);
-            }
-        }
+        $fulfillment = Fulfillment::find($fid)->take;
+        $answers = Answer::where('fulfillment_id',$fid)[0];
         $title = Exercise::find($id)->title;
         $color = 'green';
-        return $view('answers.show_results',compact('title','color', 'field', 'answers'));
+        return $view('answers.show_fulfillments',compact('title','color', 'answers','fulfillment'));
     }
 
     public function create(View $view,$id): Response
