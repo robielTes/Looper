@@ -61,11 +61,8 @@ class ExerciseController
             $exercise->state_id = 3;
         }
         $exercise->save();
-
-        //TODO Create Redirect class
         header('Location: /exercises');
         exit();
-        return $view('exercises.manage');
     }
 
     public function destroy(View $view, $id): Response
@@ -73,9 +70,7 @@ class ExerciseController
         $exercise = Exercise::find($id);
         $exercise->delete();
 
-        //TODO Create Redirect class
         header('Location: /exercises');
         exit();
-        return $view('exercises.manage');
     }
 }

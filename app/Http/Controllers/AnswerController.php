@@ -74,11 +74,9 @@ class AnswerController
         }
         $_SESSION['inputData'] = $_REQUEST;
 
-        //TODO Create Redirect class
         header("Location: /exercises/$id/fulfillments/$fulfillments/edit");
         exit();
 
-        return $view('answers.edit', compact('inputData'));
     }
 
     public function edit(View $view, $id): Response

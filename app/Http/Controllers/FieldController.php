@@ -17,10 +17,8 @@ class FieldController
         $lines = Line::where('kind', str_replace("_", " ", $_REQUEST['value-kind']));
         Field::make(['label' => $_REQUEST['label'], 'line_id' => $lines[0]->id, 'exercise_id' => $id])->create();
 
-        //TODO Create Redirect class
         header('Location: /exercises/' . $id . '/fields');
         exit();
-        return $view('fields.create');
     }
 
     public function destroy(View $view, $id, $fid): Response
@@ -28,10 +26,8 @@ class FieldController
         $field = Field::find($fid);
         $field->delete();
 
-        //TODO Create Redirect class
         header("Location: /exercises/{$id}/fields");
         exit();
-        return $view('exercises.manage');
     }
 
     public function edit(View $view, $id, $fid): Response
@@ -53,9 +49,7 @@ class FieldController
         $field->line_id = $lineId;
         $field->save();
 
-        //TODO Create Redirect class
         header('Location: /exercises');
         exit();
-        return $view('exercises.manage');
     }
 }
