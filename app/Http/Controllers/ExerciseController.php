@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Support\View;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Models\Exercise;
-use App\Models\Field;
 use App\Models\Line;
-use App\Models\State;
 
 class ExerciseController
 {
@@ -57,8 +55,11 @@ class ExerciseController
     public function update(View $view, $id): Response
     {
         $exercise = Exercise::find($id);
-        if($exercise->state_id === 1) $exercise->state_id = 2;
-        elseif($exercise->state_id === 2) $exercise->state_id = 3;
+        if ($exercise->state_id === 1) {
+            $exercise->state_id = 2;
+        } elseif ($exercise->state_id === 2) {
+            $exercise->state_id = 3;
+        }
         $exercise->save();
 
         //TODO Create Redirect class
@@ -66,6 +67,7 @@ class ExerciseController
         exit();
         return $view('exercises.manage');
     }
+
     public function destroy(View $view, $id): Response
     {
         $exercise = Exercise::find($id);

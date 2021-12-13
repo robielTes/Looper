@@ -11,7 +11,7 @@ class BladeServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->getContainer()->set(View::class, function () {
-           return new View(new ResponseFactory);
+            return new View(new ResponseFactory);
         });
     }
 

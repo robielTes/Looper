@@ -20,8 +20,8 @@ Route::post('/exercises/{id}/fulfillments', 'AnswerController@store');
 Route::get('/exercises/{id}/fulfillments/{fid}/edit', 'AnswerController@edit');
 Route::post('/exercises/{id}/fulfillments/{fid}/edit', 'AnswerController@update');
 Route::get('/exercises/{id}/results', 'AnswerController@index');
-Route::get('/exercises/{id}/results/{rid}', 'AnswerController@show_result');
-Route::get('/exercises/{id}/fulfillments/{fid}', 'AnswerController@show_fulfillment');
+Route::get('/exercises/{id}/results/{rid}', 'AnswerController@showResult');
+Route::get('/exercises/{id}/fulfillments/{fid}', 'AnswerController@showFulfillment');
 
 //================= Fields =================
 Route::post('/exercise/{id}/fields', 'FieldController@create');

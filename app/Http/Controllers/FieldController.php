@@ -14,11 +14,11 @@ class FieldController
     public function create(View $view, $id): Response
     {
 
-        $lines = Line::where('kind',str_replace("_"," ",$_REQUEST['value-kind']));
+        $lines = Line::where('kind', str_replace("_", " ", $_REQUEST['value-kind']));
         Field::make(['label' => $_REQUEST['label'], 'line_id' => $lines[0]->id, 'exercise_id' => $id])->create();
 
         //TODO Create Redirect class
-        header('Location: /exercises/'.$id.'/fields');
+        header('Location: /exercises/' . $id . '/fields');
         exit();
         return $view('fields.create');
     }
@@ -41,14 +41,14 @@ class FieldController
         $lines = Line::all();
         $title = $_REQUEST['title'];
         $color = 'yellow';
-        return $view('fields.edit', compact('title', 'color', 'lines','field','exercise'));
+        return $view('fields.edit', compact('title', 'color', 'lines', 'field', 'exercise'));
     }
 
     public function update(View $view, $id, $fid): Response
     {
         $field = Field::find($fid);
         $slug = strtolower(explode("-", $_REQUEST['value-kind'])[0]);
-        $lineId = Line::where('slug',$slug)[0]->id;
+        $lineId = Line::where('slug', $slug)[0]->id;
         $field->label = $_REQUEST['label'];
         $field->line_id = $lineId;
         $field->save();

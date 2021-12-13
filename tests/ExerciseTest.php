@@ -13,7 +13,7 @@ class ExerciseTest extends TestCase
     public function testIndex()
     {
         $exercise = new Exercise();
-        $this->assertEquals(10,count($exercise->index()));
+        $this->assertEquals(10, count($exercise->index()));
     }
 
     /**

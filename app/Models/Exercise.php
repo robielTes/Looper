@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Models;
+
 use filu\maw_orm\Model;
 use filu\maw_orm\database\DB;
 
-
 class Exercise extends Model
 {
-    static protected string $table = "exercises";
+    protected static string $table = "exercises";
     protected string $primaryKey = "id";
     public int $id;
     public string $title;

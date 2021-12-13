@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Models;
+
 use filu\maw_orm\database\DB;
 use filu\maw_orm\Model;
 
 class Answer extends Model
 {
-    static protected string $table = "answers";
+    protected static string $table = "answers";
     protected string $primaryKey = "id";
     public int $id;
     public string $answer;
@@ -30,10 +31,13 @@ class Answer extends Model
     {
         $query = "SELECT answer, take FROM `answers`
                 INNER join `fulfillments` on fulfillment_id = `fulfillments`.id
-                where field_id = :field_id and fulfillment_id = :fulfillment_id" ;
+                where field_id = :field_id and fulfillment_id = :fulfillment_id";
         $connector = DB::getInstance();
-        return $connector->selectMany($query, ["field_id" => $this->field_id, "fulfillment_id" => $this->fulfillment_id], Answer::class);
+        return $connector->selectMany($query, [
+            "field_id" => $this->field_id,
+            "fulfillment_id" => $this->fulfillment_id], Answer::class);
     }
+
     public function fulfillment()
     {
         $query = "SELECT fulfillment_id,answer,label FROM `answers`
@@ -43,5 +47,4 @@ class Answer extends Model
         $connector = DB::getInstance();
         return $connector->selectMany($query, ["fulfillment_id" => $this->fulfillment_id], Answer::class);
     }
-
 }
