@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
     <h2 class="text-5xl pb-4">{{$field->label}}</h2>
     <div class="flex flex-row">
@@ -14,8 +13,8 @@
             <tbody>
             @foreach($answers as $answer)
                <tr class="text-left">
-                   <td class="w-1/2">{{$answer->take}}</td>
-                   <td class="w-1/2">{{$answer->answer}}</td>
+                   <td class="w-1/2">{{$answer->take()[0]->take}}</td>
+                   <td class="w-1/2">{{$answer->take()[0]->answer}}</td>
                </tr>
             @endforeach
             </tbody>

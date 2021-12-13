@@ -26,4 +26,13 @@ class Answer extends Model
         return $connector->selectMany($query, ["fulfillment_id" => $this->fulfillment_id], Answer::class);
     }
 
+    public function take()
+    {
+        $query = "SELECT answer, take FROM `answers`
+                INNER join `fulfillments` on fulfillment_id = `fulfillments`.id
+                where field_id = :field_id and fulfillment_id = :fulfillment_id" ;
+        $connector = DB::getInstance();
+        return $connector->selectMany($query, ["field_id" => $this->field_id, "fulfillment_id" => $this->fulfillment_id], Answer::class);
+    }
+
 }

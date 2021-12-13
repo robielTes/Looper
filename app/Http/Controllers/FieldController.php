@@ -13,6 +13,7 @@ class FieldController
 
     public function create(View $view, $id): Response
     {
+
         $lines = Line::where('kind',str_replace("_"," ",$_REQUEST['value-kind']));
         Field::make(['label' => $_REQUEST['label'], 'line_id' => $lines[0]->id, 'exercise_id' => $id])->create();
 

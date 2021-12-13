@@ -13,7 +13,7 @@
                     @foreach($exercise->fields() as $field)
                         <tr>
                             <td>{{$field->label}}</td>
-                            <td>{{$field->kind}}</td>
+                            <td>{{str_replace(" ","_",$field->value_kind)}}</td>
                             <td>
                                 <div>
                                     <a href="fields/{{$field->id}}/edit" title="edit"><i class="fa fa-edit"></i></a>

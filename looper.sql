@@ -139,9 +139,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- Lines
 
-INSERT INTO `looper`.`lines` (`kind`,`slug`) VALUES ('Single line text','single');
-INSERT INTO `looper`.`lines` (`kind`,`slug`) VALUES ('List of single lines','list');
-INSERT INTO `looper`.`lines` (`kind`,`slug`) VALUES ('Multi-line text','multi');
+INSERT INTO `looper`.`lines` (`kind`,`value_kind`,`slug`) VALUES ('Single line text','single line','single');
+INSERT INTO `looper`.`lines` (`kind`,`value_kind`,`slug`) VALUES ('List of single lines','single line list','list');
+INSERT INTO `looper`.`lines` (`kind`,`value_kind,``slug`) VALUES ('Multi-line text','multi line','multi');
 
 -- States
 

@@ -29,24 +29,32 @@ class AnswerController
         return $view('answers.index',compact('title','color', 'exercise', 'answers','fulfillment'));
     }
 
-    public function show(View $view,$id,$rid): Response
+    public function show_result(View $view,$id,$rid): Response
     {
         $field = Field::find($rid);
         $answers = [];
-        $time =null;
         foreach (Answer::where('field_id',$rid) as $answer){
             if($answer->field_id == $rid){
-                if($time === $answer->take){
-                    continue;
+                    array_push($answers,$answer);
                 }
-                array_push($answers,$answer);
-                $time = $answer->take;
-            }
         }
-
         $title = Exercise::find($id)->title;
         $color = 'green';
-        return $view('answers.show',compact('title','color', 'field', 'answers'));
+        return $view('answers.show_results',compact('title','color', 'field', 'answers'));
+    }
+
+    public function show_fulfillment(View $view,$id,$rid): Response
+    {
+        $field = Field::find($rid);
+        $answers = [];
+        foreach (Answer::where('field_id',$rid) as $answer){
+            if($answer->field_id == $rid){
+                array_push($answers,$answer);
+            }
+        }
+        $title = Exercise::find($id)->title;
+        $color = 'green';
+        return $view('answers.show_results',compact('title','color', 'field', 'answers'));
     }
 
     public function create(View $view,$id): Response
@@ -65,7 +73,7 @@ class AnswerController
             array_push($ids, Answer::make(['answer'=>$value,'field_id'=>$key,'exercise_id'=>$id, 'fulfillment_id'=>$fulfillments])
                 ->create());
         }
-        $inputData = $_REQUEST;
+        $_SESSION['inputData'] = $_REQUEST;
 
         //TODO Create Redirect class
         header("Location: /exercises/$id/fulfillments/$fulfillments/edit");
@@ -90,7 +98,7 @@ class AnswerController
         return $view('answers.edit',compact('title','color', 'exercise', 'inputData', 'ids', 'fulfillments'));
     }
 
-    public function update(View $view,$id): Response
+    public function update(View $view,$id ,$fid): Response
     {
         $ids = [];
         foreach ($_POST as $key=>$value){
@@ -99,11 +107,12 @@ class AnswerController
             $answer->answer = $value;
             $answer->save();
         }
+        $fulfillments =$fid;
         $inputData = $_REQUEST;
         $exercise = Exercise::find($id);
         $title = $exercise->title;
         $color = 'purple';
-        return $view('answers.edit',compact('title','color', 'exercise', 'inputData', 'ids'));
+        return $view('answers.edit',compact('title','color', 'exercise', 'inputData', 'ids', 'fulfillments'));
     }
 
 }
