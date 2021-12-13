@@ -15,3 +15,10 @@
 .green {
     background-color: #419d78;
 }
+.empty {
+    color:#f45866;
+}
+
+.filled {
+    color: #419d78;;
+}

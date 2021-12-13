@@ -22,14 +22,14 @@
     </div>
 </div>
 <div class="flex flex-col justify-center sm:flex-row">
-    <div class="purple text-center rounded m-2 py-4 px-12 md:px-16">
-        <a href="/exercises/answering" class="text-white font-bold justify-center">TAKE AN EXERCISE</a>
+    <div class="purple text-center rounded m-2 py-4 px-12 md:px-16 hover:bg-gray-500">
+        <a href="/exercises/answering" class="text-white justify-center font-semibold">TAKE AN EXERCISE</a>
     </div>
-    <div class="yellow text-center rounded m-2 py-4 px-12 md:px-16">
-        <a href="/exercises/new" class="text-white font-bold">CREATE AN EXERCISE</a>
+    <div class="yellow text-center rounded m-2 py-4 px-12 md:px-16 hover:bg-gray-500">
+        <a href="/exercises/new" class="text-white font-semibold">CREATE AN EXERCISE</a>
     </div>
-    <div class="green text-center rounded m-2 py-4 px-12 md:px-16">
-        <a href="/exercises" class="text-white font-bold">MANAGE AN EXERCISE</a>
+    <div class="green text-center rounded m-2 py-4 px-12 md:px-16 hover:bg-gray-500">
+        <a href="/exercises" class="text-white font-semibold">MANAGE AN EXERCISE</a>
     </div>
 </div>
 </body>

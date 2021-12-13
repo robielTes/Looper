@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex-1 px-2">
         <div class="pb-8 text-gray-600 ">
-            <h1 class="text-5xl pb-4">Your take</h1>
+            <h1 class="text-5xl pb-4 text-gray-600">Your take</h1>
             <p>If you'd like to come back later to finish, simply submit it with blanks</p>
         </div>
 
@@ -23,7 +23,7 @@
                 @endforeach
             @endif
             <div class="content-end">
-                <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mt-6 rounded"
+                <input class="shadow bg-purple-500 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mt-6 rounded"
                        type="submit" value="save">
             </div>
         </form>
