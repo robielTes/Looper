@@ -23,9 +23,9 @@ class AnswerController
         }
         $fulfillment = Fulfillment::all();
         $exercise = Exercise::find($id);
-        $title = $exercise->title;
-        $color = 'green';
-        return $view('answers.index', compact('title', 'color', 'exercise', 'answers', 'fulfillment'));
+        $_SESSION['title'] = $exercise->title;
+        $_SESSION['color'] = 'green';
+        return $view('answers.index', compact(  'exercise', 'answers', 'fulfillment'));
     }
 
     public function showResult(View $view, $id, $rid): Response
@@ -38,26 +38,26 @@ class AnswerController
             }
         }
         $exercise = Exercise::find($id);
-        $title = $exercise->title;
-        $color = 'green';
-        return $view('answers.show_results', compact('title', 'exercise', 'color', 'field', 'answers'));
+        $_SESSION['title'] = $exercise->title;
+        $_SESSION['color'] = 'green';
+        return $view('answers.show_results', compact('exercise',  'field', 'answers'));
     }
 
     public function showFulfillment(View $view, $id, $fid): Response
     {
         $fulfillment = Fulfillment::find($fid)->take;
         $answers = Answer::where('fulfillment_id', $fid)[0];
-        $title = Exercise::find($id)->title;
-        $color = 'green';
-        return $view('answers.show_fulfillments', compact('title', 'color', 'answers', 'fulfillment'));
+        $_SESSION['title'] = Exercise::find($id)->title;
+        $_SESSION['color'] = 'green';
+        return $view('answers.show_fulfillments', compact(  'answers', 'fulfillment'));
     }
 
     public function create(View $view, $id): Response
     {
         $exercise = Exercise::find($id);
-        $title = $exercise->title;
-        $color = 'purple';
-        return $view('answers.create', compact('title', 'color', 'exercise'));
+        $_SESSION['title'] = $exercise->title;
+        $_SESSION['color'] = 'purple';
+        return $view('answers.create', compact(  'exercise'));
     }
 
     public function store(View $view, $id): Response
@@ -94,9 +94,9 @@ class AnswerController
         }
         $inputData = $_REQUEST;
         $exercise = Exercise::find($id);
-        $title = $exercise->title;
-        $color = 'purple';
-        return $view('answers.edit', compact('title', 'color', 'exercise', 'inputData', 'ids', 'fulfillments'));
+        $_SESSION['title'] = $exercise->title;
+        $_SESSION['color'] = 'purple';
+        return $view('answers.edit', compact( 'exercise', 'inputData', 'ids', 'fulfillments'));
     }
 
     public function update(View $view, $id, $fid): Response
@@ -111,8 +111,8 @@ class AnswerController
         $fulfillments = $fid;
         $inputData = $_REQUEST;
         $exercise = Exercise::find($id);
-        $title = $exercise->title;
-        $color = 'purple';
-        return $view('answers.edit', compact('title', 'color', 'exercise', 'inputData', 'ids', 'fulfillments'));
+        $_SESSION['title'] = $exercise->title;
+        $_SESSION['color'] = 'purple';
+        return $view('answers.edit', compact(  'exercise', 'inputData', 'ids', 'fulfillments'));
     }
 }

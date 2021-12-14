@@ -14,17 +14,17 @@
 </head>
 <body>
 <div>
-    <div class="flex px-12 sm:px-24 md:px-40 {{$color}}">
+    <div class="flex px-12 sm:px-24 md:px-40 lg:px-96 {{$_SESSION['color']}}">
         <div>
             <a href="\">
                 <img class="w-14" src="/assets/logo.png"/>
             </a>
         </div>
         <div class="py-4">
-            <p class="pl-8 text-white text-xl" href="\">{{$title}}</p>
+            <p class="pl-8 text-white text-xl" href="\">{{$_SESSION['title']}}</p>
         </div>
     </div>
-    <div class="px-24 sm:px-24 md:px-40">
+    <div class="px-24 sm:px-24 md:px-40 lg:px-96">
         @yield('content')
     </div>
 </div>

@@ -11,45 +11,45 @@ class ExerciseController
 {
     public function take(View $view): Response
     {
-        $title = '';
-        $color = 'purple';
+        $_SESSION['title'] = '';
+        $_SESSION['color'] = 'purple';
         $exercises = Exercise::all();
-        return $view('exercises.take', compact('title', 'color', 'exercises'));
+        return $view('exercises.take', compact(  'exercises'));
     }
 
     public function create(View $view): Response
     {
-        $title = 'New exercise';
-        $color = 'yellow';
+        $_SESSION['title'] = 'New exercise';
+        $_SESSION['color'] = 'yellow';
         $last = array_key_last(Exercise::all()) + 2;
-        return $view('exercises.create', compact('title', 'color', 'last'));
+        return $view('exercises.create', compact(  'last'));
     }
 
     public function manage(View $view): Response
     {
-        $title = '';
-        $color = 'green';
+        $_SESSION['title'] = '';
+        $_SESSION['color'] = 'green';
         $exercises = Exercise::all();
-        return $view('exercises.manage', compact('title', 'color', 'exercises'));
+        return $view('exercises.manage', compact(  'exercises'));
     }
 
     public function store(View $view, $id): Response
     {
         $lines = Line::all();
-        $title = $_REQUEST['title'];
-        $color = 'yellow';
-        $exerciseId = Exercise::make(['title' => $title, 'states_id' => 1])->create();
+        $_SESSION['title'] = $_REQUEST['title'];
+        $_SESSION['color'] = 'yellow';
+        $exerciseId = Exercise::make(['title' => $_REQUEST['title'], 'states_id' => 1])->create();
         $exercise = Exercise::find($exerciseId);
-        return $view('fields.create', compact('title', 'color', 'lines', 'exercise'));
+        return $view('fields.create', compact( 'lines', 'exercise'));
     }
 
     public function show(View $view, $id): Response
     {
         $lines = Line::all();
         $exercise = Exercise::find($id);
-        $color = 'yellow';
-        $title = $exercise->title;
-        return $view('fields.create', compact('title', 'exercise', 'color', 'lines'));
+        $_SESSION['color'] = 'yellow';
+        $_SESSION['title'] = $exercise->title;
+        return $view('fields.create', compact('exercise',  'lines'));
     }
 
     public function update(View $view, $id): Response

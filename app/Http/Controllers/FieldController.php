@@ -35,9 +35,9 @@ class FieldController
         $exercise = Exercise::find($id);
         $field = Field::find($fid);
         $lines = Line::all();
-        $title = $_REQUEST['title'];
-        $color = 'yellow';
-        return $view('fields.edit', compact('title', 'color', 'lines', 'field', 'exercise'));
+        $_SESSION['title'] = $exercise->title;
+        $_SESSION['color'] = 'yellow';
+        return $view('fields.edit', compact(  'lines', 'field', 'exercise'));
     }
 
     public function update(View $view, $id, $fid): Response
