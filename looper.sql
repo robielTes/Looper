@@ -21,8 +21,8 @@ USE `looper` ;
 -- Table `looper`.`states`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `looper`.`states` (
-     `id` INT NOT NULL AUTO_INCREMENT,
-     `name` VARCHAR(10) NOT NULL,
+                                                 `id` INT NOT NULL AUTO_INCREMENT,
+                                                 `name` VARCHAR(10) NOT NULL,
     PRIMARY KEY (`id`))
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb4
@@ -33,10 +33,10 @@ CREATE TABLE IF NOT EXISTS `looper`.`states` (
 -- Table `looper`.`exercises`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `looper`.`exercises` (
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `title` LONGTEXT NULL DEFAULT NULL,
-    `state_id` INT NOT NULL DEFAULT '1',
-    PRIMARY KEY (`id`),
+                                                    `id` INT NOT NULL AUTO_INCREMENT,
+                                                    `title` LONGTEXT NULL DEFAULT NULL,
+                                                    `state_id` INT NOT NULL DEFAULT '1',
+                                                    PRIMARY KEY (`id`),
     INDEX `fk_exercises_states_idx` (`state_id` ASC) VISIBLE,
     CONSTRAINT `fk_exercises_states`
     FOREIGN KEY (`state_id`)
@@ -52,9 +52,10 @@ CREATE TABLE IF NOT EXISTS `looper`.`exercises` (
 -- Table `looper`.`lines`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `looper`.`lines` (
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `kind` VARCHAR(45) NOT NULL,
+                                                `id` INT NOT NULL AUTO_INCREMENT,
+                                                `kind` VARCHAR(45) NOT NULL,
     `slug` VARCHAR(45) NOT NULL,
+    `value_kind` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`))
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb4
@@ -65,11 +66,11 @@ CREATE TABLE IF NOT EXISTS `looper`.`lines` (
 -- Table `looper`.`fields`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `looper`.`fields` (
-     `id` INT NOT NULL AUTO_INCREMENT,
-     `label` LONGTEXT NULL DEFAULT NULL,
-     `line_id` INT NOT NULL DEFAULT '1',
-     `exercise_id` INT NOT NULL,
-     PRIMARY KEY (`id`),
+                                                 `id` INT NOT NULL AUTO_INCREMENT,
+                                                 `label` LONGTEXT NULL DEFAULT NULL,
+                                                 `line_id` INT NOT NULL DEFAULT '1',
+                                                 `exercise_id` INT NOT NULL,
+                                                 PRIMARY KEY (`id`),
     INDEX `fk_fields_lines_idx` (`line_id` ASC) VISIBLE,
     INDEX `fk_fields_exercises_idx` (`exercise_id` ASC) VISIBLE,
     CONSTRAINT `fk_fields_exercises`
@@ -91,9 +92,9 @@ CREATE TABLE IF NOT EXISTS `looper`.`fields` (
 -- Table `looper`.`fulfillments`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `looper`.`fulfillments` (
-   `id` INT NOT NULL AUTO_INCREMENT,
-   `take` DATETIME NOT NULL,
-   PRIMARY KEY (`id`))
+                                                       `id` INT NOT NULL AUTO_INCREMENT,
+                                                       `take` DATETIME NOT NULL,
+                                                       PRIMARY KEY (`id`))
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb4
     COLLATE = utf8mb4_0900_ai_ci;
@@ -103,12 +104,12 @@ CREATE TABLE IF NOT EXISTS `looper`.`fulfillments` (
 -- Table `looper`.`answers`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `looper`.`answers` (
-      `id` INT NOT NULL AUTO_INCREMENT,
-      `answer` LONGTEXT NULL DEFAULT NULL,
-      `field_id` INT NOT NULL,
-      `exercise_id` INT NOT NULL,
-      `fulfillment_id` INT NOT NULL,
-      PRIMARY KEY (`id`),
+                                                  `id` INT NOT NULL AUTO_INCREMENT,
+                                                  `answer` LONGTEXT NULL DEFAULT NULL,
+                                                  `field_id` INT NOT NULL,
+                                                  `exercise_id` INT NOT NULL,
+                                                  `fulfillment_id` INT NOT NULL,
+                                                  PRIMARY KEY (`id`),
     INDEX `fk_answer_fields_idx` (`field_id` ASC) VISIBLE,
     INDEX `fk_answer_exercises_idx` (`exercise_id` ASC) VISIBLE,
     INDEX `fk_answers_fulfillments_idx` (`fulfillment_id` ASC) INVISIBLE,
@@ -141,7 +142,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO `looper`.`lines` (`kind`,`value_kind`,`slug`) VALUES ('Single line text','single line','single');
 INSERT INTO `looper`.`lines` (`kind`,`value_kind`,`slug`) VALUES ('List of single lines','single line list','list');
-INSERT INTO `looper`.`lines` (`kind`,`value_kind,``slug`) VALUES ('Multi-line text','multi line','multi');
+INSERT INTO `looper`.`lines` (`kind`,`value_kind`,`slug`) VALUES ('Multi-line text','multi line','multi');
 
 -- States
 
