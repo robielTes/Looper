@@ -7,37 +7,33 @@ use Psr\Http\Message\ResponseInterface as Response;
 use App\Models\Exercise;
 use App\Models\Line;
 
-class ExerciseController
+class ExerciseController extends Controller
 {
     public function take(View $view): Response
     {
-        $_SESSION['title'] = '';
-        $_SESSION['color'] = 'purple';
+        $this->displayStyle('','purple');
         $exercises = Exercise::all();
         return $view('exercises.take', compact(  'exercises'));
     }
 
     public function create(View $view): Response
     {
-        $_SESSION['title'] = 'New exercise';
-        $_SESSION['color'] = 'yellow';
+        $this->displayStyle('New exercise','yellow');
         $last = array_key_last(Exercise::all()) + 2;
         return $view('exercises.create', compact(  'last'));
     }
 
     public function manage(View $view): Response
     {
-        $_SESSION['title'] = '';
-        $_SESSION['color'] = 'green';
+        $this->displayStyle('','green');
         $exercises = Exercise::all();
         return $view('exercises.manage', compact(  'exercises'));
     }
 
     public function store(View $view, $id): Response
     {
+        $this->displayStyle($_REQUEST['title'],'yellow');
         $lines = Line::all();
-        $_SESSION['title'] = $_REQUEST['title'];
-        $_SESSION['color'] = 'yellow';
         $exerciseId = Exercise::make(['title' => $_REQUEST['title'], 'states_id' => 1])->create();
         $exercise = Exercise::find($exerciseId);
         return $view('fields.create', compact( 'lines', 'exercise'));
@@ -47,8 +43,7 @@ class ExerciseController
     {
         $lines = Line::all();
         $exercise = Exercise::find($id);
-        $_SESSION['color'] = 'yellow';
-        $_SESSION['title'] = $exercise->title;
+        $this->displayStyle($exercise->title,'yellow');
         return $view('fields.create', compact('exercise',  'lines'));
     }
 

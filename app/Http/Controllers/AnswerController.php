@@ -9,7 +9,7 @@ use App\Models\Answer;
 use App\Models\Field;
 use App\Models\Fulfillment;
 
-class AnswerController
+class AnswerController extends Controller
 {
     public function index(View $view, $id): Response
     {
@@ -23,8 +23,7 @@ class AnswerController
         }
         $fulfillment = Fulfillment::all();
         $exercise = Exercise::find($id);
-        $_SESSION['title'] = $exercise->title;
-        $_SESSION['color'] = 'green';
+        $this->displayStyle($exercise->title,'green');
         return $view('answers.index', compact(  'exercise', 'answers', 'fulfillment'));
     }
 
@@ -38,8 +37,7 @@ class AnswerController
             }
         }
         $exercise = Exercise::find($id);
-        $_SESSION['title'] = $exercise->title;
-        $_SESSION['color'] = 'green';
+        $this->displayStyle($exercise->title,'green');
         return $view('answers.show_results', compact('exercise',  'field', 'answers'));
     }
 
@@ -47,16 +45,14 @@ class AnswerController
     {
         $fulfillment = Fulfillment::find($fid)->take;
         $answers = Answer::where('fulfillment_id', $fid)[0];
-        $_SESSION['title'] = Exercise::find($id)->title;
-        $_SESSION['color'] = 'green';
+        $this->displayStyle(Exercise::find($id)->title,'green');
         return $view('answers.show_fulfillments', compact(  'answers', 'fulfillment'));
     }
 
     public function create(View $view, $id): Response
     {
         $exercise = Exercise::find($id);
-        $_SESSION['title'] = $exercise->title;
-        $_SESSION['color'] = 'purple';
+        $this->displayStyle($exercise->title,'purple');
         return $view('answers.create', compact(  'exercise'));
     }
 
@@ -94,8 +90,7 @@ class AnswerController
         }
         $inputData = $_REQUEST;
         $exercise = Exercise::find($id);
-        $_SESSION['title'] = $exercise->title;
-        $_SESSION['color'] = 'purple';
+        $this->displayStyle($exercise->title,'purple');
         return $view('answers.edit', compact( 'exercise', 'inputData', 'ids', 'fulfillments'));
     }
 
@@ -111,8 +106,7 @@ class AnswerController
         $fulfillments = $fid;
         $inputData = $_REQUEST;
         $exercise = Exercise::find($id);
-        $_SESSION['title'] = $exercise->title;
-        $_SESSION['color'] = 'purple';
+        $this->displayStyle($exercise->title,'purple');
         return $view('answers.edit', compact(  'exercise', 'inputData', 'ids', 'fulfillments'));
     }
 }

@@ -8,7 +8,7 @@ use App\Models\Exercise;
 use App\Models\Field;
 use App\Models\Line;
 
-class FieldController
+class FieldController extends Controller
 {
 
     public function create(View $view, $id): Response
@@ -35,8 +35,7 @@ class FieldController
         $exercise = Exercise::find($id);
         $field = Field::find($fid);
         $lines = Line::all();
-        $_SESSION['title'] = $exercise->title;
-        $_SESSION['color'] = 'yellow';
+        $this->displayStyle($exercise->title,'yellow');
         return $view('fields.edit', compact(  'lines', 'field', 'exercise'));
     }
 
