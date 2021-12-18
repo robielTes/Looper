@@ -10,6 +10,10 @@ use App\Models\Line;
 class ExerciseController extends Controller
 {
 
+    /**
+     * @param View $view
+     * @return Response
+     */
     public function index(View $view): Response
     {
         $exercises = Exercise::all();
@@ -17,6 +21,12 @@ class ExerciseController extends Controller
         return $view('exercises.take', compact('exercises'));
     }
 
+    /**
+     * @param View $view
+     * @param $id
+     * @return Response
+     * @throws \ReflectionException
+     */
     public function show(View $view, $id): Response
     {
         $lines = Line::all();
@@ -25,6 +35,10 @@ class ExerciseController extends Controller
         return $view('fields.create', compact('exercise', 'lines'));
     }
 
+    /**
+     * @param View $view
+     * @return Response
+     */
     public function create(View $view): Response
     {
         $last = array_key_last(Exercise::all()) + 2;
@@ -32,12 +46,20 @@ class ExerciseController extends Controller
         return $view('exercises.create', compact('last'));
     }
 
-    public function store(View $view, $id): void
+    /**
+     * @param View $view
+     * @return void
+     */
+    public function store(View $view,): void
     {
-        Exercise::make(['title' => $_REQUEST['title'], 'states_id' => 1])->create();
-        $this->redirect("/exercises/$id/fields");
+        $exerciseId = Exercise::make(['title' => $_REQUEST['title'], 'states_id' => 1])->create();
+        $this->redirect("/exercises/$exerciseId/fields");
     }
 
+    /**
+     * @param View $view
+     * @return Response
+     */
     public function edit(View $view): Response
     {
         $exercises = Exercise::all();
@@ -45,6 +67,12 @@ class ExerciseController extends Controller
         return $view('exercises.manage', compact('exercises'));
     }
 
+    /**
+     * @param View $view
+     * @param $id
+     * @return void
+     * @throws \ReflectionException
+     */
     public function update(View $view, $id): void
     {
         $exercise = Exercise::find($id);
@@ -57,6 +85,12 @@ class ExerciseController extends Controller
         $this->redirect('/exercises');
     }
 
+    /**
+     * @param View $view
+     * @param $id
+     * @return void
+     * @throws \ReflectionException
+     */
     public function destroy(View $view, $id): void
     {
         Exercise::find($id)->delete();

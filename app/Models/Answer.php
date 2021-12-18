@@ -15,7 +15,10 @@ class Answer extends Model
     public int $exercise_id;
     public string $fulfillment_id;
 
-    public function result()
+    /**
+     * @return mixed
+     */
+    public function result(): mixed
     {
         $query = "SELECT fulfillment_id,answer,label,slug FROM `answers`
                 INNER JOIN `fields` on field_id = fields.id
@@ -27,7 +30,10 @@ class Answer extends Model
         return $connector->selectMany($query, ["fulfillment_id" => $this->fulfillment_id], Answer::class);
     }
 
-    public function take()
+    /**
+     * @return mixed
+     */
+    public function take(): mixed
     {
         $query = "SELECT answer, take FROM `answers`
                 INNER join `fulfillments` on fulfillment_id = `fulfillments`.id
@@ -38,7 +44,10 @@ class Answer extends Model
             "fulfillment_id" => $this->fulfillment_id], Answer::class);
     }
 
-    public function fulfillment()
+    /**
+     * @return mixed
+     */
+    public function fulfillment(): mixed
     {
         $query = "SELECT fulfillment_id,answer,label FROM `answers`
                 INNER JOIN `fields` on field_id = fields.id
@@ -48,7 +57,12 @@ class Answer extends Model
         return $connector->selectMany($query, ["fulfillment_id" => $this->fulfillment_id], Answer::class);
     }
 
-    public static function answerField(int $fieldId, int $fulfillmentId)
+    /**
+     * @param int $fieldId
+     * @param int $fulfillmentId
+     * @return mixed
+     */
+    public static function answerField(int $fieldId, int $fulfillmentId): mixed
     {
         $query = "SELECT * FROM `answers`
                 where field_id = :field_id and fulfillment_id = :fulfillment_id";

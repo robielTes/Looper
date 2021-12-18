@@ -13,7 +13,10 @@ class Exercise extends Model
     public string $title;
     public int $state_id;
 
-    public function fields()
+    /**
+     * @return mixed
+     */
+    public function fields(): mixed
     {
         $query = "select fields.id, label, kind,value_kind, slug from fields
         inner join `lines` on lines.id = fields.line_id

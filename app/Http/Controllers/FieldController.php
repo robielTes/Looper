@@ -11,6 +11,11 @@ use App\Models\Line;
 class FieldController extends Controller
 {
 
+    /**
+     * @param View $view
+     * @param $id
+     * @return void
+     */
     public function store(View $view, $id): void
     {
 
@@ -20,6 +25,13 @@ class FieldController extends Controller
         $this->redirect("/exercises/$id/fields");
     }
 
+    /**
+     * @param View $view
+     * @param $id
+     * @param $fid
+     * @return Response
+     * @throws \ReflectionException
+     */
     public function edit(View $view, $id, $fid): Response
     {
         $exercise = Exercise::find($id);
@@ -29,7 +41,13 @@ class FieldController extends Controller
         return $view('fields.edit', compact('lines', 'field', 'exercise'));
     }
 
-    public function update(View $view, $id, $fid): void
+    /**
+     * @param View $view
+     * @param $fid
+     * @return void
+     * @throws \ReflectionException
+     */
+    public function update(View $view, $fid): void
     {
         $field = Field::find($fid);
         $slug = strtolower(explode("-", $_REQUEST['value-kind'])[0]);
@@ -41,6 +59,13 @@ class FieldController extends Controller
         $this->redirect("/exercises");
     }
 
+    /**
+     * @param View $view
+     * @param $id
+     * @param $fid
+     * @return void
+     * @throws \ReflectionException
+     */
     public function destroy(View $view, $id, $fid): void
     {
         $field = Field::find($fid);
