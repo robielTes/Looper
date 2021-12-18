@@ -47,4 +47,14 @@ class Answer extends Model
         $connector = DB::getInstance();
         return $connector->selectMany($query, ["fulfillment_id" => $this->fulfillment_id], Answer::class);
     }
+
+    public static function answerField(int $fieldId, int $fulfillmentId)
+    {
+        $query = "SELECT * FROM `answers`
+                where field_id = :field_id and fulfillment_id = :fulfillment_id";
+        $connector = DB::getInstance();
+        return $connector->selectOne($query, [
+            "field_id" => $fieldId,
+            "fulfillment_id" => $fulfillmentId], Answer::class);
+    }
 }

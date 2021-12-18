@@ -59,9 +59,9 @@ class ExerciseController extends Controller
         return $this->redirect('/exercises');
     }
 
-    public function destroy(View $view, $id): Response
+    public function destroy(View $view, $id): void
     {
         Exercise::find($id)->delete();
-        return $this->redirect('/exercises');
+        $this->redirect('/exercises');
     }
 }

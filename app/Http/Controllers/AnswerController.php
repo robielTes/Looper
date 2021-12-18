@@ -82,18 +82,15 @@ class AnswerController extends Controller
 
     public function update(View $view, $id, $fid): Response
     {
-
-        $ids = Answer::where('fulfillment_id', $fid);
-        dd($_POST);
         foreach ($_POST as $key => $value) {
-            $answer = Answer::find($key);
+            $answer = Answer::answerField($key, $fid);
             $answer->answer = $value;
             $answer->save();
         }
+        $_SESSION['inputData'] = $_REQUEST;
         $fulfillment = $fid;
-        $inputData = $_REQUEST;
         $exercise = Exercise::find($id);
         $this->displayStyle($exercise->title, 'purple');
-        return $view('answers.edit', compact('exercise', 'inputData', 'ids', 'fulfillment'));
+        return $view('answers.edit', compact('exercise', 'fulfillment'));
     }
 }
