@@ -17,17 +17,7 @@ class FieldController extends Controller
         $lines = Line::where('kind', str_replace("_", " ", $_REQUEST['value-kind']));
         Field::make(['label' => $_REQUEST['label'], 'line_id' => $lines[0]->id, 'exercise_id' => $id])->create();
 
-        header('Location: /exercises/' . $id . '/fields');
-        exit();
-    }
-
-    public function destroy(View $view, $id, $fid): Response
-    {
-        $field = Field::find($fid);
-        $field->delete();
-
-        header("Location: /exercises/{$id}/fields");
-        exit();
+        return $this->redirect("/exercises/$id/fields");
     }
 
     public function edit(View $view, $id, $fid): Response
@@ -35,8 +25,8 @@ class FieldController extends Controller
         $exercise = Exercise::find($id);
         $field = Field::find($fid);
         $lines = Line::all();
-        $this->displayStyle($exercise->title,'yellow');
-        return $view('fields.edit', compact(  'lines', 'field', 'exercise'));
+        $this->displayStyle($exercise->title, 'yellow');
+        return $view('fields.edit', compact('lines', 'field', 'exercise'));
     }
 
     public function update(View $view, $id, $fid): Response
@@ -48,7 +38,14 @@ class FieldController extends Controller
         $field->line_id = $lineId;
         $field->save();
 
-        header('Location: /exercises');
-        exit();
+        return $this->redirect("/exercises");
+    }
+
+    public function destroy(View $view, $id, $fid)
+    {
+        $field = Field::find($fid);
+        $field->delete();
+
+        return $this->redirect("/exercises/$id/fields");
     }
 }

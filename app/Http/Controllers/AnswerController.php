@@ -23,8 +23,8 @@ class AnswerController extends Controller
         }
         $fulfillment = Fulfillment::all();
         $exercise = Exercise::find($id);
-        $this->displayStyle($exercise->title,'green');
-        return $view('answers.index', compact(  'exercise', 'answers', 'fulfillment'));
+        $this->displayStyle($exercise->title, 'green');
+        return $view('answers.index', compact('exercise', 'answers', 'fulfillment'));
     }
 
     public function showResult(View $view, $id, $rid): Response
@@ -37,76 +37,63 @@ class AnswerController extends Controller
             }
         }
         $exercise = Exercise::find($id);
-        $this->displayStyle($exercise->title,'green');
-        return $view('answers.show_results', compact('exercise',  'field', 'answers'));
+        $this->displayStyle($exercise->title, 'green');
+        return $view('answers.show_results', compact('exercise', 'field', 'answers'));
     }
 
     public function showFulfillment(View $view, $id, $fid): Response
     {
         $fulfillment = Fulfillment::find($fid)->take;
         $answers = Answer::where('fulfillment_id', $fid)[0];
-        $this->displayStyle(Exercise::find($id)->title,'green');
-        return $view('answers.show_fulfillments', compact(  'answers', 'fulfillment'));
+        $this->displayStyle(Exercise::find($id)->title, 'green');
+        return $view('answers.show_fulfillments', compact('answers', 'fulfillment'));
     }
 
     public function create(View $view, $id): Response
     {
         $exercise = Exercise::find($id);
-        $this->displayStyle($exercise->title,'purple');
-        return $view('answers.create', compact(  'exercise'));
+        $this->displayStyle($exercise->title, 'purple');
+        return $view('answers.create', compact('exercise'));
     }
 
     public function store(View $view, $id): Response
     {
-        $fulfillments = Fulfillment::make(['take' => date('Y-m-d H:i:s')])->create();
-        $ids = [];
+        $fulfillment = Fulfillment::make(['take' => date('Y-m-d H:i:s')])->create();
         foreach ($_POST as $key => $value) {
-            array_push($ids, Answer::make([
+            Answer::make([
                 'answer' => $value,
                 'field_id' => $key,
                 'exercise_id' => $id,
-                'fulfillment_id' => $fulfillments])
-                ->create());
+                'fulfillment_id' => $fulfillment])
+                ->create();
         }
         $_SESSION['inputData'] = $_REQUEST;
 
-        header("Location: /exercises/$id/fulfillments/$fulfillments/edit");
-        exit();
-
+        return $this->redirect("/exercises/$id/fulfillments/$fulfillment/edit");
     }
 
-    public function edit(View $view, $id): Response
+    public function edit(View $view, $id, $fid): Response
     {
-
-        $fulfillments = Fulfillment::make(['take' => date('Y-m-d H:i:s')])->create();
-        $ids = [];
-        foreach ($_POST as $key => $value) {
-            array_push($ids, Answer::make([
-                'answer' => $value,
-                'field_id' => $key,
-                'exercise_id' => $id,
-                'fulfillment_id' => $fulfillments])
-                ->create());
-        }
-        $inputData = $_REQUEST;
+        $fulfillment = $fid;
         $exercise = Exercise::find($id);
-        $this->displayStyle($exercise->title,'purple');
-        return $view('answers.edit', compact( 'exercise', 'inputData', 'ids', 'fulfillments'));
+        $this->displayStyle($exercise->title, 'purple');
+        return $view('answers.edit', compact('exercise', 'fulfillment'));
     }
 
     public function update(View $view, $id, $fid): Response
     {
-        $ids = [];
+
+        $ids = Answer::where('fulfillment_id', $fid);
+        dd($_POST);
         foreach ($_POST as $key => $value) {
-            array_push($ids, $key);
             $answer = Answer::find($key);
             $answer->answer = $value;
             $answer->save();
         }
-        $fulfillments = $fid;
+        $fulfillment = $fid;
         $inputData = $_REQUEST;
         $exercise = Exercise::find($id);
-        $this->displayStyle($exercise->title,'purple');
-        return $view('answers.edit', compact(  'exercise', 'inputData', 'ids', 'fulfillments'));
+        $this->displayStyle($exercise->title, 'purple');
+        return $view('answers.edit', compact('exercise', 'inputData', 'ids', 'fulfillment'));
     }
 }

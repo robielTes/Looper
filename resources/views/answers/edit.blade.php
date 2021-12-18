@@ -6,7 +6,7 @@
             <h1 class="text-5xl pb-4">Your take</h1>
             <p>Bookmark this page, it's yours. You'll be able to come back later to finish.</p>
         </div>
-        <form method="post" action="/exercises/{{$exercise->id}}/fulfillments/{{$fulfillments}}/edit">
+        <form method="post" action="/exercises/{{$exercise->id}}/fulfillments/{{$fulfillment}}/edit">
             @if($exercise !== null)
                 @foreach($exercise->fields() as $field)
                     <label class="text-gray-700 text-xl">{{$field->label}}</label>

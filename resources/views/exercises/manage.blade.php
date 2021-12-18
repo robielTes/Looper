@@ -6,10 +6,10 @@
     <div class="flex flex-row">
         <div class="flex-1 px-2">
             <h1 class="text-4xl font-semibold text-gray-500">Building</h1>
-            <h5 class="pt-5 border-b-2 text-gray-500 font-semibold">Title</h5>
+            <h5 class="pt-5 border-b text-gray-500 font-semibold">Title</h5>
             @foreach($exercises as $exercise)
                 @if($exercise->state_id === 1)
-                    <div class="flex flex-row">
+                    <div class="flex flex-row py-3 border-b">
                         <div>
                             <p class="text-gray-500">{{$exercise->title}} </p>
                         </div>
@@ -39,10 +39,10 @@
         </div>
         <div class="flex-1 px-2">
             <h1 class="text-4xl font-semibold text-gray-500">Answering</h1>
-            <h5 class="pt-5 border-b-2 text-gray-500 font-semibold">Title</h5>
+            <h5 class="pt-5 border-b text-gray-500 font-semibold">Title</h5>
             @foreach($exercises as $exercise)
                 @if($exercise->state_id === 2)
-                    <div class="flex flex-row">
+                    <div class="flex flex-row py-3 border-b">
                         <div>
                             <p class="text-gray-500">{{$exercise->title}} </p>
                         </div>
@@ -65,10 +65,10 @@
         </div>
         <div class="flex-1 px-2">
             <h1 class="text-4xl font-semibold text-gray-500">Closed</h1>
-            <h5 class="pt-5 border-b-2 text-gray-500 font-semibold">Title</h5>
+            <h5 class="pt-5 border-b text-gray-500 font-semibold">Title</h5>
             @foreach($exercises as $exercise)
                 @if($exercise->state_id === 3)
-                    <div class="flex flex-row">
+                    <div class="flex flex-row py-3 border-b">
                         <div>
                             <p class="text-gray-500">{{$exercise->title}} </p>
                         </div>

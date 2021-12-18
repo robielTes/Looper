@@ -479,6 +479,6 @@ composer.lock
 .idea/*
 
 .phpunit.result.cache
-.env.php
+public/.env.php
 storage/cache/*
 node_modules

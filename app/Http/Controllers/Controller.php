@@ -10,4 +10,10 @@ class Controller
         $_SESSION['color'] = $color;
     }
 
+    public function redirect(string $to)
+    {
+        header("Location: $to");
+        exit();
+    }
+
 }

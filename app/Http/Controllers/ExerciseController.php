@@ -11,40 +11,40 @@ class ExerciseController extends Controller
 {
     public function take(View $view): Response
     {
-        $this->displayStyle('','purple');
+        $this->displayStyle('', 'purple');
         $exercises = Exercise::all();
-        return $view('exercises.take', compact(  'exercises'));
+        return $view('exercises.take', compact('exercises'));
     }
 
     public function create(View $view): Response
     {
-        $this->displayStyle('New exercise','yellow');
+        $this->displayStyle('New exercise', 'yellow');
         $last = array_key_last(Exercise::all()) + 2;
-        return $view('exercises.create', compact(  'last'));
+        return $view('exercises.create', compact('last'));
     }
 
     public function manage(View $view): Response
     {
-        $this->displayStyle('','green');
+        $this->displayStyle('', 'green');
         $exercises = Exercise::all();
-        return $view('exercises.manage', compact(  'exercises'));
+        return $view('exercises.manage', compact('exercises'));
     }
 
     public function store(View $view, $id): Response
     {
-        $this->displayStyle($_REQUEST['title'],'yellow');
+        $this->displayStyle($_REQUEST['title'], 'yellow');
         $lines = Line::all();
         $exerciseId = Exercise::make(['title' => $_REQUEST['title'], 'states_id' => 1])->create();
         $exercise = Exercise::find($exerciseId);
-        return $view('fields.create', compact( 'lines', 'exercise'));
+        return $view('fields.create', compact('lines', 'exercise'));
     }
 
     public function show(View $view, $id): Response
     {
         $lines = Line::all();
         $exercise = Exercise::find($id);
-        $this->displayStyle($exercise->title,'yellow');
-        return $view('fields.create', compact('exercise',  'lines'));
+        $this->displayStyle($exercise->title, 'yellow');
+        return $view('fields.create', compact('exercise', 'lines'));
     }
 
     public function update(View $view, $id): Response
@@ -56,16 +56,12 @@ class ExerciseController extends Controller
             $exercise->state_id = 3;
         }
         $exercise->save();
-        header('Location: /exercises');
-        exit();
+        return $this->redirect('/exercises');
     }
 
     public function destroy(View $view, $id): Response
     {
-        $exercise = Exercise::find($id);
-        $exercise->delete();
-
-        header('Location: /exercises');
-        exit();
+        Exercise::find($id)->delete();
+        return $this->redirect('/exercises');
     }
 }
