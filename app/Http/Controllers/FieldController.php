@@ -11,13 +11,13 @@ use App\Models\Line;
 class FieldController extends Controller
 {
 
-    public function create(View $view, $id): Response
+    public function store(View $view, $id): void
     {
 
         $lines = Line::where('kind', str_replace("_", " ", $_REQUEST['value-kind']));
         Field::make(['label' => $_REQUEST['label'], 'line_id' => $lines[0]->id, 'exercise_id' => $id])->create();
 
-        return $this->redirect("/exercises/$id/fields");
+        $this->redirect("/exercises/$id/fields");
     }
 
     public function edit(View $view, $id, $fid): Response
@@ -29,7 +29,7 @@ class FieldController extends Controller
         return $view('fields.edit', compact('lines', 'field', 'exercise'));
     }
 
-    public function update(View $view, $id, $fid): Response
+    public function update(View $view, $id, $fid): void
     {
         $field = Field::find($fid);
         $slug = strtolower(explode("-", $_REQUEST['value-kind'])[0]);
@@ -38,14 +38,14 @@ class FieldController extends Controller
         $field->line_id = $lineId;
         $field->save();
 
-        return $this->redirect("/exercises");
+        $this->redirect("/exercises");
     }
 
-    public function destroy(View $view, $id, $fid)
+    public function destroy(View $view, $id, $fid): void
     {
         $field = Field::find($fid);
         $field->delete();
 
-        return $this->redirect("/exercises/$id/fields");
+        $this->redirect("/exercises/$id/fields");
     }
 }

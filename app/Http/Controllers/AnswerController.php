@@ -56,7 +56,7 @@ class AnswerController extends Controller
         return $view('answers.create', compact('exercise'));
     }
 
-    public function store(View $view, $id): Response
+    public function store(View $view, $id): void
     {
         $fulfillment = Fulfillment::make(['take' => date('Y-m-d H:i:s')])->create();
         foreach ($_POST as $key => $value) {
@@ -69,7 +69,7 @@ class AnswerController extends Controller
         }
         $_SESSION['inputData'] = $_REQUEST;
 
-        return $this->redirect("/exercises/$id/fulfillments/$fulfillment/edit");
+        $this->redirect("/exercises/$id/fulfillments/$fulfillment/edit");
     }
 
     public function edit(View $view, $id, $fid): Response
@@ -80,7 +80,7 @@ class AnswerController extends Controller
         return $view('answers.edit', compact('exercise', 'fulfillment'));
     }
 
-    public function update(View $view, $id, $fid): Response
+    public function update(View $view, $id, $fid): void
     {
         foreach ($_POST as $key => $value) {
             $answer = Answer::answerField($key, $fid);
@@ -88,9 +88,6 @@ class AnswerController extends Controller
             $answer->save();
         }
         $_SESSION['inputData'] = $_REQUEST;
-        $fulfillment = $fid;
-        $exercise = Exercise::find($id);
-        $this->displayStyle($exercise->title, 'purple');
-        return $view('answers.edit', compact('exercise', 'fulfillment'));
+        $this->redirect("/exercises/$id/fulfillments/$fid/edit");
     }
 }

@@ -9,34 +9,12 @@ use App\Models\Line;
 
 class ExerciseController extends Controller
 {
-    public function take(View $view): Response
+
+    public function index(View $view): Response
     {
+        $exercises = Exercise::all();
         $this->displayStyle('', 'purple');
-        $exercises = Exercise::all();
         return $view('exercises.take', compact('exercises'));
-    }
-
-    public function create(View $view): Response
-    {
-        $this->displayStyle('New exercise', 'yellow');
-        $last = array_key_last(Exercise::all()) + 2;
-        return $view('exercises.create', compact('last'));
-    }
-
-    public function manage(View $view): Response
-    {
-        $this->displayStyle('', 'green');
-        $exercises = Exercise::all();
-        return $view('exercises.manage', compact('exercises'));
-    }
-
-    public function store(View $view, $id): Response
-    {
-        $this->displayStyle($_REQUEST['title'], 'yellow');
-        $lines = Line::all();
-        $exerciseId = Exercise::make(['title' => $_REQUEST['title'], 'states_id' => 1])->create();
-        $exercise = Exercise::find($exerciseId);
-        return $view('fields.create', compact('lines', 'exercise'));
     }
 
     public function show(View $view, $id): Response
@@ -47,7 +25,27 @@ class ExerciseController extends Controller
         return $view('fields.create', compact('exercise', 'lines'));
     }
 
-    public function update(View $view, $id): Response
+    public function create(View $view): Response
+    {
+        $last = array_key_last(Exercise::all()) + 2;
+        $this->displayStyle('New exercise', 'yellow');
+        return $view('exercises.create', compact('last'));
+    }
+
+    public function store(View $view, $id): void
+    {
+        Exercise::make(['title' => $_REQUEST['title'], 'states_id' => 1])->create();
+        $this->redirect("/exercises/$id/fields");
+    }
+
+    public function edit(View $view): Response
+    {
+        $exercises = Exercise::all();
+        $this->displayStyle('', 'green');
+        return $view('exercises.manage', compact('exercises'));
+    }
+
+    public function update(View $view, $id): void
     {
         $exercise = Exercise::find($id);
         if ($exercise->state_id === 1) {
@@ -56,7 +54,7 @@ class ExerciseController extends Controller
             $exercise->state_id = 3;
         }
         $exercise->save();
-        return $this->redirect('/exercises');
+        $this->redirect('/exercises');
     }
 
     public function destroy(View $view, $id): void

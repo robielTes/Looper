@@ -6,9 +6,9 @@ use App\Support\Route;
 Route::get('/', 'HomeController@home');
 
 //================= Exercises =================
-Route::get('/exercises', 'ExerciseController@manage');
+Route::get('/exercises', 'ExerciseController@edit');
 Route::get('/exercises/new', 'ExerciseController@create');
-Route::get('/exercises/answering', 'ExerciseController@take');
+Route::get('/exercises/answering', 'ExerciseController@index');
 Route::get('/exercises/{id}/fields', 'ExerciseController@show');
 Route::post('/exercises/{id}/fields', 'ExerciseController@store');
 Route::get('/exercises/{id}/state', 'ExerciseController@update');
@@ -24,7 +24,7 @@ Route::get('/exercises/{id}/results/{rid}', 'AnswerController@showResult');
 Route::get('/exercises/{id}/fulfillments/{fid}', 'AnswerController@showFulfillment');
 
 //================= Fields =================
-Route::post('/exercise/{id}/fields', 'FieldController@create');
+Route::post('/exercise/{id}/fields', 'FieldController@store');
 Route::get('/exercises/{id}/fields/{fid}/edit', 'FieldController@edit');
 Route::post('/exercises/{id}/fields/{fid}/destroy', 'FieldController@destroy');
 Route::post('/exercises/{id}/fields/{fid}/update', 'FieldController@update');
