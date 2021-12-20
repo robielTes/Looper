@@ -47,4 +47,13 @@ class Exercise extends Model
         $exercise->save();
     }
 
+    public static function remove(int $id){
+        $exercise = Exercise::find($id);
+        if ($exercise->state_id === 1 ||$exercise->state_id === 3) {
+            $exercise->delete();
+        }
+    }
+
+
+
 }

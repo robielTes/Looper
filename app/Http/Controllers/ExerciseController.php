@@ -92,7 +92,7 @@ class ExerciseController extends Controller
      */
     public function destroy(View $view, $id): void
     {
-        Exercise::find($id)->delete();
+        Exercise::remove($id);
         $this->redirect('/exercises');
     }
 }
