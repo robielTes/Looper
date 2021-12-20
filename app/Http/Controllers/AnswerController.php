@@ -90,17 +90,7 @@ class AnswerController extends Controller
      */
     public function store(View $view, $id): void
     {
-        $fulfillment = Fulfillment::make(['take' => date('Y-m-d H:i:s')])->create();
-        foreach ($_POST as $key => $value) {
-            Answer::make([
-                'answer' => $value,
-                'field_id' => $key,
-                'exercise_id' => $id,
-                'fulfillment_id' => $fulfillment])
-                ->create();
-        }
-        $_SESSION['inputData'] = $_REQUEST;
-
+        $fulfillment = Answer::storeAnswer($id,$_REQUEST);
         $this->redirect("/exercises/$id/fulfillments/$fulfillment/edit");
     }
 

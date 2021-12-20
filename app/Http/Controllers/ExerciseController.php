@@ -66,7 +66,7 @@ class ExerciseController extends Controller
         $exercisesAnswering = Exercise::answering();
         $exercisesClosed = Exercise::closed();
         $this->displayStyle('', 'green');
-        return $view('exercises.manage', compact('exercisesBuilding','exercisesAnswering','exercisesClosed'));
+        return $view('exercises.manage', compact('exercisesBuilding', 'exercisesAnswering', 'exercisesClosed'));
     }
 
     /**
@@ -77,8 +77,12 @@ class ExerciseController extends Controller
      */
     public function update(View $view, $id): void
     {
-        Exercise::changeState($id);
-        $this->redirect('/exercises');
+        if(empty(Exercise::find($id)->fields())){
+            $this->redirect("/exercises/$id/fields");//if the fields is empty
+        }else{
+            Exercise::changeState($id);
+            $this->redirect('/exercises');
+        }
     }
 
     /**
