@@ -13,7 +13,7 @@
     <title>Looper</title>
 </head>
 <body>
-<div class="flex flex-col justify-center bg-purple-500">
+<div class="flex flex-col justify-center purple">
     <div class="m-auto py-4">
         <img src="/assets/logo.png"/>
     </div>

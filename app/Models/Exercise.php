@@ -24,4 +24,27 @@ class Exercise extends Model
         $connector = DB::getInstance();
         return $connector->selectMany($query, ["id" => $this->id], Exercise::class);
     }
+
+    public static function building(){
+        return Exercise::where('state_id',1);
+    }
+
+    public static function answering(){
+        return Exercise::where('state_id',2);
+    }
+
+    public static function closed(){
+        return Exercise::where('state_id',3);
+    }
+
+    public static function changeState(int $id){
+        $exercise = Exercise::find($id);
+        if ($exercise->state_id === 1) {
+            $exercise->state_id = 2;
+        } elseif ($exercise->state_id === 2) {
+            $exercise->state_id = 3;
+        }
+        $exercise->save();
+    }
+
 }

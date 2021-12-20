@@ -127,12 +127,7 @@ class AnswerController extends Controller
      */
     public function update(View $view, $id, $fid): void
     {
-        foreach ($_POST as $key => $value) {
-            $answer = Answer::answerField($key, $fid);
-            $answer->answer = $value;
-            $answer->save();
-        }
-        $_SESSION['inputData'] = $_REQUEST;
+        Answer::updateAnswer($fid,$_REQUEST);
         $this->redirect("/exercises/$id/fulfillments/$fid/edit");
     }
 }

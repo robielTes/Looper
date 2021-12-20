@@ -71,4 +71,13 @@ class Answer extends Model
             "field_id" => $fieldId,
             "fulfillment_id" => $fulfillmentId], Answer::class);
     }
+
+    public static function updateAnswer(int $fid, $input){
+        foreach ($input as $key => $value) {
+            $answer = Answer::answerField($key, $fid);
+            $answer->answer = $value;
+            $answer->save();
+        }
+        $_SESSION['inputData'] = $input;
+    }
 }

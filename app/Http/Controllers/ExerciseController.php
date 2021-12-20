@@ -16,9 +16,9 @@ class ExerciseController extends Controller
      */
     public function index(View $view): Response
     {
-        $exercises = Exercise::all();
+        $exercisesAnswering = Exercise::answering();
         $this->displayStyle('', 'purple');
-        return $view('exercises.take', compact('exercises'));
+        return $view('exercises.take', compact('exercisesAnswering'));
     }
 
     /**
@@ -41,7 +41,7 @@ class ExerciseController extends Controller
      */
     public function create(View $view): Response
     {
-        $last = array_key_last(Exercise::all()) + 2;
+        $last = array_key_last(Exercise::all()) + 2; //return last exercise id
         $this->displayStyle('New exercise', 'yellow');
         return $view('exercises.create', compact('last'));
     }
@@ -62,9 +62,11 @@ class ExerciseController extends Controller
      */
     public function edit(View $view): Response
     {
-        $exercises = Exercise::all();
+        $exercisesBuilding = Exercise::building();
+        $exercisesAnswering = Exercise::answering();
+        $exercisesClosed = Exercise::closed();
         $this->displayStyle('', 'green');
-        return $view('exercises.manage', compact('exercises'));
+        return $view('exercises.manage', compact('exercisesBuilding','exercisesAnswering','exercisesClosed'));
     }
 
     /**
@@ -75,13 +77,7 @@ class ExerciseController extends Controller
      */
     public function update(View $view, $id): void
     {
-        $exercise = Exercise::find($id);
-        if ($exercise->state_id === 1) {
-            $exercise->state_id = 2;
-        } elseif ($exercise->state_id === 2) {
-            $exercise->state_id = 3;
-        }
-        $exercise->save();
+        Exercise::changeState($id);
         $this->redirect('/exercises');
     }
 

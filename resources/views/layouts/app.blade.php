@@ -24,7 +24,7 @@
             <p class="pl-8 text-white text-xl" href="\">{{$_SESSION['title']}}</p>
         </div>
     </div>
-    <div class="px-24 sm:px-24 md:px-40 lg:px-20">
+    <div class="px-24 sm:px-24 md:px-40 lg:px-20 2xl:px-96">
         @yield('content')
     </div>
 </div>

@@ -5,8 +5,9 @@
 
     <div>
         <p class="text-5xl pb-8 text-gray-600">New Exercise</p>
-        <label class="text-xl text-gray-600 font-semibold">Title</label>
+        <label class="text-xl text-gray-600 font-medium">Title</label>
         <form method="post" action="/exercises/{{$last}}/fields">
+            <label for="title"></label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                    type="text" id="title" name="title"><br><br>
             <input type="submit" value="CREATE EXERCISE"
