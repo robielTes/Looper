@@ -90,7 +90,7 @@ class AnswerController extends Controller
      */
     public function store(View $view, $id): void
     {
-        $fulfillment = Answer::storeAnswer($id,$_REQUEST);
+        $fulfillment = Answer::store($id,$_REQUEST);
         $this->redirect("/exercises/$id/fulfillments/$fulfillment/edit");
     }
 
@@ -117,7 +117,7 @@ class AnswerController extends Controller
      */
     public function update(View $view, $id, $fid): void
     {
-        Answer::updateAnswer($fid,$_REQUEST);
+        Answer::update($fid,$_REQUEST);
         $this->redirect("/exercises/$id/fulfillments/$fid/edit");
     }
 }

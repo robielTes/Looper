@@ -84,7 +84,6 @@ class ExerciseController extends Controller
             $this->redirect('/exercises');
         }
     }
-
     /**
      * @param View $view
      * @param $id

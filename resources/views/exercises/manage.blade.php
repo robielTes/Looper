@@ -2,7 +2,6 @@
 
 
 @section('content')
-
     <div class="flex flex-row">
         <div class="flex-1 px-2">
             <h1 class="text-5xl text-gray-500 pb-4 font-medium">Building</h1>
@@ -12,8 +11,9 @@
                     <div>
                         <p class="text-gray-500">{{$exercise->title}} </p>
                     </div>
-                    <div class="flex-grow"></div>
-                    <div class="inline-grid grid-cols-3">
+                    <div class="flex-grow justify-end"></div>
+                    <div class="flex justify-end">
+                        @if(!empty($exercise->fields()))
                         <a href="/exercises/{{$exercise->id}}/state" title="Be ready for answers">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-5 w-5 fill-current text-purple-600 hover:text-gray-500" viewBox="0 0 20 20">
@@ -22,6 +22,7 @@
                                       clip-rule="evenodd"/>
                             </svg>
                         </a>
+                        @endif
                         <a href="/exercises/{{$exercise->id}}/fields" title="Manage fields">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-5 w-5 fill-current text-purple-600 hover:text-gray-500" viewBox="0 0 20 20">
@@ -31,7 +32,7 @@
                                       clip-rule="evenodd"/>
                             </svg>
                         </a>
-                        <a href="/exercises/{{$exercise->id}}/destroy" title="Destroy">
+                         <a href="/exercises/{{$exercise->id}}/destroy" title="Destroy">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-5 w-5 fill-current text-purple-600 hover:text-gray-500" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd"
@@ -39,6 +40,7 @@
                                       clip-rule="evenodd"/>
                             </svg>
                         </a>
+
                     </div>
                 </div>
             @endforeach
@@ -52,7 +54,7 @@
                         <p class="text-gray-500">{{$exercise->title}} </p>
                     </div>
                     <div class="flex-grow"></div>
-                    <div class="inline-grid grid-cols-2">
+                    <div class="flex justify-end">
                         <a href="/exercises/{{$exercise->id}}/results" title="Show results">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-5 w-5 fill-current text-purple-600 hover:text-gray-500" viewBox="0 0 20 20">
@@ -80,7 +82,7 @@
                         <p class="text-gray-500">{{$exercise->title}} </p>
                     </div>
                     <div class="flex-grow"></div>
-                    <div class="inline-grid grid-cols-2">
+                    <div class="flex justify-end">
                         <a href="/exercises/{{$exercise->id}}/results" title="Show results">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-5 w-5 fill-current text-purple-600 hover:text-gray-500" viewBox="0 0 20 20">
