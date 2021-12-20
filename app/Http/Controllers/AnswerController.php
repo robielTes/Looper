@@ -8,17 +8,17 @@ use App\Models\Exercise;
 use App\Models\Answer;
 use App\Models\Field;
 use App\Models\Fulfillment;
-use ReflectionException;
 
 class AnswerController extends Controller
 {
+
     /**
      * @param View $view
-     * @param $id
+     * @param int $id
      * @return Response
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
-    public function index(View $view, $id): Response
+    public function index(View $view, int $id): Response
     {
         $answers = [];
         $fulfillment_ids = [];
@@ -36,12 +36,12 @@ class AnswerController extends Controller
 
     /**
      * @param View $view
-     * @param $id
-     * @param $rid
+     * @param int $id
+     * @param int $rid
      * @return Response
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
-    public function showResult(View $view, $id, $rid): Response
+    public function showResult(View $view, int $id, int $rid): Response
     {
         $field = Field::find($rid);
         $answers = [];
@@ -57,12 +57,12 @@ class AnswerController extends Controller
 
     /**
      * @param View $view
-     * @param $id
-     * @param $fid
+     * @param int $id
+     * @param int $fid
      * @return Response
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
-    public function showFulfillment(View $view, $id, $fid): Response
+    public function showFulfillment(View $view, int $id, int $fid): Response
     {
         $fulfillment = Fulfillment::find($fid)->take;
         $answers = Answer::where('fulfillment_id', $fid)[0];
@@ -72,11 +72,11 @@ class AnswerController extends Controller
 
     /**
      * @param View $view
-     * @param $id
+     * @param int $id
      * @return Response
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
-    public function create(View $view, $id): Response
+    public function create(View $view, int $id): Response
     {
         $exercise = Exercise::find($id);
         $this->displayStyle($exercise->title, 'purple');
@@ -85,23 +85,22 @@ class AnswerController extends Controller
 
     /**
      * @param View $view
-     * @param $id
-     * @return void
+     * @param int $id
      */
-    public function store(View $view, $id): void
+    public function store(View $view, int $id): void
     {
-        $fulfillment = Answer::store($id,$_REQUEST);
+        $fulfillment = Answer::store($id, $_REQUEST);
         $this->redirect("/exercises/$id/fulfillments/$fulfillment/edit");
     }
 
     /**
      * @param View $view
-     * @param $id
-     * @param $fid
+     * @param int $id
+     * @param int $fid
      * @return Response
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
-    public function edit(View $view, $id, $fid): Response
+    public function edit(View $view, int $id, int $fid): Response
     {
         $fulfillment = $fid;
         $exercise = Exercise::find($id);
@@ -111,13 +110,12 @@ class AnswerController extends Controller
 
     /**
      * @param View $view
-     * @param $id
-     * @param $fid
-     * @return void
+     * @param int $id
+     * @param int $fid
      */
-    public function update(View $view, $id, $fid): void
+    public function update(View $view, int $id, int $fid): void
     {
-        Answer::update($fid,$_REQUEST);
+        Answer::update($fid, $_REQUEST);
         $this->redirect("/exercises/$id/fulfillments/$fid/edit");
     }
 }

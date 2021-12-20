@@ -72,6 +72,10 @@ class Answer extends Model
             "fulfillment_id" => $fulfillmentId], Answer::class);
     }
 
+    /**
+     * @param int $fid
+     * @param $input
+     */
     public static function update(int $fid, $input)
     {
         foreach ($input as $key => $value) {
@@ -82,6 +86,11 @@ class Answer extends Model
         $_SESSION['inputData'] = $input;
     }
 
+    /**
+     * @param int $id
+     * @param $input
+     * @return false
+     */
     public static function store(int $id, $input)
     {
         $fulfillment = Fulfillment::make(['take' => date('Y-m-d H:i:s')])->create();

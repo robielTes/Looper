@@ -25,19 +25,21 @@ class Exercise extends Model
         return $connector->selectMany($query, ["id" => $this->id], Exercise::class);
     }
 
-    public static function building(){
-        return Exercise::where('state_id',1);
+    /**
+     * @param int $stateId
+     * @return array
+     */
+    public static function state(int $stateId)
+    {
+        return Exercise::where('state_id', $stateId);
     }
 
-    public static function answering(){
-        return Exercise::where('state_id',2);
-    }
-
-    public static function closed(){
-        return Exercise::where('state_id',3);
-    }
-
-    public static function changeState(int $id){
+    /**
+     * @param int $id
+     * @throws \ReflectionException
+     */
+    public static function changeState(int $id)
+    {
         $exercise = Exercise::find($id);
         if ($exercise->state_id === 1) {
             $exercise->state_id = 2;
@@ -47,13 +49,17 @@ class Exercise extends Model
         $exercise->save();
     }
 
-    public static function remove(int $id){
+    /**
+     * @param int $id
+     * @throws \ReflectionException
+     */
+    public static function remove(int $id)
+    {
         $exercise = Exercise::find($id);
-        if ($exercise->state_id === 1 ||$exercise->state_id === 3) {
+        if ($exercise->state_id === 1 || $exercise->state_id === 3) {
             $exercise->delete();
         }
     }
-
 
 
 }

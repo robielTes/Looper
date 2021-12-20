@@ -6,6 +6,7 @@ use App\Support\View;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Models\Exercise;
 use App\Models\Line;
+use ReflectionException;
 
 class ExerciseController extends Controller
 {
@@ -16,18 +17,18 @@ class ExerciseController extends Controller
      */
     public function index(View $view): Response
     {
-        $exercisesAnswering = Exercise::answering();
+        $exercisesAnswering = Exercise::state(2);
         $this->displayStyle('', 'purple');
         return $view('exercises.take', compact('exercisesAnswering'));
     }
 
     /**
      * @param View $view
-     * @param $id
+     * @param int $id exercise id
      * @return Response
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
-    public function show(View $view, $id): Response
+    public function show(View $view, int $id): Response
     {
         $lines = Line::all();
         $exercise = Exercise::find($id);
@@ -48,7 +49,7 @@ class ExerciseController extends Controller
 
     /**
      * @param View $view
-     * @return void
+     * create new Exercise with Building state
      */
     public function store(View $view,): void
     {
@@ -62,37 +63,36 @@ class ExerciseController extends Controller
      */
     public function edit(View $view): Response
     {
-        $exercisesBuilding = Exercise::building();
-        $exercisesAnswering = Exercise::answering();
-        $exercisesClosed = Exercise::closed();
+        $exercisesBuilding = Exercise::state(1);
+        $exercisesAnswering = Exercise::state(2);
+        $exercisesClosed = Exercise::state(3);
         $this->displayStyle('', 'green');
         return $view('exercises.manage', compact('exercisesBuilding', 'exercisesAnswering', 'exercisesClosed'));
     }
 
     /**
      * @param View $view
-     * @param $id
-     * @return void
-     * @throws \ReflectionException
+     * @param int $id exercise id
+     * @throws ReflectionException
      */
-    public function update(View $view, $id): void
+    public function update(View $view, int $id): void
     {
-        if(empty(Exercise::find($id)->fields())){
-            $this->redirect("/exercises/$id/fields");//if the fields is empty
-        }else{
+        //if the fields is empty
+        if (empty(Exercise::find($id)->fields())) {
+            $this->redirect("/exercises/$id/fields"); // redirect to same page
+        } else {
             Exercise::changeState($id);
             $this->redirect('/exercises');
         }
     }
+
     /**
      * @param View $view
-     * @param $id
-     * @return void
-     * @throws \ReflectionException
+     * @param int $id exercise id
      */
-    public function destroy(View $view, $id): void
+    public function destroy(View $view, int $id): void
     {
-        Exercise::remove($id);
+        Exercise::remove($id); //remove exercise with state_id 1 or 3
         $this->redirect('/exercises');
     }
 }

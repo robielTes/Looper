@@ -7,9 +7,11 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 class HomeController
 {
+
     /**
      * @param View $view
      * @return Response
+     * return to home page
      */
     public function home(View $view): Response
     {
