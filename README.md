@@ -27,7 +27,8 @@ It is about planification, learning and programming.
   * [Tailwind CSS](https://tailwindcss.com/docs) Version 2.2.16
 * [PHP](https://www.php.net/) Version 8.1
   * [Router Slim](https://packagist.org/packages/slim/slim) Version 4.9
-  * [Filu Maw_ORM](https://packagist.org/packages/filu/maw_orm) Version 2
+  * [Filu Maw_ORM](https://packagist.org/packages/filu/maw_orm) Version 2.2
+* [Mysql](https://dev.mysql.com/downloads/mysql/) Version 8.0.27
 
 <!-- GETTING STARTED -->
 
@@ -53,7 +54,14 @@ In order to install all the packages, you'll need :
    ```sh
    composer install
    ```
-4. Create and .env.php in public. An example is available in the file "example.env.php"
+4. Create and .env.php . An example is available in the file "example.env.php"
+
+5. Run looper.sql to create your database
+
+6. Run PHP localserver at port 80 or any port of your choosing
+    ```sh
+    php -S localhost:80 -t public
+    ```
 
 ## License
 
