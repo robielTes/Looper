@@ -10,4 +10,5 @@ class State extends Model
     protected string $primaryKey = "id";
     public int $id;
     public int $name;
+    public string $slug;
 }

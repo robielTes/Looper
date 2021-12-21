@@ -482,3 +482,4 @@ composer.lock
 public/.env.php
 storage/cache/*
 node_modules
+.env.php

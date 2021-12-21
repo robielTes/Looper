@@ -60,6 +60,4 @@ class Exercise extends Model
             $exercise->delete();
         }
     }
-
-
 }
