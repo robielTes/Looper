@@ -23,6 +23,7 @@ USE `looper` ;
 CREATE TABLE IF NOT EXISTS `looper`.`states` (
                                                  `id` INT NOT NULL AUTO_INCREMENT,
                                                  `name` VARCHAR(10) NOT NULL,
+    `slug` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`))
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb4
@@ -146,9 +147,9 @@ INSERT INTO `looper`.`lines` (`kind`,`value_kind`,`slug`) VALUES ('Multi-line te
 
 -- States
 
-INSERT INTO `looper`.`states` (`name`) VALUES ('Building');
-INSERT INTO `looper`.`states` (`name`) VALUES ('Answering');
-INSERT INTO `looper`.`states` (`name`) VALUES ('Closed');
+INSERT INTO `looper`.`states` (`name`,`slug`) VALUES ('Building','BLD');
+INSERT INTO `looper`.`states` (`name`,`slug`) VALUES ('Answering','ANS');
+INSERT INTO `looper`.`states` (`name`,`slug`) VALUES ('Closed','CLD');
 
 
 -- Exercises
