@@ -40,13 +40,13 @@ class Exercise extends Model
         return $connector->selectMany($query, ["slug" => $stateSlug], Exercise::class);
     }
 
-    public static function state(int $id,string $stateSlug)
+    public static function state(int $id)
     {
         $query = "SELECT * FROM `exercises`
         inner join `states` on state_id = states.id
-        where exercises.id = :id and slug = :slug;";
+        where exercises.id = :id;";
         $connector = DB::getInstance();
-        return $connector->selectOne($query, ["id" => $id, "slug" => $stateSlug], Exercise::class);
+        return $connector->selectOne($query, ["id" => $id], Exercise::class);
     }
 
     public static function nextExercise()
