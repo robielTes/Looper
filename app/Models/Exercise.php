@@ -49,10 +49,9 @@ class Exercise extends Model
         return $connector->selectOne($query, ["id" => $id, "slug" => $stateSlug], Exercise::class);
     }
 
-    public static function last()
+    public static function nextExercise()
     {
-        //TODO add param to add after last id
-        return DB::getInstance()->selectOne("SELECT max(id) as id FROM `exercises`", [], Exercise::class);
+        return DB::getInstance()->selectOne("SELECT max(id)+1 as id FROM `exercises`", [], Exercise::class);
     }
 
 

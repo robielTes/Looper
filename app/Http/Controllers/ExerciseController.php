@@ -43,9 +43,9 @@ class ExerciseController extends Controller
      */
     public function create(View $view): Response
     {
-        $last = Exercise::last()->id +1; //return after last exercise id
+        $next = Exercise::nextExercise()->id; //return after next exercise id
         $this->displayStyle('New exercise', 'yellow');
-        return $view('exercises.create', compact('last'));
+        return $view('exercises.create', compact('next'));
     }
 
     /**
