@@ -54,7 +54,7 @@ In order to install all the packages, you'll need :
    ```sh
    composer install
    ```
-4. Create and .env.php . An example is available in the file "example.env.php"
+4. Create .env.php . An example is available in the file "example.env.php"
 
 5. Run looper.sql to create your database
 

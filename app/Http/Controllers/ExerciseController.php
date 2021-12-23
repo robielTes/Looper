@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ExerciseState;
 use App\Support\View;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Models\Exercise;
@@ -17,7 +18,7 @@ class ExerciseController extends Controller
      */
     public function index(View $view): Response
     {
-        $exercisesAnswering = Exercise::state(2);
+        $exercisesAnswering = Exercise::byState('ANS');
         $this->displayStyle('', 'purple');
         return $view('exercises.take', compact('exercisesAnswering'));
     }
@@ -42,7 +43,7 @@ class ExerciseController extends Controller
      */
     public function create(View $view): Response
     {
-        $last = array_key_last(Exercise::all()) + 2; //return last exercise id
+        $last = Exercise::last()->id +1; //return after last exercise id
         $this->displayStyle('New exercise', 'yellow');
         return $view('exercises.create', compact('last'));
     }
@@ -53,7 +54,7 @@ class ExerciseController extends Controller
      */
     public function store(View $view,): void
     {
-        $exerciseId = Exercise::make(['title' => $_REQUEST['title'], 'states_id' => 1])->create();
+        $exerciseId = Exercise::make(['title' => $_REQUEST['title'], 'states_id' => ExerciseState::BLD])->create();
         $this->redirect("/exercises/$exerciseId/fields");
     }
 
@@ -63,9 +64,9 @@ class ExerciseController extends Controller
      */
     public function edit(View $view): Response
     {
-        $exercisesBuilding = Exercise::state(1);
-        $exercisesAnswering = Exercise::state(2);
-        $exercisesClosed = Exercise::state(3);
+        $exercisesBuilding = Exercise::byState('BLD');
+        $exercisesAnswering = Exercise::byState('ANS');
+        $exercisesClosed = Exercise::byState('CLD');
         $this->displayStyle('', 'green');
         return $view('exercises.manage', compact('exercisesBuilding', 'exercisesAnswering', 'exercisesClosed'));
     }

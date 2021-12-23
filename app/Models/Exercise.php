@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\ExerciseState;
 use filu\maw_orm\Model;
 use filu\maw_orm\database\DB;
+use ReflectionException;
 
 class Exercise extends Model
 {
@@ -29,34 +31,57 @@ class Exercise extends Model
      * @param int $stateId
      * @return array
      */
-    public static function state(int $stateId)
+    public static function byState(string $stateSlug)
     {
-        return Exercise::where('state_id', $stateId);
+        $query = "SELECT exercises.id, title, name, slug FROM `exercises`
+        inner join `states` on state_id = states.id
+        where slug = :slug;";
+        $connector = DB::getInstance();
+        return $connector->selectMany($query, ["slug" => $stateSlug], Exercise::class);
     }
+
+    public static function state(int $id,string $stateSlug)
+    {
+        $query = "SELECT * FROM `exercises`
+        inner join `states` on state_id = states.id
+        where exercises.id = :id and slug = :slug;";
+        $connector = DB::getInstance();
+        return $connector->selectOne($query, ["id" => $id, "slug" => $stateSlug], Exercise::class);
+    }
+
+    public static function last()
+    {
+        //TODO add param to add after last id
+        return DB::getInstance()->selectOne("SELECT max(id) as id FROM `exercises`", [], Exercise::class);
+    }
+
 
     /**
      * @param int $id
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public static function changeState(int $id)
     {
+        //TODO fix the State so that i don't need to call find after it
+        $exerciseState = Exercise::state($id);
         $exercise = Exercise::find($id);
-        if ($exercise->state_id === 1) {
-            $exercise->state_id = 2;
-        } elseif ($exercise->state_id === 2) {
-            $exercise->state_id = 3;
+        if ($exerciseState->slug === 'BLD') {
+            $exercise->state_id = ExerciseState::ANS;
+        } elseif ($exerciseState->slug === 'ANS') {
+            $exercise->state_id = ExerciseState::CLD;
         }
         $exercise->save();
     }
 
     /**
      * @param int $id
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public static function remove(int $id)
     {
         $exercise = Exercise::find($id);
-        if ($exercise->state_id === 1 || $exercise->state_id === 3) {
+        $exerciseState = Exercise::state($id);
+        if ($exerciseState->slug === 'BLD' || $exerciseState->slug === 'CLD') {
             $exercise->delete();
         }
     }
