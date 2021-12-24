@@ -15,8 +15,9 @@ class Exercise extends Model
     public string $title;
     public int $state_id;
 
+
     /**
-     * @return mixed
+     * @return mixed exercises table with inner join of fields table
      */
     public function fields(): mixed
     {
@@ -27,11 +28,12 @@ class Exercise extends Model
         return $connector->selectMany($query, ["id" => $this->id], Exercise::class);
     }
 
+
     /**
-     * @param int $stateId
-     * @return array
+     * @param string $stateSlug
+     * @return array exercises table with inner join of states table with given state slug
      */
-    public static function byState(string $stateSlug)
+    public static function byState(string $stateSlug): array
     {
         $query = "SELECT exercises.id, title, name, slug FROM `exercises`
         inner join `states` on state_id = states.id
@@ -40,7 +42,11 @@ class Exercise extends Model
         return $connector->selectMany($query, ["slug" => $stateSlug], Exercise::class);
     }
 
-    public static function state(int $id)
+    /**
+     * @param int $id exercise
+     * @return mixed exercises table with inner join of states table
+     */
+    public static function state(int $id): mixed
     {
         $query = "SELECT * FROM `exercises`
         inner join `states` on state_id = states.id
@@ -49,27 +55,69 @@ class Exercise extends Model
         return $connector->selectOne($query, ["id" => $id], Exercise::class);
     }
 
-    public static function nextExercise()
+    /**
+     * @return mixed next exercise to be created
+     */
+    public static function nextExercise(): mixed
     {
         return DB::getInstance()->selectOne("SELECT max(id)+1 as id FROM `exercises`", [], Exercise::class);
     }
 
-
     /**
+     * update the state to answering if param building is true else to closed
      * @param int $id
+     * @param bool $building
+     * @return void
      * @throws ReflectionException
      */
-    public static function changeState(int $id)
+    public static function nextState(int $id, bool $building = false): void
     {
-        //TODO fix the State so that i don't need to call find after it
-        $exerciseState = Exercise::state($id);
+        dd(self::nextExercise());
         $exercise = Exercise::find($id);
-        if ($exerciseState->slug === 'BLD') {
-            $exercise->state_id = ExerciseState::ANS;
-        } elseif ($exerciseState->slug === 'ANS') {
-            $exercise->state_id = ExerciseState::CLD;
-        }
+        $exercise->state_id = $building ? ExerciseState::ANS : ExerciseState::CLD;
         $exercise->save();
+    }
+
+
+    /**
+     * call nextState with building param true if the state is building else with none
+     * @param int $id exercise
+     * @return void
+     * @throws ReflectionException
+     */
+    public static function changeState(int $id): void
+    {
+        if (self::state($id)->slug === 'BLD') {
+            self::nextState($id, true);
+        } else {
+            self::nextState($id);
+        }
+    }
+
+    /**
+     * verifies if the exercise is in state of building or answering
+     * @param int $id exercise
+     * @return bool
+     */
+    public static function isUpdatable(int $id): bool
+    {
+        $slug = Exercise::state($id)->slug;
+        return $slug === "BLD" || $slug === "ANS";
+    }
+
+
+    /**
+     * call changeState if the exercise is updatable else do nothing
+     * @param int $id exercise
+     * @return void
+     * @throws ReflectionException
+     */
+    public static function updateState(int $id): void
+    {
+
+        if (self::isUpdatable($id)) {
+            self::changeState($id);
+        }
     }
 
     /**
@@ -84,11 +132,11 @@ class Exercise extends Model
     }
 
     /**
-     * remove exercise if it is removable else do nothing
+     * remove exercise if the exercise is removable else do nothing
      * @param int $id exercise
      * @throws ReflectionException
      */
-    public static function remove(int $id)
+    public static function remove(int $id): void
     {
         if (self::isRemovable($id)) {
             Exercise::find($id)->delete();

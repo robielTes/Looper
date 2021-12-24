@@ -82,7 +82,7 @@ class ExerciseController extends Controller
         if (empty(Exercise::find($id)->fields())) {
             $this->redirect("/exercises/$id/fields"); // redirect to same page
         } else {
-            Exercise::changeState($id);
+            Exercise::updateState($id);
             $this->redirect('/exercises');
         }
     }
