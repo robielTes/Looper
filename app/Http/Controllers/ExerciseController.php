@@ -52,7 +52,7 @@ class ExerciseController extends Controller
      * @param View $view
      * create new Exercise with Building state
      */
-    public function store(View $view,): void
+    public function store(View $view): void
     {
         $exerciseId = Exercise::make(['title' => $_REQUEST['title'], 'states_id' => ExerciseState::BLD])->create();
         $this->redirect("/exercises/$exerciseId/fields");
@@ -90,6 +90,7 @@ class ExerciseController extends Controller
     /**
      * @param View $view
      * @param int $id exercise id
+     * @throws ReflectionException
      */
     public function destroy(View $view, int $id): void
     {

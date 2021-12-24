@@ -13,7 +13,7 @@ class HomeController
      * @return Response
      * return to home page
      */
-    public function home(View $view): Response
+    public function index(View $view): Response
     {
         return $view('home');
     }

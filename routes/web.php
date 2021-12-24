@@ -3,7 +3,7 @@
 use App\Support\Route;
 
 //================= Home =================
-Route::get('/', 'HomeController@home');
+Route::get('/', 'HomeController@index');
 
 //================= Exercises =================
 Route::get('/exercises', 'ExerciseController@edit');

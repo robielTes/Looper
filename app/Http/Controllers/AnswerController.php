@@ -8,6 +8,7 @@ use App\Models\Exercise;
 use App\Models\Answer;
 use App\Models\Field;
 use App\Models\Fulfillment;
+use ReflectionException;
 
 class AnswerController extends Controller
 {
@@ -16,10 +17,11 @@ class AnswerController extends Controller
      * @param View $view
      * @param int $id
      * @return Response
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function index(View $view, int $id): Response
     {
+
         $answers = [];
         $fulfillment_ids = [];
         foreach (Answer::where('exercise_id', $id) as $answer) {
@@ -39,7 +41,7 @@ class AnswerController extends Controller
      * @param int $id
      * @param int $rid
      * @return Response
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function showResult(View $view, int $id, int $rid): Response
     {
@@ -60,7 +62,7 @@ class AnswerController extends Controller
      * @param int $id
      * @param int $fid
      * @return Response
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function showFulfillment(View $view, int $id, int $fid): Response
     {
@@ -74,7 +76,7 @@ class AnswerController extends Controller
      * @param View $view
      * @param int $id
      * @return Response
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function create(View $view, int $id): Response
     {
@@ -98,7 +100,7 @@ class AnswerController extends Controller
      * @param int $id
      * @param int $fid
      * @return Response
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function edit(View $view, int $id, int $fid): Response
     {

@@ -73,15 +73,25 @@ class Exercise extends Model
     }
 
     /**
-     * @param int $id
+     * verifies if the exercise is in state of building or closed
+     * @param int $id exercise
+     * @return bool
+     */
+    public static function isRemovable(int $id): bool
+    {
+        $slug = Exercise::state($id)->slug;
+        return $slug === "BLD" || $slug === "CLD";
+    }
+
+    /**
+     * remove exercise if it is removable else do nothing
+     * @param int $id exercise
      * @throws ReflectionException
      */
     public static function remove(int $id)
     {
-        $exercise = Exercise::find($id);
-        $exerciseState = Exercise::state($id);
-        if ($exerciseState->slug === 'BLD' || $exerciseState->slug === 'CLD') {
-            $exercise->delete();
+        if (self::isRemovable($id)) {
+            Exercise::find($id)->delete();
         }
     }
 }
