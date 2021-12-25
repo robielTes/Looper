@@ -14,6 +14,7 @@ class AnswerController extends Controller
 {
 
     /**
+     * show all answer for selected exercise
      * @param View $view
      * @param int $id
      * @return Response
@@ -37,6 +38,7 @@ class AnswerController extends Controller
     }
 
     /**
+     * show all answer for selected field
      * @param View $view
      * @param int $id
      * @param int $rid
@@ -58,6 +60,7 @@ class AnswerController extends Controller
     }
 
     /**
+     * show all answer for selected fulfilment "Time"
      * @param View $view
      * @param int $id
      * @param int $fid
@@ -73,6 +76,7 @@ class AnswerController extends Controller
     }
 
     /**
+     * send you to create answer form after verified if the exercise is answerable
      * @param View $view
      * @param int $id
      * @return Response
@@ -89,16 +93,22 @@ class AnswerController extends Controller
     }
 
     /**
+     * call store answer with given input after verified if the exercise is answerable
      * @param View $view
      * @param int $id
+     * @return Response
      */
-    public function store(View $view, int $id): void
+    public function store(View $view, int $id): Response
     {
-        $fulfillment = Answer::store($id, $_REQUEST);
-        $this->redirect("/exercises/$id/fulfillments/$fulfillment/edit");
+        if (Exercise::isAnswerable($id)) {
+            $fulfillment = Answer::store($id, $_REQUEST);
+            $this->redirect("/exercises/$id/fulfillments/$fulfillment/edit");
+        }
+        return $view('404');
     }
 
     /**
+     * send you to edit answer form with the input data after verified if the exercise is answerable
      * @param View $view
      * @param int $id
      * @param int $fid
@@ -107,20 +117,28 @@ class AnswerController extends Controller
      */
     public function edit(View $view, int $id, int $fid): Response
     {
-        $fulfillment = $fid;
-        $exercise = Exercise::find($id);
-        $this->displayStyle($exercise->title, 'purple');
-        return $view('answers.edit', compact('exercise', 'fulfillment'));
+        if (Exercise::isAnswerable($id)) {
+            $fulfillment = $fid;
+            $exercise = Exercise::find($id);
+            $this->displayStyle($exercise->title, 'purple');
+            return $view('answers.edit', compact('exercise', 'fulfillment'));
+        }
+        return $view('404');
     }
 
     /**
+     * call update answer with given input after verified if the exercise is answerable
      * @param View $view
      * @param int $id
      * @param int $fid
+     * @return Response
      */
-    public function update(View $view, int $id, int $fid): void
+    public function update(View $view, int $id, int $fid): Response
     {
-        Answer::update($fid, $_REQUEST);
-        $this->redirect("/exercises/$id/fulfillments/$fid/edit");
+        if (Exercise::isAnswerable($id)) {
+            Answer::update($fid, $_REQUEST);
+            $this->redirect("/exercises/$id/fulfillments/$fid/edit");
+        }
+        return $view('404');
     }
 }

@@ -16,7 +16,7 @@ class Answer extends Model
     public string $fulfillment_id;
 
     /**
-     * @return mixed
+     * @return mixed table answer with inner join to table fields, lines
      */
     public function result(): mixed
     {
@@ -31,7 +31,7 @@ class Answer extends Model
     }
 
     /**
-     * @return mixed
+     * @return mixed table answer with inner join to table fulfillments
      */
     public function take(): mixed
     {
@@ -45,7 +45,7 @@ class Answer extends Model
     }
 
     /**
-     * @return mixed
+     * @return mixed table answer with inner join to table fields, fulfillments
      */
     public function fulfillment(): mixed
     {
@@ -60,7 +60,7 @@ class Answer extends Model
     /**
      * @param int $fieldId
      * @param int $fulfillmentId
-     * @return mixed
+     * @return mixed table answer with the given fieldId and fulfillmentId
      */
     public static function answerField(int $fieldId, int $fulfillmentId): mixed
     {
@@ -73,6 +73,7 @@ class Answer extends Model
     }
 
     /**
+     * Update the answer with the given input
      * @param int $fid
      * @param $input
      */
@@ -87,18 +88,21 @@ class Answer extends Model
     }
 
     /**
-     * @param int $id
+     * store the new answer with the given data
+     * first store answering time on fulfillment table
+     * then use the created id  as fulfillment_id
+     * @param int $exerciseId
      * @param $input
      * @return false
      */
-    public static function store(int $id, $input)
+    public static function store(int $exerciseId, $input)
     {
         $fulfillment = Fulfillment::make(['take' => date('Y-m-d H:i:s')])->create();
         foreach ($input as $key => $value) {
             Answer::make([
                 'answer' => $value,
                 'field_id' => $key,
-                'exercise_id' => $id,
+                'exercise_id' => $exerciseId,
                 'fulfillment_id' => $fulfillment])
                 ->create();
         }

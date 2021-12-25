@@ -11,8 +11,8 @@ Route::get('/exercises/new', 'ExerciseController@create');
 Route::get('/exercises/answering', 'ExerciseController@index');
 Route::get('/exercises/{id}/fields', 'ExerciseController@show');
 Route::post('/exercises/{id}/fields', 'ExerciseController@store');
-Route::get('/exercises/{id}/state', 'ExerciseController@update');
-Route::get('/exercises/{id}/state/{status}', 'ExerciseController@update');
+Route::post('/exercises/{id}/state', 'ExerciseController@update');
+Route::post('/exercises/{id}/state/{status}', 'ExerciseController@update'); // from create field form
 Route::post('/exercises/{id}/destroy', 'ExerciseController@destroy');
 
 //================= Answers =================

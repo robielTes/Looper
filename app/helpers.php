@@ -9,6 +9,10 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 if (!function_exists('base_path')) {
+    /**
+     * @param $path
+     * @return string to base path "./"
+     */
     function base_path($path = '')
     {
         return __DIR__ . "/../{$path}";
@@ -16,6 +20,10 @@ if (!function_exists('base_path')) {
 }
 
 if (!function_exists('config_path')) {
+    /**
+     * @param $path
+     * @return string to config path "./config"
+     */
     function config_path($path = '')
     {
         return base_path("config/{$path}");
@@ -23,6 +31,10 @@ if (!function_exists('config_path')) {
 }
 
 if (!function_exists('resources_path')) {
+    /**
+     * @param $path
+     * @return string to resources path "./resources"
+     */
     function resources_path($path = '')
     {
         return base_path("resources/{$path}");
@@ -30,6 +42,10 @@ if (!function_exists('resources_path')) {
 }
 
 if (!function_exists('public_path')) {
+    /**
+     * @param $path
+     * @return string to public path "./public"
+     */
     function public_path($path = '')
     {
         return base_path("public_path/{$path}");
@@ -37,6 +53,10 @@ if (!function_exists('public_path')) {
 }
 
 if (!function_exists('routes_path')) {
+    /**
+     * @param $path
+     * @return string to routes path "./routes"
+     */
     function routes_path($path = '')
     {
         return base_path("routes/{$path}");
@@ -44,6 +64,10 @@ if (!function_exists('routes_path')) {
 }
 
 if (!function_exists('storage_path')) {
+    /**
+     * @param $path
+     * @return string to storage path "./storage"
+     */
     function storage_path($path = '')
     {
         return base_path("storage/{$path}");
@@ -51,6 +75,10 @@ if (!function_exists('storage_path')) {
 }
 
 if (!function_exists('app_path')) {
+    /**
+     * @param $path
+     * @return string to app path "./app"
+     */
     function app_path($path = '')
     {
         return base_path("app/{$path}");
@@ -59,6 +87,10 @@ if (!function_exists('app_path')) {
 
 
 if (!function_exists('dd')) {
+    /**
+     * die dump return var_dump die
+     * @return void
+     */
     function dd()
     {
         array_map(function ($content) {
@@ -73,6 +105,13 @@ if (!function_exists('dd')) {
 }
 
 if (!function_exists('throw_when')) {
+    /**
+     * to throw error message
+     * @param bool $fails
+     * @param string $message
+     * @param string $exception
+     * @return void
+     */
     function throw_when(bool $fails, string $message, string $exception = Exception::class)
     {
         if (!$fails) {
@@ -84,6 +123,10 @@ if (!function_exists('throw_when')) {
 }
 
 if (!function_exists('class_basename')) {
+    /**
+     * @param $class
+     * @return string class name
+     */
     function class_basename($class)
     {
         $class = is_object($class) ? get_class($class) : $class;
@@ -93,6 +136,11 @@ if (!function_exists('class_basename')) {
 }
 
 if (!function_exists('config')) {
+    /**
+     * allow you use data_set and data_get for your php file
+     * @param $path
+     * @return array|mixed
+     */
     function config($path = null)
     {
         $config = [];

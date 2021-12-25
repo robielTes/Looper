@@ -5,6 +5,9 @@ namespace App\Providers;
 class ErrorMiddlewareServiceProvider extends ServiceProvider
 {
 
+    /**
+     * register the error-middleware in the service provider
+     */
     public function register()
     {
         $this->app->addErrorMiddleware(
@@ -14,6 +17,9 @@ class ErrorMiddlewareServiceProvider extends ServiceProvider
         );
     }
 
+    /**
+     * heritage from service provider
+     */
     public function boot()
     {
     }

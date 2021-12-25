@@ -8,6 +8,10 @@ use Slim\Psr7\Factory\ResponseFactory;
 class BladeServiceProvider extends ServiceProvider
 {
 
+    /**
+     * will return new view value from the container with the key view
+     * @return mixed|void
+     */
     public function register()
     {
         $this->app->getContainer()->set(View::class, function () {
@@ -15,8 +19,10 @@ class BladeServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * * heritage from service provider
+     */
     public function boot()
     {
-        // TODO: Implement boot() method.
     }
 }

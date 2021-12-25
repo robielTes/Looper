@@ -43,7 +43,7 @@
                 @empty
                 @endforelse
             </table>
-            <form class="py-8" action="/exercises/{{$exercise->id}}/state/answering" method="get"
+            <form class="py-8" action="/exercises/{{$exercise->id}}/state/answering" method="post"
                   onsubmit="return confirm('Are you sure? You won\'t be able to further edit this exercise');">
                 <button
                         class="shadow bg-purple-500 hover:bg-gray-500 focus:shadow-outline focus:outline-none font-semibold text-white py-2 px-4 rounded"
