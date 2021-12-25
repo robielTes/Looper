@@ -31,13 +31,17 @@ class ExerciseController extends Controller
      */
     public function show(View $view, int $id): Response
     {
-        $lines = Line::all();
-        $exercise = Exercise::find($id);
-        $this->displayStyle($exercise->title, 'yellow');
-        return $view('fields.create', compact('exercise', 'lines'));
+        if (Exercise::isEditable($id)) {
+            $lines = Line::all();
+            $exercise = Exercise::find($id);
+            $this->displayStyle($exercise->title, 'yellow');
+            return $view('fields.create', compact('exercise', 'lines'));
+        }
+        return $view('404');
     }
 
     /**
+     * prepare create exercise page
      * @param View $view
      * @return Response
      */

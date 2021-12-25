@@ -55,6 +55,12 @@ class Exercise extends Model
         return $connector->selectOne($query, ["id" => $id], Exercise::class);
     }
 
+    public static function isEditable(int $id): bool
+    {
+        $slug = Exercise::state($id)->slug;
+        return $slug === "BLD";
+    }
+
     /**
      * @return mixed next exercise to be created
      */
