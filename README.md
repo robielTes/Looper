@@ -24,7 +24,7 @@ A building quiz is a quiz to which questions can be added and which can be delet
 and show statistics. Finally, a closed quiz can be deleted or show statistics.
 
 There are also 3 types of questions: single line text, list of single lines and multi-line text. The only difference 
-between them is the size of the questions labels.
+between them is the size of the questions labels .
 
 ### Students
 
