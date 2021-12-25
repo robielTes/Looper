@@ -55,10 +55,15 @@ class Exercise extends Model
         return $connector->selectOne($query, ["id" => $id], Exercise::class);
     }
 
+    /**
+     * verifies if the exercise is in state of building, answering or closed
+     * @param int $id exercise
+     * @return bool
+     */
     public static function isEditable(int $id): bool
     {
         $slug = Exercise::state($id)->slug;
-        return $slug === "BLD";
+        return $slug === "BLD" || $slug === "ANS" || $slug === "CLD";
     }
 
     /**
@@ -123,16 +128,19 @@ class Exercise extends Model
 
 
     /**
-     * call changeState if the exercise is updatable else do nothing
+     * call changeState if the exercise is updatable and changeStatusTo is not given
+     * call nextState with the status we want if changeStatusTo is give else do nothing
      * @param int $id exercise
+     * @param string $changeStatusTo status we want
      * @return void
      * @throws ReflectionException
      */
-    public static function updateState(int $id): void
+    public static function updateState(int $id, string $changeStatusTo): void
     {
-
-        if (self::isUpdatable($id)) {
+        if (self::isUpdatable($id) && $changeStatusTo === "") {
             self::changeState($id);
+        } elseif ($changeStatusTo === "answering") {
+            self::nextState($id, true);
         }
     }
 

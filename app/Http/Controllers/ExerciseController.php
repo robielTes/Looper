@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\ExerciseState;
 use App\Support\View;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Models\Exercise;
@@ -32,10 +31,13 @@ class ExerciseController extends Controller
      */
     public function show(View $view, int $id): Response
     {
-        $lines = Line::all();
-        $exercise = Exercise::find($id);
-        $this->displayStyle($exercise->title, 'yellow');
-        return $view('fields.create', compact('exercise', 'lines'));
+        if (Exercise::isEditable($id)) {
+            $lines = Line::all();
+            $exercise = Exercise::find($id);
+            $this->displayStyle($exercise->title, 'yellow');
+            return $view('fields.create', compact('exercise', 'lines'));
+        }
+        return $view('404');
     }
 
     /**
@@ -79,15 +81,16 @@ class ExerciseController extends Controller
      * update exercise state if it is building or answering
      * @param View $view
      * @param int $id exercise id
+     * @param string $status if desire status is given default none
      * @throws ReflectionException
      */
-    public function update(View $view, int $id): void
+    public function update(View $view, int $id, string $status = ''): void
     {
         //if the exercise has no fields do nothing
         if (empty(Exercise::find($id)->fields())) {
             $this->redirect("/exercises/$id/fields"); // redirect to same page
         } else {
-            Exercise::updateState($id);
+            Exercise::updateState($id, $status);
             $this->redirect('/exercises');
         }
     }
