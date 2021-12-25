@@ -26,8 +26,8 @@ class AnswerController extends Controller
         $fulfillment_ids = [];
         foreach (Answer::where('exercise_id', $id) as $answer) {
             if (!in_array($answer->fulfillment_id, $fulfillment_ids)) {
-                array_push($answers, $answer);
-                array_push($fulfillment_ids, $answer->fulfillment_id);
+                $answers[] = $answer;
+                $fulfillment_ids[] = $answer->fulfillment_id;
             }
         }
         $fulfillment = Fulfillment::all();
@@ -49,7 +49,7 @@ class AnswerController extends Controller
         $answers = [];
         foreach (Answer::where('field_id', $rid) as $answer) {
             if ($answer->field_id == $rid) {
-                array_push($answers, $answer);
+                $answers[] = $answer;
             }
         }
         $exercise = Exercise::find($id);
@@ -80,9 +80,12 @@ class AnswerController extends Controller
      */
     public function create(View $view, int $id): Response
     {
-        $exercise = Exercise::find($id);
-        $this->displayStyle($exercise->title, 'purple');
-        return $view('answers.create', compact('exercise'));
+        if (Exercise::isAnswerable($id)) {
+            $exercise = Exercise::find($id);
+            $this->displayStyle($exercise->title, 'purple');
+            return $view('answers.create', compact('exercise'));
+        }
+        return $view('404');
     }
 
     /**

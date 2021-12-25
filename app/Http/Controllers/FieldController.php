@@ -44,6 +44,7 @@ class FieldController extends Controller
     }
 
     /**
+     * call update method with the new data
      * @param View $view
      * @param int $fid field id
      * @param int $id exercise id

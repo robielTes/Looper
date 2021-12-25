@@ -56,14 +56,25 @@ class Exercise extends Model
     }
 
     /**
-     * verifies if the exercise is in state of building, answering or closed
-     * @param int $id exercise
+     * verifies if the exercise is in state of building
+     * @param int $exerciseId
      * @return bool
      */
-    public static function isEditable(int $id): bool
+    public static function isEditable(int $exerciseId): bool
     {
-        $slug = Exercise::state($id)->slug;
+        $slug = Exercise::state($exerciseId)->slug;
         return $slug === "BLD";
+    }
+
+    /**
+     * verifies if the exercise is in state of answering
+     * @param int $exerciseId
+     * @return bool
+     */
+    public static function isAnswerable(int $exerciseId): bool
+    {
+        $slug = Exercise::state($exerciseId)->slug;
+        return $slug === "ANS";
     }
 
     /**
@@ -87,14 +98,14 @@ class Exercise extends Model
 
     /**
      * update the state to answering if param building is true else to closed
-     * @param int $id exercise
+     * @param int $exerciseId
      * @param bool $building if the status id building
      * @return void
      * @throws ReflectionException
      */
-    public static function nextState(int $id, bool $building = false): void
+    public static function nextState(int $exerciseId, bool $building = false): void
     {
-        $exercise = Exercise::find($id);
+        $exercise = Exercise::find($exerciseId);
         $exercise->state_id = $building ? ExerciseState::ANS : ExerciseState::CLD;
         $exercise->save();
     }
@@ -102,27 +113,27 @@ class Exercise extends Model
 
     /**
      * call nextState with building param true if the state is building else with none
-     * @param int $id exercise
+     * @param int $exerciseId
      * @return void
      * @throws ReflectionException
      */
-    public static function changeState(int $id): void
+    public static function changeState(int $exerciseId): void
     {
-        if (self::state($id)->slug === 'BLD') {
-            self::nextState($id, true);
+        if (self::state($exerciseId)->slug === 'BLD') {
+            self::nextState($exerciseId, true);
         } else {
-            self::nextState($id);
+            self::nextState($exerciseId);
         }
     }
 
     /**
      * verifies if the exercise is in state of building or answering
-     * @param int $id exercise
+     * @param int $exerciseId
      * @return bool
      */
-    public static function isUpdatable(int $id): bool
+    public static function isUpdatable(int $exerciseId): bool
     {
-        $slug = Exercise::state($id)->slug;
+        $slug = Exercise::state($exerciseId)->slug;
         return $slug === "BLD" || $slug === "ANS";
     }
 
@@ -130,41 +141,41 @@ class Exercise extends Model
     /**
      * call changeState if the exercise is updatable and changeStatusTo is not given
      * call nextState with the status we want if changeStatusTo is give else do nothing
-     * @param int $id exercise
+     * @param int $exerciseId
      * @param string $changeStatusTo status we want
      * @return void
      * @throws ReflectionException
      */
-    public static function updateState(int $id, string $changeStatusTo): void
+    public static function updateState(int $exerciseId, string $changeStatusTo): void
     {
-        if (self::isUpdatable($id) && $changeStatusTo === "") {
-            self::changeState($id);
+        if (self::isUpdatable($exerciseId) && $changeStatusTo === "") {
+            self::changeState($exerciseId);
         } elseif ($changeStatusTo === "answering") {
-            self::nextState($id, true);
+            self::nextState($exerciseId, true);
         }
     }
 
     /**
      * verifies if the exercise is in state of building or closed
-     * @param int $id exercise
+     * @param int $exerciseId
      * @return bool
      */
-    public static function isRemovable(int $id): bool
+    public static function isRemovable(int $exerciseId): bool
     {
-        $slug = Exercise::state($id)->slug;
+        $slug = Exercise::state($exerciseId)->slug;
         return $slug === "BLD" || $slug === "CLD";
     }
 
 
     /**
      * remove exercise if the exercise is removable else do nothing
-     * @param int $id exercise
+     * @param int $exerciseId
      * @throws ReflectionException
      */
-    public static function remove(int $id): void
+    public static function remove(int $exerciseId): void
     {
-        if (self::isRemovable($id)) {
-            Exercise::find($id)->delete();
+        if (self::isRemovable($exerciseId)) {
+            Exercise::find($exerciseId)->delete();
         }
     }
 }
