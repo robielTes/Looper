@@ -63,7 +63,7 @@ class Exercise extends Model
     public static function isEditable(int $id): bool
     {
         $slug = Exercise::state($id)->slug;
-        return $slug === "BLD" || $slug === "ANS" || $slug === "CLD";
+        return $slug === "BLD";
     }
 
     /**
@@ -154,6 +154,7 @@ class Exercise extends Model
         $slug = Exercise::state($id)->slug;
         return $slug === "BLD" || $slug === "CLD";
     }
+
 
     /**
      * remove exercise if the exercise is removable else do nothing

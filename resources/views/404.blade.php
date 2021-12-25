@@ -19,11 +19,18 @@
             </g></g>
     </svg>
     <h1>page not found</h1>
-    <input id="input1" type="text" placeholder="Search">
+
+    <form method="get" action="https://www.google.com.au/search?site+q">
+        <input type="text" value="" name="q" id="query" placeholder="Search">
+        <button type="submit">
+            <svg class="search-icon" width="26" height="25.8">
+                <path opacity=".4" fill="#68A1D6" d="M22.3 3.7C20.5 2 18.1 1 15.6 1S10.8 2 9 3.7c-1.8 1.8-2.7 4.1-2.7 6.6 0 1.7.5 3.4 1.4 4.9l-6 6-.1.1c-.8.9-.8 2.2.1 3.1.8.8 2.2.9 3.1.1l6-6c1.5.9 3.1 1.4 4.9 1.4 2.5 0 4.9-1 6.6-2.7 3.6-3.8 3.6-9.8 0-13.5zm-2.9 10.5c-1 1-2.4 1.6-3.8 1.6s-2.8-.6-3.8-1.6-1.6-2.4-1.6-3.8.6-2.8 1.6-3.8S14.2 5 15.6 5s2.8.6 3.8 1.6c2.1 2.1 2.1 5.5 0 7.6z"/>
+            </svg>
+        </button>
+    </form>
+
     <!-- Search icon -->
-    <svg class="search-icon" width="26" height="25.8">
-        <path opacity=".4" fill="#68A1D6" d="M22.3 3.7C20.5 2 18.1 1 15.6 1S10.8 2 9 3.7c-1.8 1.8-2.7 4.1-2.7 6.6 0 1.7.5 3.4 1.4 4.9l-6 6-.1.1c-.8.9-.8 2.2.1 3.1.8.8 2.2.9 3.1.1l6-6c1.5.9 3.1 1.4 4.9 1.4 2.5 0 4.9-1 6.6-2.7 3.6-3.8 3.6-9.8 0-13.5zm-2.9 10.5c-1 1-2.4 1.6-3.8 1.6s-2.8-.6-3.8-1.6-1.6-2.4-1.6-3.8.6-2.8 1.6-3.8S14.2 5 15.6 5s2.8.6 3.8 1.6c2.1 2.1 2.1 5.5 0 7.6z"/>
-    </svg>
+
     <p><a href="/">Home</a></p>
     <p><a href="/exercises/answering">Take an exercise</a></p>
     <p><a href="/exercises/new">Create an exercise</a></p>

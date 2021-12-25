@@ -6,9 +6,9 @@ class Controller
 {
 
     /**
-     * @param string $title
-     * @param string $color
      * store title and color in session variable
+     * @param string $title page
+     * @param string $color header
      */
 
     public function displayStyle(string $title, string $color)
@@ -19,8 +19,8 @@ class Controller
 
 
     /**
-     * @param string $to
      * redirect to given url
+     * @param string $to
      */
     public function redirect(string $to)
     {
