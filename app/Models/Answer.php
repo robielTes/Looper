@@ -77,7 +77,7 @@ class Answer extends Model
      * @param int $fid
      * @param $input
      */
-    public static function update(int $fid, $input)
+    public static function update(int $fid, $input):void
     {
         foreach ($input as $key => $value) {
             $answer = Answer::answerField($key, $fid);
@@ -95,7 +95,7 @@ class Answer extends Model
      * @param $input
      * @return false
      */
-    public static function store(int $exerciseId, $input)
+    public static function store(int $exerciseId, $input):int
     {
         $fulfillment = Fulfillment::make(['take' => date('Y-m-d H:i:s')])->create();
         foreach ($input as $key => $value) {

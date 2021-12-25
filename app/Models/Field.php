@@ -32,7 +32,7 @@ class Field extends Model
      * @param $input
      * @throws ReflectionException
      */
-    public static function update(int $fid, $input)
+    public static function update(int $fid, $input):void
     {
         $field = Field::find($fid);
         $slug = strtolower(self::first(explode("-", $input['value-kind'])));
