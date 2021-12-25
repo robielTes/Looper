@@ -24,6 +24,7 @@ class ExerciseController extends Controller
     }
 
     /**
+     * show selected exercise page if it is editable else 404 page
      * @param View $view
      * @param int $id exercise id
      * @return Response
@@ -31,13 +32,10 @@ class ExerciseController extends Controller
      */
     public function show(View $view, int $id): Response
     {
-        if (Exercise::isEditable($id)) {
-            $lines = Line::all();
-            $exercise = Exercise::find($id);
-            $this->displayStyle($exercise->title, 'yellow');
-            return $view('fields.create', compact('exercise', 'lines'));
-        }
-        return $view('404');
+        $lines = Line::all();
+        $exercise = Exercise::find($id);
+        $this->displayStyle($exercise->title, 'yellow');
+        return $view('fields.create', compact('exercise', 'lines'));
     }
 
     /**
