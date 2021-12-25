@@ -16,6 +16,16 @@
 This is a CPNV project in which students need to copy a [website](https://stormy-plateau-54488.herokuapp.com/).
 It is about planification, learning and programming.
 
+This project allows users to create quizzes, answer questions and look at the statistics. There are 3 types of quizzes: 
+building, answering and closed.
+
+
+A building quiz is a quiz to which questions can be added and which can be deleted. An answering quiz can only be closed
+and show statistics. Finally, a closed quiz can be deleted or show statistics.
+
+There are also 3 types of questions: single line text, list of single lines and multi-line text. The only difference 
+between them is the size of the questions labels.
+
 ### Students
 
 * [Filipe Martins](https://github.com/FilipeCPNV)
