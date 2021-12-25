@@ -64,15 +64,25 @@ class Exercise extends Model
     }
 
     /**
+     * create new exercise with the given input form
+     * @param array $input
+     * @return int of the created exercise id
+     */
+    public static function add(array $input): int
+    {
+        return Exercise::make(['title' => $input['title'], 'states_id' => ExerciseState::BLD])
+            ->create();
+    }
+
+    /**
      * update the state to answering if param building is true else to closed
-     * @param int $id
-     * @param bool $building
+     * @param int $id exercise
+     * @param bool $building if the status id building
      * @return void
      * @throws ReflectionException
      */
     public static function nextState(int $id, bool $building = false): void
     {
-        dd(self::nextExercise());
         $exercise = Exercise::find($id);
         $exercise->state_id = $building ? ExerciseState::ANS : ExerciseState::CLD;
         $exercise->save();

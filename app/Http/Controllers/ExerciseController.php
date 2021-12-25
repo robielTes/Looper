@@ -49,16 +49,18 @@ class ExerciseController extends Controller
     }
 
     /**
+     * call add to create new exercise by passing the given request form
      * @param View $view
      * create new Exercise with Building state
      */
     public function store(View $view): void
     {
-        $exerciseId = Exercise::make(['title' => $_REQUEST['title'], 'states_id' => ExerciseState::BLD])->create();
+        $exerciseId = Exercise::add($_REQUEST);
         $this->redirect("/exercises/$exerciseId/fields");
     }
 
     /**
+     * return to exercise manage page with all exercise group by their status
      * @param View $view
      * @return Response
      */
@@ -72,13 +74,14 @@ class ExerciseController extends Controller
     }
 
     /**
+     * update exercise state if it is building or answering
      * @param View $view
      * @param int $id exercise id
      * @throws ReflectionException
      */
     public function update(View $view, int $id): void
     {
-        //if the fields is empty
+        //if the exercise has no fields do nothing
         if (empty(Exercise::find($id)->fields())) {
             $this->redirect("/exercises/$id/fields"); // redirect to same page
         } else {
@@ -88,13 +91,14 @@ class ExerciseController extends Controller
     }
 
     /**
+     * destroy selected exercise with status building or closed
      * @param View $view
      * @param int $id exercise id
      * @throws ReflectionException
      */
     public function destroy(View $view, int $id): void
     {
-        Exercise::remove($id); //remove exercise with state_id 1 or 3
+        Exercise::remove($id);
         $this->redirect('/exercises');
     }
 }
